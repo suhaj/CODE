@@ -23,11 +23,12 @@ void draw(){
 
 //vstup: font
 //popup/rozkliknutelná/rolldown nabídka fontů. Zvolit naistalovaný font
-
-//resizable window
+//there is a function (String[] fontList = PFont.list(); println(fontList);), which lists fonts, so zou just have to suck it out 
+//and put in a list and just string the name into (font = createFont("Georgia", 32);)
 
 //gui
 
 //fce
 
-//vystup:
+//vystup: vektor
+//theres a library for that, sketch > import lib
