@@ -1,38 +1,40 @@
+import geomerative.*;
 import controlP5.*;
 import java.util.*;
 
-ControlP5 myGUI;
+int lastWidth;
+
 PFont myFont;
 String[] fontList = PFont.list();
 String activeFont = "Comic Sans";
 
 void setup() {
   size(900, 500);
+  lastWidth = 900;
   if (frame != null) {
-   surface.setResizable(true);
-   background(255, 255, 255);
+    surface.setResizable(true);
+    background(255, 255, 255);
   }
-  
-  
-  //scrollable List:
-  myGUI = new ControlP5(this); //the argument "this" tells cP5 I'm refering to this sketch
-  List l = Arrays.asList(fontList);
-  myGUI.addScrollableList("Fonts")
-     .setPosition(100, 100)
-     .setSize(200, 100)
-     .setBarHeight(20)
-     .setItemHeight(20)
-     .addItems(l);
-     
+
   myFont = createFont(activeFont, 32);
-  fill(0,0,0);
+  fill(0, 0, 0);
   textFont(myFont);
   textAlign(CENTER, CENTER);
+
+  //setGUI();
 }
 
-void draw(){
-  background(255, 255, 255);
+void draw() {
+  background(255);
   text("!@#$%", width/2, height/2);
+  
+  if (lastWidth != width) {
+   boolean openness = gMenu.isOpen(); 
+   setGUI();
+   background(255);
+   lastWidth = width;
+   System.out.println("Tralala");
+  }
 }
 
 void Fonts(int n) {
@@ -43,8 +45,8 @@ void Fonts(int n) {
 }
 
 /*vstup: font
-nacist kliknuty umime, ale jak ho zobrazit kdyz se text setup a text nesnesou v jedné fci?
-*/
+ nacist kliknuty umime, ale jak ho zobrazit kdyz se text setup a text nesnesou v jedné fci?
+ */
 
 //gui
 
