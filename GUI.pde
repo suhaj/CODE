@@ -1,19 +1,18 @@
 ControlP5 myGUI;
-Group gMenu = myGUI.addGroup("gMenu");
+Group gMenu; 
 
 void setGUI() {
 
   myGUI = new ControlP5(this);
-  //the argument "this" tells cP5 I'm refering to this sketch
-
-  gMenu
-  .setPosition(0, 10)
+    //the argument "this" tells cP5 I'm refering to this sketch
+  gMenu = myGUI.addGroup("gMenu")
+    .setPosition(0, 10)
     .setWidth(width)
     .setBackgroundHeight(30)
     .setBackgroundColor(color(200, 200, 200, 40))
     .setLabel("Menu")
-    .setOpen(false)  
     ;
+
 
   List l = Arrays.asList(fontList);
   myGUI.addScrollableList("Fonts")

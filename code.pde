@@ -5,14 +5,16 @@ import java.util.*;
 int lastWidth;
 
 PFont myFont;
-String[] fontList = PFont.list();
-String activeFont = "Comic Sans";
+String[] fontList = PFont.list(); //all installed fonts
+String activeFont = "Comic Sans"; //default font
+boolean firstDrawRun = true;
 
 void setup() {
   size(900, 500);
   lastWidth = 900;
   if (frame != null) {
-    surface.setResizable(true);
+//    frame.setResizable(true); //processing 2.2.1
+    surface.setResizable(true); //processing 3.0
     background(255, 255, 255);
   }
 
@@ -25,15 +27,28 @@ void setup() {
 }
 
 void draw() {
-  background(255);
+  if (firstDrawRun) { //sets GUI only in the very beginning
+    setGUI();
+    firstDrawRun = false;
+  }
+  background(255); //else draw over it 
   text("!@#$%", width/2, height/2);
-  
+
   if (lastWidth != width) {
-   boolean openness = gMenu.isOpen(); 
-   setGUI();
-   background(255);
-   lastWidth = width;
-   System.out.println("Tralala");
+    gMenu.hide();
+    if (gMenu.isOpen()) {
+      gMenu.setOpen(true);
+      background(255);
+      setGUI();
+    } else {
+      gMenu.setOpen(false);  
+      background(255);
+      setGUI();
+    }
+    gMenu.show();
+
+    lastWidth = width;
+    //System.out.println("Tralala");
   }
 }
 
