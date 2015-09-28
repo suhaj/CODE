@@ -31,10 +31,10 @@ void draw() {
     setGUI();
     firstDrawRun = false;
   }
-  background(255); //else draw over it 
-  text("!@#$%", width/2, height/2);
+  background(255); //repeating background 
+  text("!@#$%", width/2, height/2); //the text THATS GONNA BE AN OBJECT SOMEHOW
 
-  if (lastWidth != width) {
+  if (lastWidth != width) { //change gMenu dimensions with screen resize
     gMenu.hide();
     if (gMenu.isOpen()) {
       gMenu.setOpen(true);
@@ -62,8 +62,6 @@ void Fonts(int n) {
 /*vstup: font
  nacist kliknuty umime, ale jak ho zobrazit kdyz se text setup a text nesnesou v jedné fci?
  */
-
-//gui
 
 //fce
 
