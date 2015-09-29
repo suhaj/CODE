@@ -1,3 +1,5 @@
+import processing.svg.*;
+
 import geomerative.*;
 import controlP5.*;
 import java.util.*;
@@ -7,13 +9,14 @@ int lastWidth;
 PFont myFont;
 String[] fontList = PFont.list(); //all installed fonts
 String activeFont = "Comic Sans"; //default font
+String selectedFont = activeFont; 
 boolean firstDrawRun = true;
 
 void setup() {
   size(900, 500);
   lastWidth = 900;
   if (frame != null) {
-//    frame.setResizable(true); //processing 2.2.1
+    //    frame.setResizable(true); //processing 2.2.1
     surface.setResizable(true); //processing 3.0
     background(255, 255, 255);
   }
@@ -31,6 +34,13 @@ void draw() {
     setGUI();
     firstDrawRun = false;
   }
+
+  if (activeFont != selectedFont) { //dropdown list changes font
+    activeFont = selectedFont;
+    myFont = createFont(activeFont, 32);
+    textFont(myFont);
+  }
+
   background(255); //repeating background 
   text("!@#$%", width/2, height/2); //the text THATS GONNA BE AN OBJECT SOMEHOW
 
@@ -63,7 +73,5 @@ void Fonts(int n) {
  nacist kliknuty umime, ale jak ho zobrazit kdyz se text setup a text nesnesou v jedné fci?
  */
 
-//fce
-
-//vystup: vektor
-//theres a library for that, sketch > import lib
+//vystup: svg x pdf
+//vstup: svg
