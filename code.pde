@@ -1,4 +1,4 @@
-import processing.svg.*;
+//import processing.svg.*;
 
 import geomerative.*;
 import controlP5.*;
@@ -47,11 +47,11 @@ void draw() {
   if (lastWidth != width) { //change gMenu dimensions with screen resize
     gMenu.hide();
     if (gMenu.isOpen()) {
-      gMenu.setOpen(true);
+      gMenuOpenness = true;
       background(255);
       setGUI();
     } else {
-      gMenu.setOpen(false);  
+      gMenuOpenness = false;  
       background(255);
       setGUI();
     }
