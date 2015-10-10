@@ -7,14 +7,6 @@ RadioButton rb1;
 
 boolean gMenuOpenness = true;
 
-//boolean f1MenuHidden = true;
-//boolean f2MenuHidden = true;
-//boolean f3MenuHidden = true;
-
-//boolean firstF1run = true;
-//boolean firstF2run = true;
-//boolean firstF3run = true;
-
 void setGUI() { 
   myGUI = new ControlP5(this);
   //the argument "this" tells cP5 I'm refering to this sketch
@@ -62,7 +54,7 @@ void setFunctionMenus() {
   f1Menu = myGUI.addGroup("f1Menu") //f1 menu group
     .setPosition(0, height-100)
     .setWidth(width)
-    .setBackgroundHeight(30)
+    .setBackgroundHeight(100)
     .setBackgroundColor(color(200, 200, 200, 40))
     .setLabel("f1")  
     .hideBar()
@@ -71,7 +63,7 @@ void setFunctionMenus() {
   f2Menu = myGUI.addGroup("f2Menu") //f2 menu group
     .setPosition(0, height-100)
     .setWidth(width)
-    .setBackgroundHeight(30)
+    .setBackgroundHeight(100)
     .setBackgroundColor(color(200, 200, 200, 40))
     .setLabel("f2")  
     .hideBar()
@@ -80,7 +72,7 @@ void setFunctionMenus() {
   f3Menu = myGUI.addGroup("f3Menu") //f3 menu group
     .setPosition(0, height-100)
     .setWidth(width)
-    .setBackgroundHeight(30)
+    .setBackgroundHeight(100)
     .setBackgroundColor(color(200, 200, 200, 40))
     .setLabel("f3")  
     .hideBar()
@@ -116,11 +108,6 @@ void controlEvent(ControlEvent theEvent) {
       f1Menu.hide();
     }
   }
-}
-
-void function1 () {
-  //if na první spuštění kde se inicializuje grupa
-  //pak se jen vyvolá s uloženýma věcma :)))
 }
 
 //az bude jasne kolik bude cudlu na fce, mohly by se inicializovat pres volani fce
