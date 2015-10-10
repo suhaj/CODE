@@ -58,6 +58,22 @@ void draw() {
     }
     gMenu.show();
 
+    if (f1Menu.isVisible()) {
+      f1Menu.hide();
+      setFunctionMenus();
+      f1Menu.show();
+    }
+    if (f2Menu.isVisible()) {
+      f2Menu.hide();
+      setFunctionMenus();
+      f2Menu.show();
+    }
+    if (f3Menu.isVisible()) {
+      f3Menu.hide();
+      setFunctionMenus();
+      f3Menu.show();
+    }
+
     lastWidth = width;
     //System.out.println("Tralala");
   }

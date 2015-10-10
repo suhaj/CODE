@@ -62,7 +62,7 @@ void setFunctionMenus() {
   f1Menu = myGUI.addGroup("f1Menu") //f1 menu group
     .setPosition(0, height-100)
     .setWidth(width)
-    .setBackgroundHeight(30)
+    .setBackgroundHeight(100)
     .setBackgroundColor(color(200, 200, 200, 40))
     .setLabel("f1")  
     .hideBar()
@@ -71,7 +71,7 @@ void setFunctionMenus() {
   f2Menu = myGUI.addGroup("f2Menu") //f2 menu group
     .setPosition(0, height-100)
     .setWidth(width)
-    .setBackgroundHeight(30)
+    .setBackgroundHeight(100)
     .setBackgroundColor(color(200, 200, 200, 40))
     .setLabel("f2")  
     .hideBar()
@@ -80,7 +80,7 @@ void setFunctionMenus() {
   f3Menu = myGUI.addGroup("f3Menu") //f3 menu group
     .setPosition(0, height-100)
     .setWidth(width)
-    .setBackgroundHeight(30)
+    .setBackgroundHeight(100)
     .setBackgroundColor(color(200, 200, 200, 40))
     .setLabel("f3")  
     .hideBar()
