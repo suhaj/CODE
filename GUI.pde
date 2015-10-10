@@ -7,14 +7,17 @@ RadioButton rb1;
 
 boolean gMenuOpenness = true;
 
-boolean firstF1run = false;
-boolean firstF2run = false;
-boolean firstF3run = false;
+//boolean f1MenuHidden = true;
+//boolean f2MenuHidden = true;
+//boolean f3MenuHidden = true;
 
-void setGUI() {
+//boolean firstF1run = true;
+//boolean firstF2run = true;
+//boolean firstF3run = true;
+
+void setGUI() { 
   myGUI = new ControlP5(this);
   //the argument "this" tells cP5 I'm refering to this sketch
-  
   gMenu = myGUI.addGroup("gMenu") //top menu group
     .setPosition(0, 10)
     .setWidth(width)
@@ -34,21 +37,14 @@ void setGUI() {
     .setOpen(false)
     .setGroup(gMenu);
 
-  myGUI.addButton("Save as PDF", 1, 100, 3, 99, 20)
+  myGUI.addButton("Save as PDF", 1, 100, 3, 99, 20) //buttons
     .setGroup(gMenu);
-  myGUI.addButton("Undo", 1, width - 110, 3, 99, 20)
-    .setGroup(gMenu);
-  //myGUI.addButton("function1", 1, 400, 3, 99, 20)
-  //  .setGroup(gMenu),
-  //  .setLabel("Function 1");
-  //myGUI.addButton("function2", 1, 500, 3, 99, 20)
-  //  .setGroup(gMenu),
-  //  .setLabel("Function 2")
-  rb1 = myGUI.addRadioButton("function1")
+
+  rb1 = myGUI.addRadioButton("function1") //radio buttons
     .setPosition(300, 3)
     .setSize(99, 20)
     .setColorForeground(color(120))
-    .setColorActive(color(255))
+    .setColorActive(color(200))
     .setColorLabel(color(255))
     .setItemsPerRow(5)
     .setSpacingColumn(3)
@@ -57,136 +53,74 @@ void setGUI() {
     .addItem("function 3", 3)
     .setGroup(gMenu);
 
-  for (Toggle t : rb1.getItems()) {
+  for (Toggle t : rb1.getItems()) { //radio buttons' padding
     t.getCaptionLabel().getStyle().movePadding(0, 0, 0, -75);
   }
 }
 
-void fonts(int n) {
+void setFunctionMenus() {
+  f1Menu = myGUI.addGroup("f1Menu") //f1 menu group
+    .setPosition(0, height-100)
+    .setWidth(width)
+    .setBackgroundHeight(30)
+    .setBackgroundColor(color(200, 200, 200, 40))
+    .setLabel("f1")  
+    .hideBar()
+    .hide()
+    ;
+  f2Menu = myGUI.addGroup("f2Menu") //f2 menu group
+    .setPosition(0, height-100)
+    .setWidth(width)
+    .setBackgroundHeight(30)
+    .setBackgroundColor(color(200, 200, 200, 40))
+    .setLabel("f2")  
+    .hideBar()
+    .hide()
+    ;
+  f3Menu = myGUI.addGroup("f3Menu") //f3 menu group
+    .setPosition(0, height-100)
+    .setWidth(width)
+    .setBackgroundHeight(30)
+    .setBackgroundColor(color(200, 200, 200, 40))
+    .setLabel("f3")  
+    .hideBar()
+    .hide()
+    ;
+}
+
+void fonts(int n) { //list of installed fonts
   selectedFont = fontList[n];
   System.out.println(selectedFont);
 }
 
 void controlEvent(ControlEvent theEvent) {
   if (theEvent.isFrom(rb1)) {
-    //System.out.println(theEvent.getGroup().getValue());
-    switch(int(theEvent.getGroup().getValue())) {
-    case 1:
-      //System.out.println("A");
-      if (!firstF1run) {
-        f1Menu = myGUI.addGroup("f1Menu")
-          .setPosition(0, 100)
-          .setWidth(width)
-          .setBackgroundHeight(30)
-          .setBackgroundColor(color(200, 200, 200, 40))
-          .setLabel("f1")
-          ;
-        firstF1run=true;
-      }
-      if (f2Menu.isOpen()) {
-        //f2Menu.hide();
-        //f2Menu.show();
-        f2Menu.setOpen(false);
-      }
-      if (f3Menu.isOpen()) {
-        f3Menu.setOpen(false);
-      }
-      f1Menu.setOpen(true);
-      break;
-    case 2:
-      //System.out.println("B");
-      if (!firstF2run) {
-        f2Menu = myGUI.addGroup("f2Menu")
-          .setPosition(0, 100)
-          .setWidth(width)
-          .setBackgroundHeight(30)
-          .setBackgroundColor(color(200, 200, 200, 40))
-          .setLabel("f2")
-          ;
-        firstF2run=true;
-      }
-      if (f1Menu.isOpen()) {
-        f1Menu.setOpen(false);
-      }
-      if (f3Menu.isOpen()) {
-        f3Menu.setOpen(false);
-      }
-      f2Menu.setOpen(true);
-      break;
-    case 3:
-      //System.out.println("C");
-      if (!firstF3run) {
-        f3Menu = myGUI.addGroup("f3Menu")
-          .setPosition(0, 100)
-          .setWidth(width)
-          .setBackgroundHeight(30)
-          .setBackgroundColor(color(200, 200, 200, 40))
-          .setLabel("f3")
-          ;
-        firstF3run=true;
-      }
-      if (f1Menu.isOpen()) {
-        f1Menu.setOpen(false);
-      }
-      if (f2Menu.isOpen()) {
-        f2Menu.setOpen(false);
-      }
-      f3Menu.setOpen(true);
-      break;
-    default:
-    System.out.println("Function button error on 'switch'");
+    if (theEvent.getGroup().getValue()==1) {
+      f2Menu.hide();
+      f3Menu.hide();
+      f1Menu.show();
+    }
+    if (theEvent.getGroup().getValue()==2) {
+      f1Menu.hide();
+      f3Menu.hide();
+      f2Menu.show();
+    }
+    if (theEvent.getGroup().getValue()==3) {
+      f1Menu.hide();
+      f2Menu.hide();
+      f3Menu.show();
+    }
+    if (theEvent.getGroup().getValue()==-1) {
+      f2Menu.hide();
+      f3Menu.hide();
+      f1Menu.hide();
     }
   }
-  
-  
-  /*
-  if (theEvent.controllerGroup().getName() == "function 1") {
-   if (!firstF1run) {
-   f1Menu = myGUI.addGroup("f1Menu")
-   .setPosition(0, 100)
-   .setWidth(width)
-   .setBackgroundHeight(30)
-   .setBackgroundColor(color(200, 200, 200, 40))
-   .setLabel("f1")
-   ;
-   firstF1run=true;
-   }
-   System.out.println("H");
-   f1Menu.setOpen(true);
-   //radio();
-   }
-   if (theEvent.controller().getName() == "function 2") {
-   if (!firstF2run) {
-   f2Menu = myGUI.addGroup("f2Menu")
-   .setPosition(0, height-40)
-   .setWidth(width)
-   .setBackgroundHeight(30)
-   .setBackgroundColor(color(200, 200, 200, 40))
-   .setLabel("f2")
-   ;
-   firstF2run=true;
-   }
-   }
-   if (theEvent.controller().getName() == "function 3") {
-   if (!firstF3run) {
-   f3Menu = myGUI.addGroup("f3Menu")
-   .setPosition(0, height-40)
-   .setWidth(width)
-   .setBackgroundHeight(30)
-   .setBackgroundColor(color(200, 200, 200, 40))
-   .setLabel("f3")
-   ;
-   firstF3run=true;
-   }
-   }*/
-
-
-  //if (theEvent.isFrom(r1)) {
-  //  myColorBackground = color(int(theEvent.getGroup().getValue()*50), 0, 0); //the action
-  //}
 }
 
 void function1 () {
   //if na první spuštění kde se inicializuje grupa
   //pak se jen vyvolá s uloženýma věcma :)))
 }
+
+//az bude jasne kolik bude cudlu na fce, mohly by se inicializovat pres volani fce

@@ -30,8 +30,9 @@ void setup() {
 }
 
 void draw() {
-  if (firstDrawRun) { //sets GUI only in the very beginning
+  if (firstDrawRun) { //sets GUI in the very beginning
     setGUI();
+    setFunctionMenus();
     firstDrawRun = false;
   }
 
@@ -69,9 +70,7 @@ void Fonts(int n) {
   activeFont = fontList[n];
 }
 
-/*vstup: font
- nacist kliknuty umime, ale jak ho zobrazit kdyz se text setup a text nesnesou v jedné fci?
- */
+//setGUI by slo rozdelit na dve casti: jedna na zacatku pro init, druha pro srovnavani velikosti >> when you know how many buttons and stuff
 
 //vystup: svg x pdf
 //vstup: svg
