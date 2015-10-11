@@ -4,19 +4,15 @@ import geomerative.*;
 import controlP5.*;
 import java.util.*;
 
-int lastWidth;
-
-PFont myFont;
-String[] fontList = PFont.list(); //all installed fonts
-String activeFont = "Comic Sans"; //default font
-String selectedFont = activeFont; 
 boolean firstDrawRun = true;
+String textTyped = "Type!!";
 
 void setup() {
   size(900, 500);
+  smooth();
   lastWidth = 900;
   if (frame != null) {
-    //    frame.setResizable(true); //processing 2.2.1
+    //frame.setResizable(true); //processing 2.2.1
     surface.setResizable(true); //processing 3.0
     background(255, 255, 255);
   }
@@ -43,7 +39,7 @@ void draw() {
   }
 
   background(255); //repeating background 
-  text("!@#$%", width/2, height/2); //the text THATS GONNA BE AN OBJECT SOMEHOW
+  text(textTyped, width/2, height/2); //the text THATS GONNA BE AN OBJECT SOMEHOW
 
   if (lastWidth != width) { //change gMenu dimensions with screen resize
     gMenu.hide();
@@ -86,7 +82,25 @@ void Fonts(int n) {
   activeFont = fontList[n];
 }
 
-//setGUI by slo rozdelit na dve casti: jedna na zacatku pro init, druha pro srovnavani velikosti >> when you know how many buttons and stuff
+void keyPressed() {
+  if (key != CODED) {
+    switch(key) {
+    case BACKSPACE:
+      textTyped = textTyped.substring(0, max(0, textTyped.length()-1));
+      break;
+    case RETURN:
+      // enable linebreaks
+      textTyped += "\n";
+      break;
+    default:
+      textTyped += key;
+    }
+  }
+}
 
-//vystup: svg x pdf
-//vstup: svg
+/*
+.setGUI by slo rozdelit na dve casti: jedna na zacatku pro init, druha pro srovnavani velikosti >> when you know how many buttons and stuff
+ 
+ .Generative design is a design method in which the output – image, sound, architectural models, animation – is generated 
+ by a set of rules or an Algorithm, normally by using a computer program. Most generative design is based on parametric modeling.
+ */

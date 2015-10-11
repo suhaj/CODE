@@ -5,15 +5,15 @@ Group f2Menu;
 Group f3Menu;
 RadioButton rb1;
 
+int i=100;
+
 boolean gMenuOpenness = true;
+int lastWidth;
+PFont myFont;
 
-//boolean f1MenuHidden = true;
-//boolean f2MenuHidden = true;
-//boolean f3MenuHidden = true;
-
-//boolean firstF1run = true;
-//boolean firstF2run = true;
-//boolean firstF3run = true;
+String[] fontList = PFont.list(); //all installed fonts
+String activeFont = "Comic Sans"; //default font
+String selectedFont = activeFont;
 
 void setGUI() { 
   myGUI = new ControlP5(this);
@@ -99,6 +99,9 @@ void controlEvent(ControlEvent theEvent) {
       f2Menu.hide();
       f3Menu.hide();
       f1Menu.show();
+      //keby tak, jen blikne
+      //rect(i,i,i,i);
+      //i+=10;
     }
     if (theEvent.getGroup().getValue()==2) {
       f1Menu.hide();
@@ -116,11 +119,6 @@ void controlEvent(ControlEvent theEvent) {
       f1Menu.hide();
     }
   }
-}
-
-void function1 () {
-  //if na první spuštění kde se inicializuje grupa
-  //pak se jen vyvolá s uloženýma věcma :)))
 }
 
 //az bude jasne kolik bude cudlu na fce, mohly by se inicializovat pres volani fce
