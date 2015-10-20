@@ -15,6 +15,7 @@ String[] fontList = PFont.list(); //all installed fonts
 String activeFont = "Comic Sans"; //default font
 String selectedFont = activeFont;
 
+
 void setGUI() { 
   myGUI = new ControlP5(this);
   //the argument "this" tells cP5 I'm refering to this sketch
@@ -86,6 +87,10 @@ void setFunctionMenus() {
     .hideBar()
     .hide()
     ;
+
+  setf1MenuButtons();
+  setf2MenuButtons();
+  setf3MenuButtons();
 }
 
 void fonts(int n) { //list of installed fonts
@@ -93,32 +98,6 @@ void fonts(int n) { //list of installed fonts
   System.out.println(selectedFont);
 }
 
-void controlEvent(ControlEvent theEvent) {
-  if (theEvent.isFrom(rb1)) {
-    if (theEvent.getGroup().getValue()==1) {
-      f2Menu.hide();
-      f3Menu.hide();
-      f1Menu.show();
-      //keby tak, jen blikne
-      //rect(i,i,i,i);
-      //i+=10;
-    }
-    if (theEvent.getGroup().getValue()==2) {
-      f1Menu.hide();
-      f3Menu.hide();
-      f2Menu.show();
-    }
-    if (theEvent.getGroup().getValue()==3) {
-      f1Menu.hide();
-      f2Menu.hide();
-      f3Menu.show();
-    }
-    if (theEvent.getGroup().getValue()==-1) {
-      f2Menu.hide();
-      f3Menu.hide();
-      f1Menu.hide();
-    }
-  }
-}
 
-//az bude jasne kolik bude cudlu na fce, mohly by se inicializovat pres volani fce
+
+//az bude jasne kolik bude cudlu na fce, mohly by se inicializovat pres volani fce, tj. cyklem

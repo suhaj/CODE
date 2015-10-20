@@ -34,7 +34,13 @@ void draw() {
 
   if (activeFont != selectedFont) { //dropdown list changes font
     activeFont = selectedFont;
-    myFont = createFont(activeFont, 32);
+    myFont = createFont(activeFont, activeFontSize);
+    textFont(myFont);
+  }
+  
+  if (activeFontSize != fontSize) { //dropdown list changes font size
+    activeFontSize = fontSize;
+    myFont = createFont(activeFont, activeFontSize);
     textFont(myFont);
   }
 
