@@ -5,16 +5,12 @@ Group f2Menu;
 Group f3Menu;
 RadioButton rb1;
 
-int i=100;
-
 boolean gMenuOpenness = true;
-int lastWidth;
 PFont myFont;
 
 String[] fontList = PFont.list(); //all installed fonts
-String activeFont = "Comic Sans"; //default font
+String activeFont = "verdana.ttf"; //default font
 String selectedFont = activeFont;
-
 
 void setGUI() { 
   myGUI = new ControlP5(this);
@@ -36,10 +32,12 @@ void setGUI() {
     .setItemHeight(20)
     .addItems(l)
     .setOpen(false)
-    .setGroup(gMenu);
+    .setGroup(gMenu)
+    ;
 
   myGUI.addButton("Save as PDF", 1, 100, 3, 99, 20) //buttons
-    .setGroup(gMenu);
+    .setGroup(gMenu)
+    ;
 
   rb1 = myGUI.addRadioButton("function1") //radio buttons
     .setPosition(300, 3)
@@ -97,7 +95,10 @@ void fonts(int n) { //list of installed fonts
   selectedFont = fontList[n];
   System.out.println(selectedFont);
 }
-
-
+void Fonts(int n) {
+  /* requesting the selected item based on index n */
+  println(n, myGUI.get(ScrollableList.class, "Fonts").getItem(n));
+  activeFont = fontList[n];
+}
 
 //az bude jasne kolik bude cudlu na fce, mohly by se inicializovat pres volani fce, tj. cyklem
