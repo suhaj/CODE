@@ -9,7 +9,7 @@ boolean gMenuOpenness = true;
 PFont myFont;
 
 String[] fontList = PFont.list(); //all installed fonts
-String activeFont = "verdana.ttf"; //default font
+String activeFont = "verdana"; //default font
 String selectedFont = activeFont;
 
 void setGUI() { 
@@ -26,14 +26,14 @@ void setGUI() {
 
   List l = Arrays.asList(fontList);
   myGUI.addScrollableList("fonts") //font dropdown
-    .setPosition(0, 3)
-    .setSize(99, 300)
-    .setBarHeight(20)
-    .setItemHeight(20)
-    .addItems(l)
-    .setOpen(false)
-    .setGroup(gMenu)
-    ;
+   .setPosition(0, 3)
+   .setSize(99, 300)
+   .setBarHeight(20)
+   .setItemHeight(20)
+   .addItems(l)
+   .setOpen(false)
+   .setGroup(gMenu)
+   ;
 
   myGUI.addButton("Save as PDF", 1, 100, 3, 99, 20) //buttons
     .setGroup(gMenu)

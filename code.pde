@@ -22,13 +22,14 @@ void setup() {
 
   fill(0, 0, 0);
   RG.init(this);
-  fontGEOM = new RFont("C:/Windows/Fonts/"+activeFont, activeFontSize, RFont.CENTER);
+  fontGEOM = new RFont("C:/Windows/Fonts/"+activeFont+".ttf", activeFontSize, RFont.CENTER);
+  grp = fontGEOM.toGroup(textTyped);
 
   //myFont = createFont(activeFont, activeFontSize);
   //fill(0, 0, 0);
   //textFont(myFont);
   //textAlign(CENTER, CENTER);
-  
+
   // ------ set style and segment resolution  ------
   //RCommand.setSegmentStep(10);
   //RCommand.setSegmentator(RCommand.UNIFORMSTEP);
@@ -51,9 +52,9 @@ void draw() {
 
   if (activeFont != selectedFont) { //dropdown list changes font
     activeFont = selectedFont;
-    //fontGEOM = new RFont(activeFont, activeFontSize, RFont.LEFT);
-    //grp = fontGEOM.toGroup(textTyped);
-    
+    fontGEOM = new RFont("C:/Windows/Fonts/"+activeFont+".ttf", activeFontSize, RFont.CENTER);
+    grp = fontGEOM.toGroup(textTyped);
+
     myFont = createFont(activeFont, activeFontSize);
     textFont(myFont);
   }
