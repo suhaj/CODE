@@ -95,10 +95,10 @@ void fonts(int n) { //list of installed fonts
   selectedFont = fontList[n];
   System.out.println(selectedFont);
 }
-void Fonts(int n) {
-  /* requesting the selected item based on index n */
-  println(n, myGUI.get(ScrollableList.class, "Fonts").getItem(n));
-  activeFont = fontList[n];
-}
+//void Fonts(int n) {
+//  /* requesting the selected item based on index n */
+//  println(n, myGUI.get(ScrollableList.class, "Fonts").getItem(n));
+//  activeFont = fontList[n];
+//} redundant??
 
 //az bude jasne kolik bude cudlu na fce, mohly by se inicializovat pres volani fce, tj. cyklem

@@ -2,6 +2,9 @@ int fontSize = 200;
 int activeFontSize = fontSize;
 /////////////////////////////////////////////////////////////////////should be in gMenu really, is in setF1MenuButtons, f1Menu
 
+float lineSpacing = fontSize*1.1;
+float letterY = lineSpacing;
+
 float stepSize = 0;
 float dancefactor = 0;
 
@@ -40,6 +43,8 @@ void setf1MenuButtons() {
     .setLabel("Font size")  
     .setGroup(f1Menu)
     ;
+    
+    
   myGUI.addSlider("stepSize")
     .setPosition(10, 30)
     .setRange(1, 1000)
@@ -47,7 +52,7 @@ void setf1MenuButtons() {
     .setGroup(f1Menu)
     ;
   myGUI.addSlider("danceFactor")
-    .setPosition(100, 50)
+    .setPosition(10, 50)
     .setRange(1, 1000)
     .setLabel("Dance Factor")  
     .setGroup(f1Menu)
