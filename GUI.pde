@@ -1,15 +1,10 @@
 ControlP5 myGUI;
-Group gMenu;
-Group f1Menu;
-Group f2Menu;
-Group f3Menu;
+
 RadioButton rb1;
 
 boolean gMenuOpenness = true;
-PFont myFont;
-
-String[] fontList = PFont.list(); //all installed fonts
-String activeFont = "verdana"; //default font
+//String[] fontList = PFont.list(); //all installed fonts
+String activeFont = "FreeSans.ttf"; //default font
 String selectedFont = activeFont;
 
 void setGUI() { 
@@ -24,16 +19,16 @@ void setGUI() {
     .setOpen(gMenuOpenness)
     ;
 
-  List l = Arrays.asList(fontList);
-  myGUI.addScrollableList("fonts") //font dropdown
-   .setPosition(0, 3)
-   .setSize(99, 300)
-   .setBarHeight(20)
-   .setItemHeight(20)
-   .addItems(l)
-   .setOpen(false)
-   .setGroup(gMenu)
-   ;
+  //List l = Arrays.asList(TTFFontArray);
+  //myGUI.addScrollableList("fonts") //font dropdown
+  //.setPosition(0, 3)
+  //.setSize(99, 300)
+  //.setBarHeight(20)
+  //.setItemHeight(20)
+  //.addItems(l)
+  //.setOpen(false)
+  //.setGroup(gMenu)
+  //;
 
   myGUI.addButton("Save as PDF", 1, 100, 3, 99, 20) //buttons
     .setGroup(gMenu)
@@ -90,15 +85,5 @@ void setFunctionMenus() {
   setf2MenuButtons();
   setf3MenuButtons();
 }
-
-void fonts(int n) { //list of installed fonts
-  selectedFont = fontList[n];
-  System.out.println(selectedFont);
-}
-//void Fonts(int n) {
-//  /* requesting the selected item based on index n */
-//  println(n, myGUI.get(ScrollableList.class, "Fonts").getItem(n));
-//  activeFont = fontList[n];
-//} redundant??
 
 //az bude jasne kolik bude cudlu na fce, mohly by se inicializovat pres volani fce, tj. cyklem
