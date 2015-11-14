@@ -19,6 +19,10 @@ void setGUI() {
     .setOpen(gMenuOpenness)
     ;
 
+/*
+just use a list, here transferred to an array
+*/
+
   //List l = Arrays.asList(TTFFontArray);
   //myGUI.addScrollableList("fonts") //font dropdown
   //.setPosition(0, 3)

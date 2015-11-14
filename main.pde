@@ -1,4 +1,3 @@
-
 //import processing.svg.*;
 //import java.util.*;
 
@@ -64,10 +63,10 @@ void setup() {
   //RCommand.setSegmentAngle(random(0,HALF_PI));
   //RCommand.setSegmentator(RCommand.ADAPTATIVE);
 
-  //setGUI(); redundant??
-
   centerX = width/2;
   centerY = (height/3)*2;
+  
+  //setGUI();
 }
 
 void draw() {
