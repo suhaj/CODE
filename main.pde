@@ -3,7 +3,8 @@
 
 import geomerative.*;
 import controlP5.*;
-
+/*
+Font path search libraries*/
 import java.util.List;
 import java.util.Arrays;
 import java.lang.String;
@@ -13,26 +14,47 @@ import sun.font.Font2D;
 import sun.font.FontManager;
 import sun.font.FontManagerFactory;
 import sun.font.PhysicalFont;
-
+/*
+Console to String libraries*/
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.List;
 
 RFont myFONT;
 RGroup grp;
-/*RPoint[] pnts;
- */
+RPoint[] pnts;
+
 String textTyped = "Type!!";
 boolean firstDrawRun = true;
 int lastWidth = 900;
 int lastHeight = 500;
-
+/*
+mousePressed() variables*/
 int offsetX = 0;
 int offsetY = 0;
 int centerX = 0;
 int centerY = 0;
-
+/*
+GUI init */
+ControlP5 myGUI;
 controlP5.Group gMenu;
 controlP5.Group f1Menu;
 controlP5.Group f2Menu;
 controlP5.Group f3Menu;
+RadioButton rb1;
+/*
+GUI variables */
+boolean gMenuOpenness = true;
+String activeFont = "FreeSans.ttf"; //default font
+String selectedFont = activeFont;
+/* 
+lists for font-work */
+String[] PFontList = PFont.list();
+List<String> TTFFontList = new ArrayList<String>();
+List<String> TTFPathList = new ArrayList<String>();
 
 void setup() {
   size(900, 500);
@@ -43,8 +65,7 @@ void setup() {
   }
 
   fill(0, 0, 0);
-  String[] TTFFontArray = initializeFontList();
-  String[] TTFPathArray = initializePathList();
+  initializeFontList();
 
   RG.init(this);
   myFONT = new RFont(activeFont, activeFontSize, RFont.CENTER);
@@ -65,8 +86,6 @@ void setup() {
 
   centerX = width/2;
   centerY = (height/3)*2;
-  
-  //setGUI();
 }
 
 void draw() {
@@ -81,8 +100,7 @@ void draw() {
     myFONT =  new RFont(activeFont, activeFontSize, RFont.CENTER);
     grp = myFONT.toGroup(textTyped);
   }
-
-
+  
   if (activeFontSize != fontSize) { 
     activeFontSize = fontSize;
     myFONT.setSize(activeFontSize);

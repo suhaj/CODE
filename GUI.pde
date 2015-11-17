@@ -1,12 +1,3 @@
-ControlP5 myGUI;
-
-RadioButton rb1;
-
-boolean gMenuOpenness = true;
-//String[] fontList = PFont.list(); //all installed fonts
-String activeFont = "FreeSans.ttf"; //default font
-String selectedFont = activeFont;
-
 void setGUI() { 
   myGUI = new ControlP5(this);
   //the argument "this" tells cP5 I'm refering to this sketch
@@ -19,20 +10,21 @@ void setGUI() {
     .setOpen(gMenuOpenness)
     ;
 
-/*
-just use a list, here transferred to an array
-*/
+  String[] TTFFontArray = new String[TTFFontList.size()];
+  for (int i = 0; i < TTFFontList.size(); i++ ) {
+    TTFFontArray[i] = TTFFontList.get(i);
+  }
 
-  //List l = Arrays.asList(TTFFontArray);
-  //myGUI.addScrollableList("fonts") //font dropdown
-  //.setPosition(0, 3)
-  //.setSize(99, 300)
-  //.setBarHeight(20)
-  //.setItemHeight(20)
-  //.addItems(l)
-  //.setOpen(false)
-  //.setGroup(gMenu)
-  //;
+  List l = Arrays.asList(TTFFontArray);
+  myGUI.addScrollableList("fonts") //font dropdown
+    .setPosition(0, 3)
+    .setSize(99, 300)
+    .setBarHeight(20)
+    .setItemHeight(20)
+    .addItems(l)
+    .setOpen(false)
+    .setGroup(gMenu)
+    ;
 
   myGUI.addButton("Save as PDF", 1, 100, 3, 99, 20) //buttons
     .setGroup(gMenu)
