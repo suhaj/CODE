@@ -1,64 +1,57 @@
 int fontSize = 200;
 int activeFontSize = fontSize;
-/////////////////////////////////////////////////////////////////////should be in gMenu really, is in setF1MenuButtons, f1Menu
 
-float lineSpacing = fontSize*1.1;
-float letterY = lineSpacing;
+//float lineSpacing = fontSize*1.1;
+//float letterY = lineSpacing;
 
-float stepSize = 0;
-float dancefactor = 0;
+//float stepSize = 0;
+//float dancefactor = 0;
 
-void controlEvent(ControlEvent theEvent) {
-  if (theEvent.isFrom(rb1)) {
-    if (theEvent.getGroup().getValue()==1) {
-      f2Menu.hide();
-      f3Menu.hide();
-      f1Menu.show();
-      //keby tak, jen blikne
-      //rect(i,i,i,i);
-      //i+=10;
-    }
-    if (theEvent.getGroup().getValue()==2) {
-      f1Menu.hide();
-      f3Menu.hide();
-      f2Menu.show();
-    }
-    if (theEvent.getGroup().getValue()==3) {
-      f1Menu.hide();
-      f2Menu.hide();
-      f3Menu.show();
-    }
-    if (theEvent.getGroup().getValue()==-1) {
-      f2Menu.hide();
-      f3Menu.hide();
-      f1Menu.hide();
-    }
-  }
-}
+float verticalStretch = 0;
+float horizontalStretch = 0;
+int segment = 5;
 
+/* function menu buttons init */
 void setf1MenuButtons() {
-  myGUI.addSlider("fontSize")
+  myGUI.addSlider("horizontalStretch")
     .setPosition(10, 10)
-    .setRange(1, 1000)
-    .setLabel("Font size")  
+    .setWidth(300)
+    .setRange(-1000, 1000)
+    .setLabel("Horizontal stretch")  
     .setGroup(f1Menu)
+    .setColorLabel(0)
     ;
-    
-    
-  myGUI.addSlider("stepSize")
+  myGUI.addSlider("verticalStretch")
     .setPosition(10, 30)
-    .setRange(1, 1000)
-    .setLabel("Step size")  
+    .setWidth(300)
+    .setRange(-1000, 1000)
+    .setLabel("Vertical stretch")  
     .setGroup(f1Menu)
+    .setColorLabel(0)
     ;
-  myGUI.addSlider("danceFactor")
+  myGUI.addSlider("segment")
     .setPosition(10, 50)
-    .setRange(1, 1000)
-    .setLabel("Dance Factor")  
+    .setWidth(300)
+    .setRange(1, 100)
     .setGroup(f1Menu)
+    .setColorLabel(0)
     ;
 }
 void setf2MenuButtons() {
+  //myGUI.addSlider("stepSize")
+  //  .setPosition(10, 30)
+  //  .setRange(1, 1000)
+  //  .setLabel("Step size")  
+  //  .setGroup(f2Menu)
+  //  .setColorLabel(0)
+  //  ;
+  //myGUI.addSlider("danceFactor")
+  //  .setPosition(10, 50)
+  //  .setRange(1, 1000)
+  //  .setLabel("Dance Factor")  
+  //  .setGroup(f2Menu)
+  //  .setColorLabel(0)
+  //  ;
 }
 void setf3MenuButtons() {
 }

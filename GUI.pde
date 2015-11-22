@@ -1,20 +1,21 @@
+/* top menu group init */
 void setGUI() { 
-  myGUI = new ControlP5(this);
-  //the argument "this" tells cP5 I'm refering to this sketch
-  gMenu = myGUI.addGroup("gMenu") //top menu group
+  myGUI = new ControlP5(this); //the argument "this" tells cP5 I'm refering to this sketch
+  /* top menu group */
+  gMenu = myGUI.addGroup("gMenu")
     .setPosition(0, 10)
     .setWidth(width)
     .setBackgroundHeight(30)
-    .setBackgroundColor(color(200, 200, 200, 40))
+    .setBackgroundColor(color(230, 230, 230, 160))
     .setLabel("Menu")  
     .setOpen(gMenuOpenness)
     ;
-
+  /* Array to List for CP5 Scrollable List */
   String[] TTFFontArray = new String[TTFFontList.size()];
   for (int i = 0; i < TTFFontList.size(); i++ ) {
     TTFFontArray[i] = TTFFontList.get(i);
   }
-
+  /* the Scrollable List */
   List l = Arrays.asList(TTFFontArray);
   myGUI.addScrollableList("fonts") //font dropdown
     .setPosition(0, 3)
@@ -25,12 +26,22 @@ void setGUI() {
     .setOpen(false)
     .setGroup(gMenu)
     ;
-
-  myGUI.addButton("Save as PDF", 1, 100, 3, 99, 20) //buttons
+  myGUI.addSlider("fontSize")
+    .setPosition(103, 3)
+    .setSize(99, 20)
+    .setRange(1, 1000)
+    .setLabel("text size")  
+    .setGroup(gMenu)
+    .setColorLabel(255)
+    ;
+  myGUI.getController("fontSize").getValueLabel().align(ControlP5.RIGHT, ControlP5.CENTER).setPaddingX(0);
+  myGUI.getController("fontSize").getCaptionLabel().align(ControlP5.LEFT, ControlP5.CENTER).setPaddingX(0);
+  /* Save PDF button */
+  myGUI.addButton("Save as PDF", 1, width - 99, 3, 99, 20)
     .setGroup(gMenu)
     ;
-
-  rb1 = myGUI.addRadioButton("function1") //radio buttons
+  /* function (radio) buttons */
+  rb1 = myGUI.addRadioButton("function1")
     .setPosition(300, 3)
     .setSize(99, 20)
     .setColorForeground(color(120))
@@ -42,18 +53,45 @@ void setGUI() {
     .addItem("function 2", 2)
     .addItem("function 3", 3)
     .setGroup(gMenu);
-
-  for (Toggle t : rb1.getItems()) { //radio buttons' padding
+  /* function (radio) buttons'padding */
+  for (Toggle t : rb1.getItems()) {
     t.getCaptionLabel().getStyle().movePadding(0, 0, 0, -75);
   }
 }
 
+/* Radio button toggling */
+void controlEvent(ControlEvent theEvent) {
+  if (theEvent.isFrom(rb1)) {
+    if (theEvent.getGroup().getValue()==1) {
+      f2Menu.hide();
+      f3Menu.hide();
+      f1Menu.show();
+    }
+    if (theEvent.getGroup().getValue()==2) {
+      f1Menu.hide();
+      f3Menu.hide();
+      f2Menu.show();
+    }
+    if (theEvent.getGroup().getValue()==3) {
+      f1Menu.hide();
+      f2Menu.hide();
+      f3Menu.show();
+    }
+    if (theEvent.getGroup().getValue()==-1) {
+      f2Menu.hide();
+      f3Menu.hide();
+      f1Menu.hide();
+    }
+  }
+}
+
+/* fuction menus group init */
 void setFunctionMenus() {
   f1Menu = myGUI.addGroup("f1Menu") //f1 menu group
     .setPosition(0, height-100)
     .setWidth(width)
     .setBackgroundHeight(100)
-    .setBackgroundColor(color(200, 200, 200, 40))
+    .setBackgroundColor(color(230, 230, 230, 160))
     .setLabel("f1")  
     .hideBar()
     .hide()
@@ -62,7 +100,7 @@ void setFunctionMenus() {
     .setPosition(0, height-100)
     .setWidth(width)
     .setBackgroundHeight(100)
-    .setBackgroundColor(color(200, 200, 200, 40))
+    .setBackgroundColor(color(230, 230, 230, 160))
     .setLabel("f2")  
     .hideBar()
     .hide()
@@ -71,15 +109,16 @@ void setFunctionMenus() {
     .setPosition(0, height-100)
     .setWidth(width)
     .setBackgroundHeight(100)
-    .setBackgroundColor(color(200, 200, 200, 40))
+    .setBackgroundColor(color(230, 230, 230, 160))
     .setLabel("f3")  
     .hideBar()
     .hide()
     ;
-
+  /* function menu buttons init */
   setf1MenuButtons();
   setf2MenuButtons();
   setf3MenuButtons();
 }
 
+//--------------------------END--------------------------OF--------------------------GUI-----------------------------------------------------------------------------------------------
 //az bude jasne kolik bude cudlu na fce, mohly by se inicializovat pres volani fce, tj. cyklem

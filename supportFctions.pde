@@ -1,5 +1,4 @@
-/*
-Creates Lists, calls for font sorting function, getFontSuffix() */
+/* Creates Lists, calls for font sorting function, getFontSuffix() */
 void initializeFontList() {
   for (int i = 0; i < PFontList.length; i++) {
     if (getFontSuffix(PFontList[i])) {
@@ -9,8 +8,7 @@ void initializeFontList() {
   //activeFont = TTFFontList.get(int(random(0, TTFFontList.size())));
 }
 
-/*
-font sorting function, called by initializeFontList() */
+/* font sorting function, called by initializeFontList() */
 Boolean getFontSuffix(String fontNameMETHOD) {
   Boolean TTF = false;
 
@@ -68,6 +66,7 @@ Boolean getFontSuffix(String fontNameMETHOD) {
   return TTF;
 }
 
+/* keyboard controls*/
 void keyPressed() {
   if (key != CODED) {
     switch(key) {
@@ -84,13 +83,13 @@ void keyPressed() {
   }
 }
 
+/* mouse controls */
 void mousePressed() {
   offsetX = mouseX-centerX;
   offsetY = mouseY-centerY;
 }
 
-/*
-selectedFont getting a path, not a name - fix for Geomerative */
+/* selectedFont getting a path, not a name - fix for Geomerative */
 void fonts(int n) { //list of installed fonts
   selectedFont = TTFPathList.get(n);
   System.out.println(selectedFont);
