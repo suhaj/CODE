@@ -36,6 +36,14 @@ void setf1MenuButtons() {
     .setGroup(f1Menu)
     .setColorLabel(0)
     ;
+  //myGUI.addToggle("f1toggle")
+  //.setLabel("")
+  // .setPosition(10,70)
+  // .setSize(50,20)
+  // //.setValue(false)
+  // .setMode(ControlP5.SWITCH)
+  // .setGroup(f1Menu)
+  // ;
 }
 void setf2MenuButtons() {
   //myGUI.addSlider("stepSize")
@@ -55,3 +63,29 @@ void setf2MenuButtons() {
 }
 void setf3MenuButtons() {
 }
+
+void f2particles() {
+  particles = new ArrayList();
+  for (int i=0; i<myPoints.length; i++) {
+    particles.add(new Particle(myPoints[i].x, myPoints[i].y, 3));
+  }
+}
+
+void f1() {
+  noFill();
+  stroke(0);
+  strokeWeight(0.3);
+
+  RCommand.setSegmentLength(segment);
+  //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
+  myGroup = myFONT.toGroup(textTyped);
+  myPoints = myGroup.getPoints();
+
+  for (int i=0; i<myPoints.length; i++) {
+    //zvaž obecně pro fce místo konstant fuknkce
+    ellipse(myPoints[i].x, myPoints[i].y, myPoints[i].x+horizontalStretch, myPoints[i].y+verticalStretch);
+  }
+}
+//void f2() {
+
+//}

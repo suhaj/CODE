@@ -40,6 +40,12 @@ void setGUI() {
   myGUI.addButton("Save as PDF", 1, width - 99, 3, 99, 20)
     .setGroup(gMenu)
     ;
+  //void keyPressed() {
+  //  if (key == ' ') {
+  //    saveFrame("captures/capture_"+(new Date().getTime())+".tiff");
+  //    println("save TIFF");
+  //  }
+  //}
   /* function (radio) buttons */
   rb1 = myGUI.addRadioButton("function1")
     .setPosition(300, 3)

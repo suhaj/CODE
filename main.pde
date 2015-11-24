@@ -43,50 +43,55 @@ controlP5.Group f3Menu;
 RadioButton rb1;
 /* GUI variables */
 boolean gMenuOpenness = true;
+//boolean textToggle = false;
+//boolean f1toggle = false;
 String activeFont = "FreeSans.ttf"; //default font
 String selectedFont = activeFont;
 /* lists for font-work */
 String[] PFontList = PFont.list();
 List<String> TTFFontList = new ArrayList<String>();
 List<String> TTFPathList = new ArrayList<String>();
+/*fction variables*/
+Particle p;
+ArrayList particles;
+float distMin=40;
 
 void setup() {
   size(900, 500);
   smooth();
   if (frame != null) {
     surface.setResizable(true); //processing 3.0
-    background(255, 255, 255);
+    background(255);
   }
 
-  //fill(0, 0, 0); //fills in the text, but i dont want it in fct1. thus --->
-  noFill();
-  stroke(0);
-  strokeWeight(0.3);
   initializeFontList();
-  RG.init(this);
 
-  // ------ set style and segment resolution  ------
-  RCommand.setSegmentLength(100);
+  /* Geomerative text object setup */
+  RG.init(this);
+  RCommand.setSegmentLength(10);
   RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
-  // -----------------------------------------------
+  myFONT = new RFont(activeFont, activeFontSize, RFont.CENTER);
+  myGroup = myFONT.toGroup(textTyped);
+  myPoints = myGroup.getPoints();
+  // ------ set style and segment resolution  ------
   //RCommand.setSegmentStep(10);
   //RCommand.setSegmentator(RCommand.UNIFORMSTEP);
   // -----------------------------------------------
   //RCommand.setSegmentAngle(random(0,HALF_PI));
   //RCommand.setSegmentator(RCommand.ADAPTATIVE);
   // -----------------------------------------------
-
-  myFONT = new RFont(activeFont, activeFontSize, RFont.CENTER);
-  myGroup = myFONT.toGroup(textTyped);
   //myGroup = myGroup.toPolygonGroup();
-  myPoints = myGroup.getPoints();
 
+  f2particles();
+
+  /* text location */
   centerX = width/2;
   centerY = (height/3)*2;
 }
 
 void draw() {
   background(255);
+  // -----------------------------------------------
   /* sets GUI in the very beginning */
   if (firstDrawRun) {
     setGUI();
@@ -140,30 +145,58 @@ void draw() {
     lastWidth = width;
     lastHeight = height;
   }
-
-  //pushMatrix();
-  //translate(centerX, centerY);
-  //myFONT.draw(textTyped);
-  //popMatrix();
+  // -----------------------------------------------
 
   /*
   !!!TRYING TO RESOLVE FCTION COEXISTENCE!!!
-  if (f1 togle is on)
+   if (f1 togle is on)
    display f1 style
    
    two modes? see/type font 
    and then edit fctions */
 
+  /* TEXT OBJECT DISPLAY */
   pushMatrix();
-  RCommand.setSegmentLength(segment);
-  //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
-  myGroup = myFONT.toGroup(textTyped);
-  myPoints = myGroup.getPoints();
   translate(centerX, centerY);
-  for (int i=0; i<myPoints.length; i++) {
-    //zvaž obecně pro fce místo konstant fuknkce
-    ellipse(myPoints[i].x, myPoints[i].y, myPoints[i].x+horizontalStretch, myPoints[i].y+verticalStretch);
+  /* basic text */
+  if (!f1Menu.isVisible()&&!f2Menu.isVisible()&&!f3Menu.isVisible()) {
+    fill(0, 0, 0);
+    myFONT.draw(textTyped);
   }
+
+  /* f1 */
+  if (f1Menu.isVisible()) {
+    f1();
+  }
+  /* f2 */
+  if (f2Menu.isVisible()) {
+    fill(255, 50);
+    strokeWeight(0.3);
+    stroke(0, 255, 255, 50);
+
+    RCommand.setSegmentLength(segment);
+    //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
+    myGroup = myFONT.toGroup(textTyped);
+    myPoints = myGroup.getPoints();
+
+    for (int i=0; i<particles.size(); i++) {
+      Particle p = (Particle) particles.get(i);
+      p.draw();
+
+      float dpart=0;
+      for (int j =0; j<particles.size(); j++) {
+
+        Particle pj = (Particle)particles.get(j);
+        dpart = p.distance(pj);
+
+        if (dpart <= distMin) {
+          // stroke(255, map(dpart, 0, distMin, 255, 0));
+          line(p.x, p.y, pj.x, pj.y);
+        }
+      }
+    }
+  }
+
   popMatrix();
 }
 

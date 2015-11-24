@@ -72,6 +72,7 @@ void keyPressed() {
     switch(key) {
     case BACKSPACE:
       textTyped = textTyped.substring(0, max(0, textTyped.length()-1));
+      f2particles();
       break;
     case ENTER:
     case RETURN:
