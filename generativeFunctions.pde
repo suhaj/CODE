@@ -7,10 +7,6 @@ int activeFontSize = fontSize;
 //float stepSize = 0;
 //float dancefactor = 0;
 
-float verticalStretch = 0;
-float horizontalStretch = 0;
-int segment = 5;
-
 /* function menu buttons init */
 void setf1MenuButtons() {
   myGUI.addSlider("horizontalStretch")
@@ -36,17 +32,34 @@ void setf1MenuButtons() {
     .setGroup(f1Menu)
     .setColorLabel(0)
     ;
-  //myGUI.addToggle("f1toggle")
-  //.setLabel("")
-  // .setPosition(10,70)
-  // .setSize(50,20)
-  // //.setValue(false)
-  // .setMode(ControlP5.SWITCH)
-  // .setGroup(f1Menu)
-  // ;
-}
+  }
 void setf2MenuButtons() {
-  //myGUI.addSlider("stepSize")
+  myGUI.addSlider("xxx")
+    .setPosition(10, 50)
+    .setWidth(300)
+    .setRange(0, 50)
+    .setGroup(f2Menu)
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("yyy")
+    .setPosition(10, 70)
+    .setWidth(300)
+    .setRange(0, 50)
+    .setGroup(f2Menu)
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("ddd")
+    .setPosition(10, 90)
+    .setWidth(300)
+    .setRange(0, 50)
+    .setGroup(f2Menu)
+    .setColorLabel(0)
+    ;  
+}
+void setf3MenuButtons() {
+}
+
+//myGUI.addSlider("stepSize")
   //  .setPosition(10, 30)
   //  .setRange(1, 1000)
   //  .setLabel("Step size")  
@@ -60,10 +73,7 @@ void setf2MenuButtons() {
   //  .setGroup(f2Menu)
   //  .setColorLabel(0)
   //  ;
-}
-void setf3MenuButtons() {
-}
-
+  
 void f2particles() {
   particles.clear();
   particles = new ArrayList();
@@ -93,27 +103,37 @@ void f2() {
   fill(255, 50);
   strokeWeight(0.3);
   stroke(0, 255, 255, 50);
-
+if(firstF2run){
+  background(255);
+  xxx = 0.01;
+  yyy = 0.01;
+  firstF2run = false;
+}
   RCommand.setSegmentLength(segment);
   //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
   myGroup = myFONT.toGroup(textTyped);
   myPoints = myGroup.getPoints();
   f2particles();
 
-  for (int i=0; i<particles.size(); i++) {
-    Particle p = (Particle) particles.get(i);
-    p.draw();
+  if (lastXXX != xxx || lastYYY != yyy) {
+    background(255);
+    for (int i=0; i<particles.size(); i++) {
+      Particle p = (Particle) particles.get(i);
+      p.draw();    
 
-    float dpart=0;
-    for (int j =0; j<particles.size(); j++) {
+      float dpart=0;
+      for (int j =0; j<particles.size(); j++) {
 
-      Particle pj = (Particle)particles.get(j);
-      dpart = p.distance(pj);
+        Particle pj = (Particle)particles.get(j);
+        dpart = p.distance(pj);
 
-      if (dpart <= distMin) {
-        // stroke(255, map(dpart, 0, distMin, 255, 0));
-        line(p.x, p.y, pj.x, pj.y);
+        if (dpart <= distMin) {
+          // stroke(255, map(dpart, 0, distMin, 255, 0));
+          line(p.x, p.y, pj.x, pj.y);
+        }
       }
     }
+    lastXXX = xxx;
+    lastYYY = yyy;
   }
 }

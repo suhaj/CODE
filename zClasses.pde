@@ -1,3 +1,5 @@
+/* fction 2 class */
+//-----------------------------------------------------
 class Particle {
   PVector position;
   PVector speed;
@@ -6,29 +8,26 @@ class Particle {
   float x;
   float y;
   float z;
+  float origX, origY;
 
   //DIAMETER
   float d;
 
-  //SPEED
-  float s = 0.05;
-
+  //-----------------------------------------------------
   Particle(float x_, float y_, float d_) {
-
     this.x = x_;
     this.y = y_;
     this.d = d_;    
     position = new PVector (x, y);
-    speed = new PVector(random(-s, s), random(-s, s));
+    
+    origX = x;
+    origY = y;
   }
 
+  //-----------------------------------------------------
   void draw() {
-    //movement();
-  }
-
-  void movement() {
-    x += speed.x;
-    y += speed.y;
+    x = origX + random(-xxx, xxx);
+    y = origY + random(-yyy, yyy);
   }
 
   //THIS RETURNS A VALUE WHICH DETERMINES IF WE DRAW A LINE BETWEEN EACH POINT

@@ -52,10 +52,19 @@ String selectedFont = activeFont;
 String[] PFontList = PFont.list();
 List<String> TTFFontList = new ArrayList<String>();
 List<String> TTFPathList = new ArrayList<String>();
-/*fction variables*/
+/*fction1 variables*/
+float verticalStretch = 0;
+float horizontalStretch = 0;
+int segment = 5;
+/*fction2 variables*/
 Particle p;
 ArrayList particles = new ArrayList();
 float distMin=40;
+float xxx = 0;
+float yyy = 0;
+float lastXXX = xxx;
+float lastYYY = yyy;
+boolean firstF2run = true;
 
 void setup() {
   size(900, 500);
@@ -89,13 +98,15 @@ void setup() {
 }
 
 void draw() {
-  background(255);
   // -----------------------------------------------
   /* sets GUI in the very beginning */
   if (firstDrawRun) {
     setGUI();
     setFunctionMenus();
     firstDrawRun = false;
+  }
+  if(!f2Menu.isVisible()){
+  background(255); 
   }
   /* dropdown list changes font */
   if (activeFont != selectedFont) {
@@ -107,6 +118,8 @@ void draw() {
   if (activeFontSize != fontSize) { 
     activeFontSize = fontSize;
     myFONT.setSize(activeFontSize);
+    xxx += 0.01;
+    yyy += 0.01;
   }
   /* moving text while menus closed */
   if ((mousePressed == true)&&(!f1Menu.isVisible())&&(!f2Menu.isVisible())&&(!f3Menu.isVisible())) {
