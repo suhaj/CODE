@@ -65,9 +65,12 @@ void setf3MenuButtons() {
 }
 
 void f2particles() {
+  particles.clear();
   particles = new ArrayList();
-  for (int i=0; i<myPoints.length; i++) {
-    particles.add(new Particle(myPoints[i].x, myPoints[i].y, 3));
+  if (particles != null) {
+    for (int i=0; i<myPoints.length; i++) {
+      particles.add(new Particle(myPoints[i].x, myPoints[i].y, 3));
+    }
   }
 }
 
@@ -86,6 +89,31 @@ void f1() {
     ellipse(myPoints[i].x, myPoints[i].y, myPoints[i].x+horizontalStretch, myPoints[i].y+verticalStretch);
   }
 }
-//void f2() {
+void f2() {
+  fill(255, 50);
+  strokeWeight(0.3);
+  stroke(0, 255, 255, 50);
 
-//}
+  RCommand.setSegmentLength(segment);
+  //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
+  myGroup = myFONT.toGroup(textTyped);
+  myPoints = myGroup.getPoints();
+  f2particles();
+
+  for (int i=0; i<particles.size(); i++) {
+    Particle p = (Particle) particles.get(i);
+    p.draw();
+
+    float dpart=0;
+    for (int j =0; j<particles.size(); j++) {
+
+      Particle pj = (Particle)particles.get(j);
+      dpart = p.distance(pj);
+
+      if (dpart <= distMin) {
+        // stroke(255, map(dpart, 0, distMin, 255, 0));
+        line(p.x, p.y, pj.x, pj.y);
+      }
+    }
+  }
+}

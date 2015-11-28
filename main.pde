@@ -26,6 +26,7 @@ RGroup myGroup;
 RPoint[] myPoints;
 
 String textTyped = "Type!!";
+//String textDeposit = textTyped;
 boolean firstDrawRun = true;
 int lastWidth = 900;
 int lastHeight = 500;
@@ -53,7 +54,7 @@ List<String> TTFFontList = new ArrayList<String>();
 List<String> TTFPathList = new ArrayList<String>();
 /*fction variables*/
 Particle p;
-ArrayList particles;
+ArrayList particles = new ArrayList();
 float distMin=40;
 
 void setup() {
@@ -81,8 +82,6 @@ void setup() {
   //RCommand.setSegmentator(RCommand.ADAPTATIVE);
   // -----------------------------------------------
   //myGroup = myGroup.toPolygonGroup();
-
-  f2particles();
 
   /* text location */
   centerX = width/2;
@@ -163,38 +162,17 @@ void draw() {
     fill(0, 0, 0);
     myFONT.draw(textTyped);
   }
-
   /* f1 */
   if (f1Menu.isVisible()) {
     f1();
   }
   /* f2 */
   if (f2Menu.isVisible()) {
-    fill(255, 50);
-    strokeWeight(0.3);
-    stroke(0, 255, 255, 50);
-
-    RCommand.setSegmentLength(segment);
-    //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
-    myGroup = myFONT.toGroup(textTyped);
-    myPoints = myGroup.getPoints();
-
-    for (int i=0; i<particles.size(); i++) {
-      Particle p = (Particle) particles.get(i);
-      p.draw();
-
-      float dpart=0;
-      for (int j =0; j<particles.size(); j++) {
-
-        Particle pj = (Particle)particles.get(j);
-        dpart = p.distance(pj);
-
-        if (dpart <= distMin) {
-          // stroke(255, map(dpart, 0, distMin, 255, 0));
-          line(p.x, p.y, pj.x, pj.y);
-        }
-      }
-    }
+    f2();
+  }
+  /* f3 */
+  if (f3Menu.isVisible()) {
+    
   }
 
   popMatrix();

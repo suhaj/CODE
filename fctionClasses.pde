@@ -1,4 +1,3 @@
-//-----------------------------------------------------
 class Particle {
   PVector position;
   PVector speed;
@@ -10,11 +9,10 @@ class Particle {
 
   //DIAMETER
   float d;
-  
+
   //SPEED
   float s = 0.05;
 
-//-----------------------------------------------------
   Particle(float x_, float y_, float d_) {
 
     this.x = x_;
@@ -24,11 +22,10 @@ class Particle {
     speed = new PVector(random(-s, s), random(-s, s));
   }
 
-//-----------------------------------------------------
   void draw() {
     //movement();
   }
-  
+
   void movement() {
     x += speed.x;
     y += speed.y;
