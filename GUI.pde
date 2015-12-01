@@ -37,6 +37,23 @@ void setGUI() {
   myGUI.getController("fontSize").getValueLabel().align(ControlP5.RIGHT, ControlP5.CENTER).setPaddingX(0);
   myGUI.getController("fontSize").getCaptionLabel().align(ControlP5.LEFT, ControlP5.CENTER).setPaddingX(0);
   /* Save PDF button */
+  
+    myGUI.addSlider("segment")
+    .setPosition(500, height - 90)
+    .setWidth(300)
+    .setRange(1, 100)
+    .setColorLabel(0)
+    .hide()
+    ;
+  /* Public noLoop switch */
+  myGUI.addToggle("stopMotion")
+    .setPosition(500, height - 70)
+    .setSize(50, 20)
+    .setValue(true)
+    .setMode(ControlP5.SWITCH)
+    .hide()
+    ;
+  
   myGUI.addButton("Save as PDF", 1, width - 99, 3, 99, 20)
     .setGroup(gMenu)
     ;
@@ -124,6 +141,7 @@ void setFunctionMenus() {
   setf1MenuButtons();
   setf2MenuButtons();
   setf3MenuButtons();
+  /* Public segmentator */
 }
 
 //--------------------------END--------------------------OF--------------------------GUI-----------------------------------------------------------------------------------------------

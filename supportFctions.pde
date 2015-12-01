@@ -73,6 +73,7 @@ void keyPressed() {
     case BACKSPACE:
       textTyped = textTyped.substring(0, max(0, textTyped.length()-1));
       f2particles();
+      f3particles();
       break;
     case ENTER:
     case RETURN:
@@ -94,4 +95,12 @@ void mousePressed() {
 void fonts(int n) { //list of installed fonts
   selectedFont = TTFPathList.get(n);
   System.out.println(selectedFont);
+}
+
+void stopMotion(boolean theFlag) {
+  if (theFlag==true) {
+    loop();
+  } else {
+    noLoop();
+  }
 }

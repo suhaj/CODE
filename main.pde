@@ -65,6 +65,11 @@ float yyy = 0;
 float lastXXX = xxx;
 float lastYYY = yyy;
 boolean firstF2run = true;
+/* fction3variables */
+FontAgent[] myAgents;
+int step = 3;
+float nervousMotion = 0;
+float noiseVariation = 0;
 
 void setup() {
   size(900, 500);
@@ -95,6 +100,8 @@ void setup() {
   /* text location */
   centerX = width/2;
   centerY = (height/3)*2;
+  
+  f3particles();
 }
 
 void draw() {
@@ -105,9 +112,7 @@ void draw() {
     setFunctionMenus();
     firstDrawRun = false;
   }
-  if(!f2Menu.isVisible()){
-  background(255); 
-  }
+  background(255);
   /* dropdown list changes font */
   if (activeFont != selectedFont) {
     activeFont = selectedFont;
@@ -156,7 +161,17 @@ void draw() {
     }
     lastWidth = width;
     lastHeight = height;
+    
   }
+  
+  //IDEA:make this a menu w/ transparent background and display it over each of the fctoin menus. THEN do with it what youve done w/ the other menus <3
+  /* Public controllers display */
+  //if (f1Menu.isVisible() || f2Menu.isVisible() || f3Menu.isVisible()) {
+  // myGUI.getController("segment").show();
+  // myGUI.getController("segment").bringToFront();
+  // myGUI.getController("stopMotion").show();
+  // myGUI.getController("stopMotion").bringToFront();
+  //} 
   // -----------------------------------------------
 
   /*
@@ -177,15 +192,17 @@ void draw() {
   }
   /* f1 */
   if (f1Menu.isVisible()) {
+    segment = 3;
     f1();
   }
   /* f2 */
   if (f2Menu.isVisible()) {
+    segment = 8;
     f2();
   }
   /* f3 */
   if (f3Menu.isVisible()) {
-    
+    f3();
   }
 
   popMatrix();

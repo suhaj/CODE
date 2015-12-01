@@ -25,55 +25,69 @@ void setf1MenuButtons() {
     .setGroup(f1Menu)
     .setColorLabel(0)
     ;
-  myGUI.addSlider("segment")
-    .setPosition(10, 50)
-    .setWidth(300)
-    .setRange(1, 100)
-    .setGroup(f1Menu)
-    .setColorLabel(0)
-    ;
-  }
+}
 void setf2MenuButtons() {
   myGUI.addSlider("xxx")
-    .setPosition(10, 50)
+    .setPosition(10, 10)
     .setWidth(300)
     .setRange(0, 50)
     .setGroup(f2Menu)
     .setColorLabel(0)
     ;
   myGUI.addSlider("yyy")
-    .setPosition(10, 70)
+    .setPosition(10, 30)
     .setWidth(300)
     .setRange(0, 50)
     .setGroup(f2Menu)
     .setColorLabel(0)
     ;
-  myGUI.addSlider("ddd")
-    .setPosition(10, 90)
-    .setWidth(300)
-    .setRange(0, 50)
-    .setGroup(f2Menu)
-    .setColorLabel(0)
-    ;  
+  //myGUI.addSlider("segment")
+  //  .setPosition(10, 50)
+  //  .setWidth(300)
+  //  .setRange(1, 100)
+  //  .setGroup(f2Menu)
+  //  .setColorLabel(0)
+  //  ;
 }
 void setf3MenuButtons() {
+   myGUI.addSlider("noiseVariation")
+    .setPosition(10, 10)
+    .setWidth(300)
+    .setRange(0, 800)
+    .setGroup(f3Menu)
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("nervousMotion")
+    .setPosition(10, 30)
+    .setWidth(300)
+    .setRange(0, 350)
+    .setGroup(f3Menu)
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("step")
+    .setPosition(10, 50)
+    .setWidth(300)
+    .setRange(0, 50)
+    .setGroup(f3Menu)
+    .setColorLabel(0)
+    ;
 }
 
 //myGUI.addSlider("stepSize")
-  //  .setPosition(10, 30)
-  //  .setRange(1, 1000)
-  //  .setLabel("Step size")  
-  //  .setGroup(f2Menu)
-  //  .setColorLabel(0)
-  //  ;
-  //myGUI.addSlider("danceFactor")
-  //  .setPosition(10, 50)
-  //  .setRange(1, 1000)
-  //  .setLabel("Dance Factor")  
-  //  .setGroup(f2Menu)
-  //  .setColorLabel(0)
-  //  ;
-  
+//  .setPosition(10, 30)
+//  .setRange(1, 1000)
+//  .setLabel("Step size")  
+//  .setGroup(f2Menu)
+//  .setColorLabel(0)
+//  ;
+//myGUI.addSlider("danceFactor")
+//  .setPosition(10, 50)
+//  .setRange(1, 1000)
+//  .setLabel("Dance Factor")  
+//  .setGroup(f2Menu)
+//  .setColorLabel(0)
+//  ;
+
 void f2particles() {
   particles.clear();
   particles = new ArrayList();
@@ -82,6 +96,13 @@ void f2particles() {
       particles.add(new Particle(myPoints[i].x, myPoints[i].y, 3));
     }
   }
+}
+
+void f3particles(){
+ myAgents = new FontAgent[myPoints.length];
+  for (int i=0; i<myPoints.length; i++) {
+    myAgents[i] = new FontAgent(new PVector(myPoints[i].x, myPoints[i].y));
+  } 
 }
 
 void f1() {
@@ -103,37 +124,46 @@ void f2() {
   fill(255, 50);
   strokeWeight(0.3);
   stroke(0, 255, 255, 50);
-if(firstF2run){
-  background(255);
-  xxx = 0.01;
-  yyy = 0.01;
-  firstF2run = false;
-}
+  if (firstF2run) {
+    background(255);
+    xxx = 0.01;
+    yyy = 0.01;
+    firstF2run = false;
+  }
   RCommand.setSegmentLength(segment);
   //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
   myGroup = myFONT.toGroup(textTyped);
   myPoints = myGroup.getPoints();
   f2particles();
 
-  if (lastXXX != xxx || lastYYY != yyy) {
-    background(255);
-    for (int i=0; i<particles.size(); i++) {
-      Particle p = (Particle) particles.get(i);
-      p.draw();    
+  background(255);
+  for (int i=0; i<particles.size(); i++) {
+    Particle p = (Particle) particles.get(i);
+    p.draw();    
 
-      float dpart=0;
-      for (int j =0; j<particles.size(); j++) {
+    float dpart=0;
+    for (int j =0; j<particles.size(); j++) {
 
-        Particle pj = (Particle)particles.get(j);
-        dpart = p.distance(pj);
+      Particle pj = (Particle)particles.get(j);
+      dpart = p.distance(pj);
 
-        if (dpart <= distMin) {
-          // stroke(255, map(dpart, 0, distMin, 255, 0));
-          line(p.x, p.y, pj.x, pj.y);
-        }
+      if (dpart <= distMin) {
+        // stroke(255, map(dpart, 0, distMin, 255, 0));
+        line(p.x, p.y, pj.x, pj.y);
       }
     }
-    lastXXX = xxx;
-    lastYYY = yyy;
   }
+}
+
+void f3(){
+  RCommand.setSegmentLength(segment);
+  //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
+  myGroup = myFONT.toGroup(textTyped);
+  myPoints = myGroup.getPoints();
+  
+  
+  for (int i = 0; i < myPoints.length; i++) {
+    myAgents[i].display();
+    myAgents[i].motion();
+  } 
 }
