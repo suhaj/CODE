@@ -37,8 +37,8 @@ void setGUI() {
   myGUI.getController("fontSize").getValueLabel().align(ControlP5.RIGHT, ControlP5.CENTER).setPaddingX(0);
   myGUI.getController("fontSize").getCaptionLabel().align(ControlP5.LEFT, ControlP5.CENTER).setPaddingX(0);
   /* Save PDF button */
-  
-    myGUI.addSlider("segment")
+
+  myGUI.addSlider("segment")
     .setPosition(500, height - 90)
     .setWidth(300)
     .setRange(1, 100)
@@ -53,7 +53,7 @@ void setGUI() {
     .setMode(ControlP5.SWITCH)
     .hide()
     ;
-  
+
   myGUI.addButton("Save as PDF", 1, width - 99, 3, 99, 20)
     .setGroup(gMenu)
     ;
@@ -75,6 +75,7 @@ void setGUI() {
     .addItem("function 1", 1)
     .addItem("function 2", 2)
     .addItem("function 3", 3)
+    //.addItem("function #", ##)
     .setGroup(gMenu);
   /* function (radio) buttons'padding */
   for (Toggle t : rb1.getItems()) {
@@ -88,22 +89,32 @@ void controlEvent(ControlEvent theEvent) {
     if (theEvent.getGroup().getValue()==1) {
       f2Menu.hide();
       f3Menu.hide();
+      //f#Menu.hide();
       f1Menu.show();
     }
     if (theEvent.getGroup().getValue()==2) {
       f1Menu.hide();
       f3Menu.hide();
+      //f#Menu.hide();
       f2Menu.show();
     }
     if (theEvent.getGroup().getValue()==3) {
       f1Menu.hide();
       f2Menu.hide();
+      //f#Menu.hide();
       f3Menu.show();
     }
+    //if (theEvent.getGroup().getValue()==#) {
+    //  f##Menu.hide();
+    //  f##Menu.hide();
+    //  //f#Menu.hide();
+    //  f#Menu.show();
+    //}
     if (theEvent.getGroup().getValue()==-1) {
       f2Menu.hide();
       f3Menu.hide();
       f1Menu.hide();
+      //f#Menu.hide();
     }
   }
 }
@@ -137,11 +148,21 @@ void setFunctionMenus() {
     .hideBar()
     .hide()
     ;
+  //f#Menu = myGUI.addGroup("f#Menu") //f# menu group
+  //.setPosition(0, height-##)
+  //.setWidth(width)
+  //.setBackgroundHeight(100)
+  //.setBackgroundColor(color(230, 230, 230, 160))
+  //.setLabel("f#")  
+  //.hideBar()
+  //.hide()
+  //;
+
   /* function menu buttons init */
   setf1MenuButtons();
   setf2MenuButtons();
   setf3MenuButtons();
-  /* Public segmentator */
+  //setf#MenuButtons();
 }
 
 //--------------------------END--------------------------OF--------------------------GUI-----------------------------------------------------------------------------------------------

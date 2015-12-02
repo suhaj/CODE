@@ -72,7 +72,7 @@ void keyPressed() {
     switch(key) {
     case BACKSPACE:
       textTyped = textTyped.substring(0, max(0, textTyped.length()-1));
-      f2particles();
+      //f2particles();
       f3particles();
       break;
     case ENTER:
@@ -81,6 +81,7 @@ void keyPressed() {
       break;
     default:
       textTyped += key;
+      f3particles();
     }
   }
 }

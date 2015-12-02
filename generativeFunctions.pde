@@ -50,7 +50,7 @@ void setf2MenuButtons() {
   //  ;
 }
 void setf3MenuButtons() {
-   myGUI.addSlider("noiseVariation")
+  myGUI.addSlider("noiseVariation")
     .setPosition(10, 10)
     .setWidth(300)
     .setRange(0, 800)
@@ -98,11 +98,14 @@ void f2particles() {
   }
 }
 
-void f3particles(){
- myAgents = new FontAgent[myPoints.length];
-  for (int i=0; i<myPoints.length; i++) {
-    myAgents[i] = new FontAgent(new PVector(myPoints[i].x, myPoints[i].y));
-  } 
+void f3particles() {
+  //myAgents = new FontAgent[0];
+  if (particles != null) {
+    myAgents = new FontAgent[myPoints.length];
+    for (int i=0; i<myPoints.length; i++) {
+      myAgents[i] = new FontAgent(new PVector(myPoints[i].x, myPoints[i].y));
+    }
+  }
 }
 
 void f1() {
@@ -155,15 +158,29 @@ void f2() {
   }
 }
 
-void f3(){
+void f3() {
   RCommand.setSegmentLength(segment);
   //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
   myGroup = myFONT.toGroup(textTyped);
   myPoints = myGroup.getPoints();
-  
-  
+
   for (int i = 0; i < myPoints.length; i++) {
     myAgents[i].display();
     myAgents[i].motion();
-  } 
+  }
+  f3particles();
 }
+
+void f4() {
+ RCommand.setSegmentLength(segment);
+ //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
+ myGroup = myFONT.toGroup(textTyped);
+ myPoints = myGroup.getPoints();
+}
+
+//void f#() {
+// RCommand.setSegmentLength(segment);
+// //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
+// myGroup = myFONT.toGroup(textTyped);
+// myPoints = myGroup.getPoints();
+//}

@@ -100,8 +100,8 @@ void setup() {
   /* text location */
   centerX = width/2;
   centerY = (height/3)*2;
-  
-  f3particles();
+
+  //f3particles();
 }
 
 void draw() {
@@ -159,11 +159,15 @@ void draw() {
       setFunctionMenus();
       f3Menu.show();
     }
+    //if (f#Menu.isVisible()) {
+    //  f#Menu.hide();
+    //  setFunctionMenus();
+    //  f#Menu.show();
+    //}
     lastWidth = width;
     lastHeight = height;
-    
   }
-  
+
   //IDEA:make this a menu w/ transparent background and display it over each of the fctoin menus. THEN do with it what youve done w/ the other menus <3
   /* Public controllers display */
   //if (f1Menu.isVisible() || f2Menu.isVisible() || f3Menu.isVisible()) {
@@ -192,18 +196,36 @@ void draw() {
   }
   /* f1 */
   if (f1Menu.isVisible()) {
-    segment = 3;
-    f1();
+    if (textTyped.length() > 0) {
+      segment = 3;
+      f1();
+    }
   }
   /* f2 */
   if (f2Menu.isVisible()) {
-    segment = 8;
-    f2();
+    if (textTyped.length() > 0) {
+      segment = 8;
+      f2();
+    }
   }
   /* f3 */
   if (f3Menu.isVisible()) {
-    f3();
+    if (textTyped.length() > 0) {
+      //f3();
+    }
   }
+  /* f4 */
+  if (f4Menu.isVisible()) {
+    if (textTyped.length() > 0) {
+      f4();
+    }
+  }
+  /* f# */
+  //if (f#Menu.isVisible()) {
+  //  if (textTyped.length() > 0) {
+  //    f#();
+  //  }
+  //}
 
   popMatrix();
 }
