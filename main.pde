@@ -44,8 +44,6 @@ controlP5.Group f3Menu;
 RadioButton rb1;
 /* GUI variables */
 boolean gMenuOpenness = true;
-//boolean textToggle = false;
-//boolean f1toggle = false;
 String activeFont = "FreeSans.ttf"; //default font
 String selectedFont = activeFont;
 /* lists for font-work */
@@ -70,6 +68,9 @@ FontAgent[] myAgents;
 int step = 3;
 float nervousMotion = 0;
 float noiseVariation = 0;
+//---------------------------------------------------v
+/* fction#variables */
+//---------------------------------------------------^
 
 void setup() {
   size(900, 500);
@@ -126,11 +127,13 @@ void draw() {
     xxx += 0.01;
     yyy += 0.01;
   }
+  //---------------------------------------------------v
   /* moving text while menus closed */
   if ((mousePressed == true)&&(!f1Menu.isVisible())&&(!f2Menu.isVisible())&&(!f3Menu.isVisible())) {
     centerX = mouseX-offsetX;
     centerY = mouseY-offsetY;
-  } 
+  }
+  //---------------------------------------------------^
   /* change Menu dimensions with screen resize */
   if (lastWidth != width || lastHeight != height) {
     gMenu.hide();
@@ -159,11 +162,13 @@ void draw() {
       setFunctionMenus();
       f3Menu.show();
     }
+    //---------------------------------------------------v
     //if (f#Menu.isVisible()) {
     //  f#Menu.hide();
     //  setFunctionMenus();
     //  f#Menu.show();
     //}
+    //---------------------------------------------------^
     lastWidth = width;
     lastHeight = height;
   }
@@ -190,10 +195,12 @@ void draw() {
   pushMatrix();
   translate(centerX, centerY);
   /* basic text */
+  //---------------------------------------------------v
   if (!f1Menu.isVisible()&&!f2Menu.isVisible()&&!f3Menu.isVisible()) {
     fill(0, 0, 0);
     myFONT.draw(textTyped);
   }
+  //---------------------------------------------------^
   /* f1 */
   if (f1Menu.isVisible()) {
     if (textTyped.length() > 0) {
@@ -220,12 +227,14 @@ void draw() {
       f4();
     }
   }
+  //---------------------------------------------------v
   /* f# */
   //if (f#Menu.isVisible()) {
   //  if (textTyped.length() > 0) {
   //    f#();
   //  }
   //}
+  //---------------------------------------------------^
 
   popMatrix();
 }

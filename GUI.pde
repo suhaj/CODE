@@ -75,7 +75,9 @@ void setGUI() {
     .addItem("function 1", 1)
     .addItem("function 2", 2)
     .addItem("function 3", 3)
+    //---------------------------------------------------v
     //.addItem("function #", ##)
+    //---------------------------------------------------^
     .setGroup(gMenu);
   /* function (radio) buttons'padding */
   for (Toggle t : rb1.getItems()) {
@@ -89,32 +91,42 @@ void controlEvent(ControlEvent theEvent) {
     if (theEvent.getGroup().getValue()==1) {
       f2Menu.hide();
       f3Menu.hide();
+      //---------------------------------------------------v
       //f#Menu.hide();
+      //---------------------------------------------------^
       f1Menu.show();
     }
     if (theEvent.getGroup().getValue()==2) {
       f1Menu.hide();
       f3Menu.hide();
+      //---------------------------------------------------v
       //f#Menu.hide();
+      //---------------------------------------------------^
       f2Menu.show();
     }
     if (theEvent.getGroup().getValue()==3) {
       f1Menu.hide();
       f2Menu.hide();
+      //---------------------------------------------------v
       //f#Menu.hide();
+      //---------------------------------------------------^
       f3Menu.show();
     }
+    //---------------------------------------------------v
     //if (theEvent.getGroup().getValue()==#) {
     //  f##Menu.hide();
     //  f##Menu.hide();
     //  //f#Menu.hide();
     //  f#Menu.show();
     //}
+    //---------------------------------------------------^
     if (theEvent.getGroup().getValue()==-1) {
       f2Menu.hide();
       f3Menu.hide();
       f1Menu.hide();
+      //---------------------------------------------------v
       //f#Menu.hide();
+      //---------------------------------------------------^
     }
   }
 }
@@ -148,6 +160,7 @@ void setFunctionMenus() {
     .hideBar()
     .hide()
     ;
+  //---------------------------------------------------v
   //f#Menu = myGUI.addGroup("f#Menu") //f# menu group
   //.setPosition(0, height-##)
   //.setWidth(width)
@@ -157,12 +170,15 @@ void setFunctionMenus() {
   //.hideBar()
   //.hide()
   //;
+  //---------------------------------------------------^
 
   /* function menu buttons init */
   setf1MenuButtons();
   setf2MenuButtons();
   setf3MenuButtons();
+  //---------------------------------------------------v
   //setf#MenuButtons();
+  //---------------------------------------------------^
 }
 
 //--------------------------END--------------------------OF--------------------------GUI-----------------------------------------------------------------------------------------------

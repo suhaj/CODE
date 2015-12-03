@@ -72,6 +72,10 @@ void setf3MenuButtons() {
     .setColorLabel(0)
     ;
 }
+//---------------------------------------------------v
+//void setf#MenuButtons() {
+//{
+//---------------------------------------------------^
 
 //myGUI.addSlider("stepSize")
 //  .setPosition(10, 30)
@@ -172,15 +176,17 @@ void f3() {
 }
 
 void f4() {
- RCommand.setSegmentLength(segment);
- //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
- myGroup = myFONT.toGroup(textTyped);
- myPoints = myGroup.getPoints();
+  RCommand.setSegmentLength(segment);
+  //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
+  myGroup = myFONT.toGroup(textTyped);
+  myPoints = myGroup.getPoints();
 }
 
+//---------------------------------------------------v
 //void f#() {
 // RCommand.setSegmentLength(segment);
 // //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
 // myGroup = myFONT.toGroup(textTyped);
 // myPoints = myGroup.getPoints();
 //}
+//---------------------------------------------------^
