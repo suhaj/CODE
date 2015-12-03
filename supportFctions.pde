@@ -3,18 +3,16 @@ void keyPressed() {
   if (key != CODED) {
     switch(key) {
     case BACKSPACE:
+      //f3particles(); 
       textTyped = textTyped.substring(0, max(0, textTyped.length()-1));
-      //f2particles();
-      //f4particles();
-      
       break;
     case ENTER:
     case RETURN:
       //soooooo what if we actuallz use the points and move those!
       break;
     default:
+      //f3particles(); 
       textTyped += key;
-      
     }
   }
 }

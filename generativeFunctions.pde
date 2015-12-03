@@ -6,13 +6,13 @@ int activeFontSize = fontSize;
 //float dancefactor = 0;
 
 void f2particles() {
- particles.clear();
- particles = new ArrayList();
- if (particles != null) {
-   for (int i=0; i<myPoints.length; i++) {
-     particles.add(new Particle(myPoints[i].x, myPoints[i].y, 3));
-   }
- }
+  particles.clear();
+  particles = new ArrayList();
+  if (particles != null) {
+    for (int i=0; i<myPoints.length; i++) {
+      particles.add(new Particle(myPoints[i].x, myPoints[i].y, 3));
+    }
+  }
 }
 
 void f3particles() {
@@ -91,11 +91,12 @@ void f3() {
   myGroup = myFONT.toGroup(textTyped);
   myPoints = myGroup.getPoints();
 
+  f3particles();
+
   for (int i = 0; i < myAgents3.length; i++) {
     myAgents3[i].display();
     myAgents3[i].motion();
   }
-  //f3particles();
 }
 
 void f4() {
@@ -104,14 +105,14 @@ void f4() {
   myGroup = myFONT.toGroup(textTyped);
   myPoints = myGroup.getPoints();
 
-  if(f4particles()) {
-  
-  for (int i = 0; i < myAgents4.length; i++) {
-    randX = (((100/MouvPoint)*factorx)+mousex*2)-width/2;
-    randY = (((100/MouvPoint)*factory)+mousey*2)-height/2;
-    myAgents4[i].display();
-    myAgents4[i].motion();
-  }
+  if (f4particles()) {
+
+    for (int i = 0; i < myAgents4.length; i++) {
+      randX = (((100/MouvPoint)*factorx)+mousex*2)-width/2;
+      randY = (((100/MouvPoint)*factory)+mousey*2)-height/2;
+      myAgents4[i].display();
+      myAgents4[i].motion();
+    }
   }
 }
 

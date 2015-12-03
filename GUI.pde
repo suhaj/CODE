@@ -280,28 +280,28 @@ void setf3MenuButtons() {
 }
 void setf4MenuButtons() {
   myGUI.addSlider("mousex")
-    .setPosition(10, 50)
+    .setPosition(10, 10)
     .setWidth(300)
     .setRange(0, 800)
     .setGroup(f4Menu)
     .setColorLabel(0)
     ;
   myGUI.addSlider("mousey")
-    .setPosition(10, 70)
+    .setPosition(10, 30)
     .setWidth(300)
     .setRange(0, 450)
     .setGroup(f4Menu)
     .setColorLabel(0)
     ;
   myGUI.addSlider("factorx")
-    .setPosition(10, 110)
+    .setPosition(10, 50)
     .setWidth(300)
     .setRange(0, 175)
     .setGroup(f4Menu)
     .setColorLabel(0)
     ;
   myGUI.addSlider("factory")
-    .setPosition(10, 130)
+    .setPosition(10, 70)
     .setWidth(300)
     .setRange(0, 175)
     .setGroup(f4Menu)

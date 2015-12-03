@@ -72,6 +72,9 @@ FontAgent3[] myAgents3;
 int step = 3;
 float nervousMotion = 0;
 float noiseVariation = 0;
+float motion;
+ float noiseScale;
+ float noiseZ;
 /* fction#variables */
 FontAgent4[] myAgents4;
 float xoff = 0.0;

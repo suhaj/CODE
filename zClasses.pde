@@ -1,5 +1,4 @@
 /* fction 2 class */
-//-----------------------------------------------------
 class Particle {
   PVector position;
   PVector speed;
@@ -13,7 +12,6 @@ class Particle {
   //DIAMETER
   float d;
 
-  //-----------------------------------------------------
   Particle(float x_, float y_, float d_) {
     this.x = x_;
     this.y = y_;
@@ -24,7 +22,6 @@ class Particle {
     origY = y;
   }
 
-  //-----------------------------------------------------
   void draw() {
     x = origX + random(-xxx, xxx);
     y = origY + random(-yyy, yyy);
@@ -40,15 +37,14 @@ class Particle {
 class FontAgent3 {
 
  PVector loc;
- float motion;
 
  FontAgent3(PVector l) {
    loc = l.copy();
  }
 
  void motion() {
-   float noiseScale = map(noiseVariation, 0, width, 0.001, 0.01); //Smaller numbers give less variation in the noise val.
-   float noiseZ = map(nervousMotion, 0, height, frameCount*0.0003, frameCount*0.03);//Greater numbers will make the motion more nervous.
+   noiseScale = map(noiseVariation, 0, width, 0.001, 0.01); //Smaller numbers give less variation in the noise val.
+   noiseZ = map(nervousMotion, 0, height, frameCount*0.0003, frameCount*0.03);//Greater numbers will make the motion more nervous.
    motion = noise(loc.x * noiseScale * noiseZ, loc.y * noiseScale * noiseZ) * 53;
    //System.out.println("mouseX " + mouseX);
    //System.out.println("mouseY " + mouseY);
