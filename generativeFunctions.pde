@@ -1,115 +1,38 @@
 int fontSize = 200;
 int activeFontSize = fontSize;
-
 //float lineSpacing = fontSize*1.1;
 //float letterY = lineSpacing;
-
 //float stepSize = 0;
 //float dancefactor = 0;
 
-/* function menu buttons init */
-void setf1MenuButtons() {
-  myGUI.addSlider("horizontalStretch")
-    .setPosition(10, 10)
-    .setWidth(300)
-    .setRange(-1000, 1000)
-    .setLabel("Horizontal stretch")  
-    .setGroup(f1Menu)
-    .setColorLabel(0)
-    ;
-  myGUI.addSlider("verticalStretch")
-    .setPosition(10, 30)
-    .setWidth(300)
-    .setRange(-1000, 1000)
-    .setLabel("Vertical stretch")  
-    .setGroup(f1Menu)
-    .setColorLabel(0)
-    ;
-}
-void setf2MenuButtons() {
-  myGUI.addSlider("xxx")
-    .setPosition(10, 10)
-    .setWidth(300)
-    .setRange(0, 50)
-    .setGroup(f2Menu)
-    .setColorLabel(0)
-    ;
-  myGUI.addSlider("yyy")
-    .setPosition(10, 30)
-    .setWidth(300)
-    .setRange(0, 50)
-    .setGroup(f2Menu)
-    .setColorLabel(0)
-    ;
-  //myGUI.addSlider("segment")
-  //  .setPosition(10, 50)
-  //  .setWidth(300)
-  //  .setRange(1, 100)
-  //  .setGroup(f2Menu)
-  //  .setColorLabel(0)
-  //  ;
-}
-void setf3MenuButtons() {
-  myGUI.addSlider("noiseVariation")
-    .setPosition(10, 10)
-    .setWidth(300)
-    .setRange(0, 800)
-    .setGroup(f3Menu)
-    .setColorLabel(0)
-    ;
-  myGUI.addSlider("nervousMotion")
-    .setPosition(10, 30)
-    .setWidth(300)
-    .setRange(0, 350)
-    .setGroup(f3Menu)
-    .setColorLabel(0)
-    ;
-  myGUI.addSlider("step")
-    .setPosition(10, 50)
-    .setWidth(300)
-    .setRange(0, 50)
-    .setGroup(f3Menu)
-    .setColorLabel(0)
-    ;
-}
-//---------------------------------------------------v
-//void setf#MenuButtons() {
-//{
-//---------------------------------------------------^
-
-//myGUI.addSlider("stepSize")
-//  .setPosition(10, 30)
-//  .setRange(1, 1000)
-//  .setLabel("Step size")  
-//  .setGroup(f2Menu)
-//  .setColorLabel(0)
-//  ;
-//myGUI.addSlider("danceFactor")
-//  .setPosition(10, 50)
-//  .setRange(1, 1000)
-//  .setLabel("Dance Factor")  
-//  .setGroup(f2Menu)
-//  .setColorLabel(0)
-//  ;
-
 void f2particles() {
-  particles.clear();
-  particles = new ArrayList();
-  if (particles != null) {
-    for (int i=0; i<myPoints.length; i++) {
-      particles.add(new Particle(myPoints[i].x, myPoints[i].y, 3));
-    }
-  }
+ particles.clear();
+ particles = new ArrayList();
+ if (particles != null) {
+   for (int i=0; i<myPoints.length; i++) {
+     particles.add(new Particle(myPoints[i].x, myPoints[i].y, 3));
+   }
+ }
 }
 
 void f3particles() {
-  //myAgents = new FontAgent[0];
-  if (particles != null) {
-    myAgents = new FontAgent[myPoints.length];
+  if (myAgents3 != null) {
+    myAgents3 = new FontAgent3[myPoints.length];
     for (int i=0; i<myPoints.length; i++) {
-      myAgents[i] = new FontAgent(new PVector(myPoints[i].x, myPoints[i].y));
+      myAgents3[i] = new FontAgent3(new PVector(myPoints[i].x, myPoints[i].y));
     }
   }
+}
+
+boolean f4particles() {
+  if (myAgents4 != null) {
+    myAgents4 = new FontAgent4[myPoints.length];
+    for (int i=0; i<myPoints.length; i++) {
+      myAgents4[i] = new FontAgent4(new PVector(myPoints[i].x, myPoints[i].y));
+    }
+    return true;
+  }
+  return false;
 }
 
 void f1() {
@@ -168,11 +91,11 @@ void f3() {
   myGroup = myFONT.toGroup(textTyped);
   myPoints = myGroup.getPoints();
 
-  for (int i = 0; i < myPoints.length; i++) {
-    myAgents[i].display();
-    myAgents[i].motion();
+  for (int i = 0; i < myAgents3.length; i++) {
+    myAgents3[i].display();
+    myAgents3[i].motion();
   }
-  f3particles();
+  //f3particles();
 }
 
 void f4() {
@@ -180,6 +103,16 @@ void f4() {
   //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
   myGroup = myFONT.toGroup(textTyped);
   myPoints = myGroup.getPoints();
+
+  if(f4particles()) {
+  
+  for (int i = 0; i < myAgents4.length; i++) {
+    randX = (((100/MouvPoint)*factorx)+mousex*2)-width/2;
+    randY = (((100/MouvPoint)*factory)+mousey*2)-height/2;
+    myAgents4[i].display();
+    myAgents4[i].motion();
+  }
+  }
 }
 
 //---------------------------------------------------v

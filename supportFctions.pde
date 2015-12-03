@@ -1,3 +1,47 @@
+/* keyboard controls*/
+void keyPressed() {
+  if (key != CODED) {
+    switch(key) {
+    case BACKSPACE:
+      textTyped = textTyped.substring(0, max(0, textTyped.length()-1));
+      //f2particles();
+      //f4particles();
+      
+      break;
+    case ENTER:
+    case RETURN:
+      //soooooo what if we actuallz use the points and move those!
+      break;
+    default:
+      textTyped += key;
+      
+    }
+  }
+}
+
+/* mouse controls */
+void mousePressed() {
+  offsetX = mouseX-centerX;
+  offsetY = mouseY-centerY;
+}
+
+/* selectedFont getting a path, not a name - fix for Geomerative */
+void fonts(int n) { //list of installed fonts
+  selectedFont = TTFPathList.get(n);
+  System.out.println(selectedFont);
+}
+
+void stopMotion(boolean theFlag) {
+  if (theFlag==true) {
+    loop();
+  } else {
+    noLoop();
+  }
+}
+
+//............................................................................................................................................................................
+//............................................................................................................................................................................
+
 /* Creates Lists, calls for font sorting function, getFontSuffix() */
 void initializeFontList() {
   for (int i = 0; i < PFontList.length; i++) {
@@ -64,44 +108,4 @@ Boolean getFontSuffix(String fontNameMETHOD) {
   }
 
   return TTF;
-}
-
-/* keyboard controls*/
-void keyPressed() {
-  if (key != CODED) {
-    switch(key) {
-    case BACKSPACE:
-      textTyped = textTyped.substring(0, max(0, textTyped.length()-1));
-      //f2particles();
-      f3particles();
-      break;
-    case ENTER:
-    case RETURN:
-      //soooooo what if we actuallz use the points and move those!
-      break;
-    default:
-      textTyped += key;
-      f3particles();
-    }
-  }
-}
-
-/* mouse controls */
-void mousePressed() {
-  offsetX = mouseX-centerX;
-  offsetY = mouseY-centerY;
-}
-
-/* selectedFont getting a path, not a name - fix for Geomerative */
-void fonts(int n) { //list of installed fonts
-  selectedFont = TTFPathList.get(n);
-  System.out.println(selectedFont);
-}
-
-void stopMotion(boolean theFlag) {
-  if (theFlag==true) {
-    loop();
-  } else {
-    noLoop();
-  }
 }

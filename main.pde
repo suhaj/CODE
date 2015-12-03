@@ -41,6 +41,10 @@ controlP5.Group gMenu;
 controlP5.Group f1Menu;
 controlP5.Group f2Menu;
 controlP5.Group f3Menu;
+controlP5.Group f4Menu;
+//---------------------------------------------------v
+//controlP5.Group f#Menu;
+//---------------------------------------------------^
 RadioButton rb1;
 /* GUI variables */
 boolean gMenuOpenness = true;
@@ -64,10 +68,23 @@ float lastXXX = xxx;
 float lastYYY = yyy;
 boolean firstF2run = true;
 /* fction3variables */
-FontAgent[] myAgents;
+FontAgent3[] myAgents3;
 int step = 3;
 float nervousMotion = 0;
 float noiseVariation = 0;
+/* fction#variables */
+FontAgent4[] myAgents4;
+float xoff = 0.0;
+float yoff = 0.0;
+float xincrement = 0.000005; 
+float yincrement = 0.000008; 
+float randX;
+float randY;
+float MouvPoint;
+float mousey = 0;
+float mousex = 0;
+float factorx = 0;
+float factory = 0;
 //---------------------------------------------------v
 /* fction#variables */
 //---------------------------------------------------^
@@ -79,7 +96,6 @@ void setup() {
     surface.setResizable(true); //processing 3.0
     background(255);
   }
-
   initializeFontList();
 
   /* Geomerative text object setup */
@@ -102,7 +118,16 @@ void setup() {
   centerX = width/2;
   centerY = (height/3)*2;
 
-  //f3particles();
+  //f3 init
+  myAgents3 = new FontAgent3[myPoints.length];
+    for (int i=0; i<myPoints.length; i++) {
+      myAgents3[i] = new FontAgent3(new PVector(myPoints[i].x, myPoints[i].y));
+    }
+  //f4 init
+  myAgents4 = new FontAgent4[myPoints.length];
+    for (int i=0; i<myPoints.length; i++) {
+      myAgents4[i] = new FontAgent4(new PVector(myPoints[i].x, myPoints[i].y));
+    }
 }
 
 void draw() {
@@ -129,7 +154,7 @@ void draw() {
   }
   //---------------------------------------------------v
   /* moving text while menus closed */
-  if ((mousePressed == true)&&(!f1Menu.isVisible())&&(!f2Menu.isVisible())&&(!f3Menu.isVisible())) {
+  if ((mousePressed == true)&&(!f1Menu.isVisible())&&(!f2Menu.isVisible())&&(!f3Menu.isVisible())&&(!f4Menu.isVisible())) {
     centerX = mouseX-offsetX;
     centerY = mouseY-offsetY;
   }
@@ -162,6 +187,11 @@ void draw() {
       setFunctionMenus();
       f3Menu.show();
     }
+    if (f4Menu.isVisible()) {
+      f4Menu.hide();
+      setFunctionMenus();
+      f4Menu.show();
+    }
     //---------------------------------------------------v
     //if (f#Menu.isVisible()) {
     //  f#Menu.hide();
@@ -173,30 +203,12 @@ void draw() {
     lastHeight = height;
   }
 
-  //IDEA:make this a menu w/ transparent background and display it over each of the fctoin menus. THEN do with it what youve done w/ the other menus <3
-  /* Public controllers display */
-  //if (f1Menu.isVisible() || f2Menu.isVisible() || f3Menu.isVisible()) {
-  // myGUI.getController("segment").show();
-  // myGUI.getController("segment").bringToFront();
-  // myGUI.getController("stopMotion").show();
-  // myGUI.getController("stopMotion").bringToFront();
-  //} 
-  // -----------------------------------------------
-
-  /*
-  !!!TRYING TO RESOLVE FCTION COEXISTENCE!!!
-   if (f1 togle is on)
-   display f1 style
-   
-   two modes? see/type font 
-   and then edit fctions */
-
   /* TEXT OBJECT DISPLAY */
   pushMatrix();
   translate(centerX, centerY);
   /* basic text */
   //---------------------------------------------------v
-  if (!f1Menu.isVisible()&&!f2Menu.isVisible()&&!f3Menu.isVisible()) {
+  if (!f1Menu.isVisible()&&!f2Menu.isVisible()&&!f3Menu.isVisible()&&!f4Menu.isVisible()) {
     fill(0, 0, 0);
     myFONT.draw(textTyped);
   }
@@ -218,7 +230,7 @@ void draw() {
   /* f3 */
   if (f3Menu.isVisible()) {
     if (textTyped.length() > 0) {
-      //f3();
+      f3();
     }
   }
   /* f4 */
@@ -239,7 +251,32 @@ void draw() {
   popMatrix();
 }
 
+
+
+
+
+
+
 //--------------------------END--------------------------OF--------------------------MAIN----------------------------------------------------------------------------------------------
+//from draw:
+//IDEA:make this a menu w/ transparent background and display it over each of the fctoin menus. THEN do with it what youve done w/ the other menus <3
+/* Public controllers display */
+//if (f1Menu.isVisible() || f2Menu.isVisible() || f3Menu.isVisible()) {
+// myGUI.getController("segment").show();
+// myGUI.getController("segment").bringToFront();
+// myGUI.getController("stopMotion").show();
+// myGUI.getController("stopMotion").bringToFront();
+//} 
+// -----------------------------------------------
+
+/*
+  !!!TRYING TO RESOLVE FCTION COEXISTENCE!!!
+ if (f1 togle is on)
+ display f1 style
+ 
+ two modes? see/type font 
+ and then edit fctions */
+
 /*
 .setGUI by slo rozdelit na dve casti: jedna na zacatku pro init, druha pro srovnavani velikosti >> when you know how many buttons and stuff
  

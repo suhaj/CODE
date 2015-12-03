@@ -37,28 +37,56 @@ class Particle {
 }
 
 /* fction 3 class */
-class FontAgent {
+class FontAgent3 {
+
+ PVector loc;
+ float motion;
+
+ FontAgent3(PVector l) {
+   loc = l.copy();
+ }
+
+ void motion() {
+   float noiseScale = map(noiseVariation, 0, width, 0.001, 0.01); //Smaller numbers give less variation in the noise val.
+   float noiseZ = map(nervousMotion, 0, height, frameCount*0.0003, frameCount*0.03);//Greater numbers will make the motion more nervous.
+   motion = noise(loc.x * noiseScale * noiseZ, loc.y * noiseScale * noiseZ) * 53;
+   //System.out.println("mouseX " + mouseX);
+   //System.out.println("mouseY " + mouseY);
+ }  
+
+
+ void display() {
+   noStroke();
+   fill(0, 53);
+   ellipse(loc.x, loc.y, motion+step, motion+step);
+   //System.out.println("display " + mouseX);
+ }
+}
+
+/* fction 4 class */
+class FontAgent4 {
 
   PVector loc;
-  float motion;
+  float dia;
 
-  FontAgent(PVector l) {
+  FontAgent4(PVector l) {
     loc = l.copy();
   }
 
   void motion() {
-    float noiseScale = map(noiseVariation, 0, width, 0.001, 0.01); //Smaller numbers give less variation in the noise val.
-    float noiseZ = map(nervousMotion, 0, height, frameCount*0.0003, frameCount*0.03);//Greater numbers will make the motion more nervous.
-    motion = noise(loc.x * noiseScale * noiseZ, loc.y * noiseScale * noiseZ) * 53;
-    //System.out.println("mouseX " + mouseX);
-    //System.out.println("mouseY " + mouseY);
-  }  
+    float deplacementX = noise(xoff)*width;
+    float deplacementY = noise(yoff)*height;
 
+    xoff += xincrement;
+    yoff += yincrement;
+    MouvPoint = dist(deplacementX-(width/2), deplacementY-(height/2), loc.x, loc.y);;
+  }  
 
   void display() {
     noStroke();
-    fill(0, 53);
-    ellipse(loc.x, loc.y, motion+step, motion+step);
-    //System.out.println("display " + mouseX);
+    fill(0,73);
+    dia = (150/MouvPoint) *5; // the boldness of everzthing diplayed
+    //ellipse(loc.x + random(-randX, randX), loc.y + random(-randY, randY), dia, dia);
+    ellipse(loc.x + random(-randX/20, randX), loc.y + random(-randY/20, randY*2), dia, dia);
   }
 }
