@@ -28,8 +28,8 @@ RPoint[] myPoints;
 String textTyped = "Type!!";
 //String textDeposit = textTyped;
 boolean firstDrawRun = true;
-int lastWidth = 900;
-int lastHeight = 500;
+int lastWidth = 901;
+int lastHeight = 501;
 /* mousePressed() variables */
 int offsetX = 0;
 int offsetY = 0;
@@ -38,6 +38,7 @@ int centerY = 0;
 /* GUI init */
 ControlP5 myGUI;
 controlP5.Group gMenu;
+controlP5.Group publicMenu;
 controlP5.Group f1Menu;
 controlP5.Group f2Menu;
 controlP5.Group f3Menu;
@@ -50,6 +51,12 @@ RadioButton rb1;
 boolean gMenuOpenness = true;
 String activeFont = "FreeSans.ttf"; //default font
 String selectedFont = activeFont;
+int textHue = 0;
+int textSat = 0;
+int textBri = 0;
+int bcgHue = 0;
+int bcgSat = 0;
+int bcgBri = 100;
 /* lists for font-work */
 String[] PFontList = PFont.list();
 List<String> TTFFontList = new ArrayList<String>();
@@ -57,7 +64,7 @@ List<String> TTFPathList = new ArrayList<String>();
 /*fction1 variables*/
 float verticalStretch = 0;
 float horizontalStretch = 0;
-int segment = 5;
+int segment = 10;
 /*fction2 variables*/
 Particle p;
 ArrayList particles = new ArrayList();
@@ -73,8 +80,8 @@ int step = 3;
 float nervousMotion = 0;
 float noiseVariation = 0;
 float motion;
- float noiseScale;
- float noiseZ;
+float noiseScale;
+float noiseZ;
 /* fction#variables */
 FontAgent4[] myAgents4;
 float xoff = 0.0;
@@ -97,13 +104,13 @@ void setup() {
   smooth();
   if (frame != null) {
     surface.setResizable(true); //processing 3.0
-    background(255);
+    background(bcgHue, bcgSat, bcgBri);
   }
   initializeFontList();
 
   /* Geomerative text object setup */
   RG.init(this);
-  RCommand.setSegmentLength(10);
+  RCommand.setSegmentLength(segment);
   RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
   myFONT = new RFont(activeFont, activeFontSize, RFont.CENTER);
   myGroup = myFONT.toGroup(textTyped);
@@ -123,14 +130,16 @@ void setup() {
 
   //f3 init
   myAgents3 = new FontAgent3[myPoints.length];
-    for (int i=0; i<myPoints.length; i++) {
-      myAgents3[i] = new FontAgent3(new PVector(myPoints[i].x, myPoints[i].y));
-    }
+  for (int i=0; i<myPoints.length; i++) {
+    myAgents3[i] = new FontAgent3(new PVector(myPoints[i].x, myPoints[i].y));
+  }
   //f4 init
   myAgents4 = new FontAgent4[myPoints.length];
-    for (int i=0; i<myPoints.length; i++) {
-      myAgents4[i] = new FontAgent4(new PVector(myPoints[i].x, myPoints[i].y));
-    }
+  for (int i=0; i<myPoints.length; i++) {
+    myAgents4[i] = new FontAgent4(new PVector(myPoints[i].x, myPoints[i].y));
+  }
+
+  colorMode(HSB, 360, 100, 100);
 }
 
 void draw() {
@@ -141,7 +150,8 @@ void draw() {
     setFunctionMenus();
     firstDrawRun = false;
   }
-  background(255);
+  background(bcgHue, bcgSat, bcgBri);
+  
   /* dropdown list changes font */
   if (activeFont != selectedFont) {
     activeFont = selectedFont;
@@ -163,37 +173,44 @@ void draw() {
   }
   //---------------------------------------------------^
   /* change Menu dimensions with screen resize */
-  if (lastWidth != width || lastHeight != height) {
+  if (lastHeight != height || lastWidth != width) {
+    lastWidth = width;
+    lastHeight = height;
     gMenu.hide();
     if (gMenu.isOpen()) {
       gMenuOpenness = true;
-      background(255);
+      background(bcgHue, bcgSat, bcgBri);
       setGUI();
+      //setFunctionMenus();
     } else {
       gMenuOpenness = false;  
-      background(255);
+      background(bcgHue, bcgSat, bcgBri);
       setGUI();
+      //setFunctionMenus();
     }
     gMenu.show();
     if (f1Menu.isVisible()) {
       f1Menu.hide();
       setFunctionMenus();
       f1Menu.show();
-    }
-    if (f2Menu.isVisible()) {
+    } else if (f2Menu.isVisible()) {
       f2Menu.hide();
       setFunctionMenus();
       f2Menu.show();
-    }
-    if (f3Menu.isVisible()) {
+    } else if (f3Menu.isVisible()) {
       f3Menu.hide();
       setFunctionMenus();
       f3Menu.show();
-    }
-    if (f4Menu.isVisible()) {
+    } else if (f4Menu.isVisible()) {
       f4Menu.hide();
       setFunctionMenus();
       f4Menu.show();
+    } else if (publicMenu.isVisible()) {
+      publicMenu.hide();
+      setFunctionMenus();
+      publicMenu.show();
+    } else {
+      setFunctionMenus();
     }
     //---------------------------------------------------v
     //if (f#Menu.isVisible()) {
@@ -202,8 +219,6 @@ void draw() {
     //  f#Menu.show();
     //}
     //---------------------------------------------------^
-    lastWidth = width;
-    lastHeight = height;
   }
 
   /* TEXT OBJECT DISPLAY */
@@ -212,21 +227,24 @@ void draw() {
   /* basic text */
   //---------------------------------------------------v
   if (!f1Menu.isVisible()&&!f2Menu.isVisible()&&!f3Menu.isVisible()&&!f4Menu.isVisible()) {
+    pushMatrix();
     fill(0, 0, 0);
     myFONT.draw(textTyped);
+    popMatrix();
   }
   //---------------------------------------------------^
   /* f1 */
+
   if (f1Menu.isVisible()) {
     if (textTyped.length() > 0) {
-      segment = 3;
+      //segment = 3;
       f1();
     }
   }
   /* f2 */
   if (f2Menu.isVisible()) {
     if (textTyped.length() > 0) {
-      segment = 8;
+      //segment = 8;
       f2();
     }
   }

@@ -6,7 +6,7 @@ void setGUI() {
     .setPosition(0, 10)
     .setWidth(width)
     .setBackgroundHeight(30)
-    .setBackgroundColor(color(230, 230, 230, 160))
+    .setBackgroundColor(color(0, 0, 80, 90))
     .setLabel("Menu")  
     .setOpen(gMenuOpenness)
     ;
@@ -36,14 +36,7 @@ void setGUI() {
     ;
   myGUI.getController("fontSize").getValueLabel().align(ControlP5.RIGHT, ControlP5.CENTER).setPaddingX(0);
   myGUI.getController("fontSize").getCaptionLabel().align(ControlP5.LEFT, ControlP5.CENTER).setPaddingX(0);
-  /* Public segment slider */
-  myGUI.addSlider("segment")
-    .setPosition(500, height - 90)
-    .setWidth(300)
-    .setRange(1, 100)
-    .setColorLabel(0)
-    .hide()
-    ;
+
   /* Public noLoop switch */
   myGUI.addToggle("stopMotion")
     .setPosition(500, height - 70)
@@ -62,7 +55,7 @@ void setGUI() {
   //    println("save TIFF");
   //  }
   //}
-  
+
   /* function (radio) buttons */
   rb1 = myGUI.addRadioButton("function1")
     .setPosition(300, 3)
@@ -97,6 +90,7 @@ void controlEvent(ControlEvent theEvent) {
       //f#Menu.hide();
       //---------------------------------------------------^
       f1Menu.show();
+      publicMenu.show();
     }
     if (theEvent.getGroup().getValue()==2) {
       f1Menu.hide();
@@ -106,6 +100,7 @@ void controlEvent(ControlEvent theEvent) {
       //f#Menu.hide();
       //---------------------------------------------------^
       f2Menu.show();
+      publicMenu.show();
     }
     if (theEvent.getGroup().getValue()==3) {
       f1Menu.hide();
@@ -115,6 +110,7 @@ void controlEvent(ControlEvent theEvent) {
       //f#Menu.hide();
       //---------------------------------------------------^
       f3Menu.show();
+      publicMenu.show();
     }
     if (theEvent.getGroup().getValue()==4) {
       f1Menu.hide();
@@ -124,6 +120,7 @@ void controlEvent(ControlEvent theEvent) {
       //f#Menu.hide();
       //---------------------------------------------------^
       f4Menu.show();
+      publicMenu.show();
     }
     //---------------------------------------------------v
     //if (theEvent.getGroup().getValue()==#) {
@@ -140,6 +137,7 @@ void controlEvent(ControlEvent theEvent) {
       f2Menu.hide();
       f3Menu.hide();
       f4Menu.hide();
+      publicMenu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -154,36 +152,36 @@ void controlEvent(ControlEvent theEvent) {
 void setFunctionMenus() {
   f1Menu = myGUI.addGroup("f1Menu") //f1 menu group
     .setPosition(0, height-100)
-    .setWidth(width)
+    .setWidth(width-400)
     .setBackgroundHeight(100)
-    .setBackgroundColor(color(230, 230, 230, 160))
+    .setBackgroundColor(color(0, 0, 80, 90))
     .setLabel("f1")  
     .hideBar()
     .hide()
     ;
   f2Menu = myGUI.addGroup("f2Menu") //f2 menu group
     .setPosition(0, height-100)
-    .setWidth(width)
+    .setWidth(width-400)
     .setBackgroundHeight(100)
-    .setBackgroundColor(color(230, 230, 230, 160))
+    .setBackgroundColor(color(0, 0, 80, 90))
     .setLabel("f2")  
     .hideBar()
     .hide()
     ;
   f3Menu = myGUI.addGroup("f3Menu") //f3 menu group
     .setPosition(0, height-100)
-    .setWidth(width)
+    .setWidth(width-400)
     .setBackgroundHeight(100)
-    .setBackgroundColor(color(230, 230, 230, 160))
+    .setBackgroundColor(color(0, 0, 80, 90))
     .setLabel("f3")  
     .hideBar()
     .hide()
     ;
-  f4Menu = myGUI.addGroup("f4Menu") //f# menu group
+  f4Menu = myGUI.addGroup("f4Menu") //f4 menu group
     .setPosition(0, height-100)
-    .setWidth(width)
+    .setWidth(width-400)
     .setBackgroundHeight(100)
-    .setBackgroundColor(color(230, 230, 230, 160))
+    .setBackgroundColor(color(0, 0, 80, 90))
     .setLabel("f4")  
     .hideBar()
     .hide()
@@ -199,6 +197,14 @@ void setFunctionMenus() {
   //.hide()
   //;
   //---------------------------------------------------^
+  publicMenu = myGUI.addGroup("publicMenu") //public menu group
+    .setPosition(width - 400, height-100)
+    .setWidth(400)
+    .setBackgroundHeight(100)
+    .setBackgroundColor(color(0, 0, 80, 90))
+    .hideBar()
+    .hide()
+    ;    
 
   /* function menu buttons init */
   setf1MenuButtons();
@@ -208,6 +214,7 @@ void setFunctionMenus() {
   //---------------------------------------------------v
   //setf#MenuButtons();
   //---------------------------------------------------^
+  setPublicMenuButtons();
 }
 
 //....................................................................................................................................................................................
@@ -247,13 +254,14 @@ void setf2MenuButtons() {
     .setGroup(f2Menu)
     .setColorLabel(0)
     ;
-  //myGUI.addSlider("segment")
-  //  .setPosition(10, 50)
-  //  .setWidth(300)
-  //  .setRange(1, 100)
-  //  .setGroup(f2Menu)
-  //  .setColorLabel(0)
-  //  ;
+  myGUI.addSlider("distMin")
+    .setLabel("minimal connect distance")
+    .setPosition(10, 70)
+    .setWidth(300)
+    .setRange(0, 60)
+    .setGroup(f2Menu)
+    .setColorLabel(0)
+    ;
 }
 void setf3MenuButtons() {
   myGUI.addSlider("noiseVariation")
@@ -312,26 +320,73 @@ void setf4MenuButtons() {
 //void setf#MenuButtons() {
 //{
 //---------------------------------------------------^
+void setPublicMenuButtons() {
+  myGUI.addSlider("textHue")
+    .setPosition(10, 10)
+    .setWidth(100)
+    .setRange(0, 360)
+    .setLabel("text hue")
+    .setGroup(publicMenu)
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("textSat")
+    .setPosition(10, 23)
+    .setWidth(100)
+    .setRange(0, 100)
+    .setLabel("text saturation")
+    .setGroup(publicMenu)
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("textBri")
+    .setPosition(10, 36)
+    .setWidth(100)
+    .setRange(0, 100)
+    .setLabel("text brightness")
+    .setGroup(publicMenu)
+    .setColorLabel(0)
+    ;
 
-//myGUI.addSlider("stepSize")
-//  .setPosition(10, 30)
-//  .setRange(1, 1000)
-//  .setLabel("Step size")  
-//  .setGroup(f2Menu)
-//  .setColorLabel(0)
-//  ;
-//myGUI.addSlider("danceFactor")
-//  .setPosition(10, 50)
-//  .setRange(1, 1000)
-//  .setLabel("Dance Factor")  
-//  .setGroup(f2Menu)
-//  .setColorLabel(0)
-//  ;
+  myGUI.addSlider("bcgHue")
+    .setPosition(10, 56)
+    .setWidth(100)
+    .setRange(0, 360)
+    .setLabel("background hue")
+    .setGroup(publicMenu)
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("bcgSat")
+    .setPosition(10, 69)
+    .setWidth(100)
+    .setRange(0, 100)
+    .setLabel("background saturation")
+    .setGroup(publicMenu)
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("bcgBri")
+    .setPosition(10, 82)
+    .setWidth(100)
+    .setRange(0, 100)
+    .setLabel("background brightness")
+    .setGroup(publicMenu)
+    .setColorLabel(0)
+    ;    
+
+  myGUI.addSlider("segment")
+    .setPosition(230, 10)
+    .setWidth(100)
+    .setRange(1, 100)
+    .setLabel("segmentation")
+    .setGroup(publicMenu)
+    .setColorLabel(0)
+    ;
+}
 
 
 
 
 
 
-//--------------------------END--------------------------OF--------------------------GUI-----------------------------------------------------------------------------------------------
-//az bude jasne kolik bude cudlu na fce, mohly by se inicializovat pres volani fce, tj. cyklem
+
+
+  //--------------------------END--------------------------OF--------------------------GUI-----------------------------------------------------------------------------------------------
+  //az bude jasne kolik bude cudlu na fce, mohly by se inicializovat pres volani fce, tj. cyklem

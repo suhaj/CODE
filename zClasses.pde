@@ -53,7 +53,7 @@ class FontAgent3 {
 
  void display() {
    noStroke();
-   fill(0, 53);
+   fill(textHue, textSat, textBri, 53);
    ellipse(loc.x, loc.y, motion+step, motion+step);
    //System.out.println("display " + mouseX);
  }
@@ -80,7 +80,7 @@ class FontAgent4 {
 
   void display() {
     noStroke();
-    fill(0,73);
+    fill(textHue, textSat, textBri,73);
     dia = (150/MouvPoint) *5; // the boldness of everzthing diplayed
     //ellipse(loc.x + random(-randX, randX), loc.y + random(-randY, randY), dia, dia);
     ellipse(loc.x + random(-randX/20, randX), loc.y + random(-randY/20, randY*2), dia, dia);

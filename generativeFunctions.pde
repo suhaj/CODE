@@ -37,7 +37,7 @@ boolean f4particles() {
 
 void f1() {
   noFill();
-  stroke(0);
+  stroke(textHue, textSat, textBri);
   strokeWeight(0.3);
 
   RCommand.setSegmentLength(segment);
@@ -51,22 +51,21 @@ void f1() {
   }
 }
 void f2() {
-  fill(255, 50);
   strokeWeight(0.3);
-  stroke(0, 255, 255, 50);
-  if (firstF2run) {
-    background(255);
-    xxx = 0.01;
-    yyy = 0.01;
-    firstF2run = false;
-  }
+  stroke(textHue, textSat, textBri, 50);
+  //if (firstF2run) {
+  //  background(255);
+  //  xxx = 0.01;
+  //  yyy = 0.01;
+  //  firstF2run = false;
+  //}
   RCommand.setSegmentLength(segment);
   //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
   myGroup = myFONT.toGroup(textTyped);
   myPoints = myGroup.getPoints();
   f2particles();
 
-  background(255);
+  //background(255);
   for (int i=0; i<particles.size(); i++) {
     Particle p = (Particle) particles.get(i);
     p.draw();    
