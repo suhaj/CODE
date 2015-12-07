@@ -1,6 +1,4 @@
 //import processing.svg.*;
-//import java.util.*;
-
 import geomerative.*;
 import controlP5.*;
 /* Font path search libraries */
@@ -24,17 +22,6 @@ import java.util.List;
 RFont myFONT;
 RGroup myGroup;
 RPoint[] myPoints;
-
-String textTyped = "Type!!";
-//String textDeposit = textTyped;
-boolean firstDrawRun = true;
-int lastWidth = 901;
-int lastHeight = 501;
-/* mousePressed() variables */
-int offsetX = 0;
-int offsetY = 0;
-int centerX = 0;
-int centerY = 0;
 /* GUI init */
 ControlP5 myGUI;
 controlP5.Group gMenu;
@@ -51,12 +38,22 @@ RadioButton rb1;
 boolean gMenuOpenness = true;
 String activeFont = "FreeSans.ttf"; //default font
 String selectedFont = activeFont;
+String textTyped = "Type!!";
+//String textDeposit = textTyped;
 int textHue = 0;
 int textSat = 0;
 int textBri = 0;
 int bcgHue = 0;
 int bcgSat = 0;
 int bcgBri = 100;
+boolean firstDrawRun = true;
+int lastWidth = 901;
+int lastHeight = 501;
+/* mousePressed() variables */
+int offsetX = 0;
+int offsetY = 0;
+int centerX = 0;
+int centerY = 0;
 /* lists for font-work */
 String[] PFontList = PFont.list();
 List<String> TTFFontList = new ArrayList<String>();
@@ -65,6 +62,7 @@ List<String> TTFPathList = new ArrayList<String>();
 float verticalStretch = 0;
 float horizontalStretch = 0;
 int segment = 10;
+float factor = 1;
 /*fction2 variables*/
 Particle p;
 ArrayList particles = new ArrayList();
@@ -98,10 +96,12 @@ float factory = 0;
 //---------------------------------------------------v
 /* fction#variables */
 //---------------------------------------------------^
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void setup() {
   size(900, 500);
   smooth();
+  colorMode(HSB, 360, 100, 100);
   if (frame != null) {
     surface.setResizable(true); //processing 3.0
     background(bcgHue, bcgSat, bcgBri);
@@ -127,23 +127,19 @@ void setup() {
   /* text location */
   centerX = width/2;
   centerY = (height/3)*2;
-
-  //f3 init
+  /* f3, f4 init */
   myAgents3 = new FontAgent3[myPoints.length];
   for (int i=0; i<myPoints.length; i++) {
     myAgents3[i] = new FontAgent3(new PVector(myPoints[i].x, myPoints[i].y));
   }
-  //f4 init
   myAgents4 = new FontAgent4[myPoints.length];
   for (int i=0; i<myPoints.length; i++) {
     myAgents4[i] = new FontAgent4(new PVector(myPoints[i].x, myPoints[i].y));
   }
-
-  colorMode(HSB, 360, 100, 100);
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void draw() {
-  // -----------------------------------------------
   /* sets GUI in the very beginning */
   if (firstDrawRun) {
     setGUI();
@@ -151,7 +147,7 @@ void draw() {
     firstDrawRun = false;
   }
   background(bcgHue, bcgSat, bcgBri);
-  
+
   /* dropdown list changes font */
   if (activeFont != selectedFont) {
     activeFont = selectedFont;
@@ -181,46 +177,55 @@ void draw() {
       gMenuOpenness = true;
       background(bcgHue, bcgSat, bcgBri);
       setGUI();
-      //setFunctionMenus();
     } else {
       gMenuOpenness = false;  
       background(bcgHue, bcgSat, bcgBri);
       setGUI();
-      //setFunctionMenus();
     }
     gMenu.show();
     if (f1Menu.isVisible()) {
       f1Menu.hide();
-      setFunctionMenus();
-      f1Menu.show();
-    } else if (f2Menu.isVisible()) {
-      f2Menu.hide();
-      setFunctionMenus();
-      f2Menu.show();
-    } else if (f3Menu.isVisible()) {
-      f3Menu.hide();
-      setFunctionMenus();
-      f3Menu.show();
-    } else if (f4Menu.isVisible()) {
-      f4Menu.hide();
-      setFunctionMenus();
-      f4Menu.show();
-    } else if (publicMenu.isVisible()) {
       publicMenu.hide();
       setFunctionMenus();
+      f1Menu.show();
       publicMenu.show();
-    } else {
+      System.out.println("f1visible");
+    } else if (f2Menu.isVisible()) {
+      f2Menu.hide();
+      publicMenu.hide();
       setFunctionMenus();
+      f2Menu.show();
+      System.out.println("f2visible");
+    } else if (f3Menu.isVisible()) {
+      f3Menu.hide();
+      publicMenu.hide();
+      setFunctionMenus();
+      f3Menu.show();
+      publicMenu.show();
+      System.out.println("f3visible");
+    } else if (f4Menu.isVisible()) {
+      f4Menu.hide();
+      publicMenu.hide();
+      setFunctionMenus();
+      f4Menu.show();
+      publicMenu.show();
+      System.out.println("f4visible");
+    } 
+    else {
+      setFunctionMenus();
+      System.out.println("else");
     }
     //---------------------------------------------------v
     //if (f#Menu.isVisible()) {
     //  f#Menu.hide();
+    //  publicMenu.hide();
     //  setFunctionMenus();
     //  f#Menu.show();
+    //  publicMenu.show();
     //}
     //---------------------------------------------------^
   }
-
+  // .............................................................................................................................................................................. //
   /* TEXT OBJECT DISPLAY */
   pushMatrix();
   translate(centerX, centerY);
@@ -234,41 +239,32 @@ void draw() {
   }
   //---------------------------------------------------^
   /* f1 */
-
   if (f1Menu.isVisible()) {
     if (textTyped.length() > 0) {
       //segment = 3;
       f1();
     }
-  }
-  /* f2 */
-  if (f2Menu.isVisible()) {
+  } else /* f2 */ if (f2Menu.isVisible()) {
     if (textTyped.length() > 0) {
       //segment = 8;
       f2();
     }
-  }
-  /* f3 */
-  if (f3Menu.isVisible()) {
+  }else /* f3 */ if (f3Menu.isVisible()) {
     if (textTyped.length() > 0) {
       f3();
     }
-  }
-  /* f4 */
-  if (f4Menu.isVisible()) {
+  }else /* f4 */ if (f4Menu.isVisible()) {
     if (textTyped.length() > 0) {
       f4();
     }
   }
   //---------------------------------------------------v
-  /* f# */
-  //if (f#Menu.isVisible()) {
+  //else /* f# */ if (f#Menu.isVisible()) {
   //  if (textTyped.length() > 0) {
   //    f#();
   //  }
   //}
   //---------------------------------------------------^
-
   popMatrix();
 }
 
