@@ -30,6 +30,8 @@ controlP5.Group f1Menu;
 controlP5.Group f2Menu;
 controlP5.Group f3Menu;
 controlP5.Group f4Menu;
+controlP5.Group f5Menu;
+controlP5.Group f6Menu;
 //---------------------------------------------------v
 //controlP5.Group f#Menu;
 //---------------------------------------------------^
@@ -80,7 +82,7 @@ float noiseVariation = 0;
 float motion;
 float noiseScale;
 float noiseZ;
-/* fction#variables */
+/* fction4variables */
 FontAgent4[] myAgents4;
 float xoff = 0.0;
 float yoff = 0.0;
@@ -93,6 +95,8 @@ float mousey = 0;
 float mousex = 0;
 float factorx = 0;
 float factory = 0;
+/* fction5variables */
+/* fction6variables */
 //---------------------------------------------------v
 /* fction#variables */
 //---------------------------------------------------^
@@ -100,7 +104,7 @@ float factory = 0;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void setup() {
   size(900, 500);
-  smooth();
+  smooth(16);
   colorMode(HSB, 360, 100, 100);
   if (frame != null) {
     surface.setResizable(true); //processing 3.0
@@ -163,7 +167,9 @@ void draw() {
   }
   //---------------------------------------------------v
   /* moving text while menus closed */
-  if ((mousePressed == true)&&(!f1Menu.isVisible())&&(!f2Menu.isVisible())&&(!f3Menu.isVisible())&&(!f4Menu.isVisible())) {
+  if ((mousePressed == true)
+    &&(!f1Menu.isVisible())&&(!f2Menu.isVisible())&&(!f3Menu.isVisible())&&(!f4Menu.isVisible())
+    &&(!f5Menu.isVisible())&&(!f6Menu.isVisible())) {
     centerX = mouseX-offsetX;
     centerY = mouseY-offsetY;
   }
@@ -189,31 +195,39 @@ void draw() {
       setFunctionMenus();
       f1Menu.show();
       publicMenu.show();
-      System.out.println("f1visible");
     } else if (f2Menu.isVisible()) {
       f2Menu.hide();
       publicMenu.hide();
       setFunctionMenus();
       f2Menu.show();
-      System.out.println("f2visible");
     } else if (f3Menu.isVisible()) {
       f3Menu.hide();
       publicMenu.hide();
       setFunctionMenus();
       f3Menu.show();
       publicMenu.show();
-      System.out.println("f3visible");
     } else if (f4Menu.isVisible()) {
       f4Menu.hide();
       publicMenu.hide();
       setFunctionMenus();
       f4Menu.show();
       publicMenu.show();
-      System.out.println("f4visible");
     } 
-    else {
+    if (f5Menu.isVisible()) {
+      f5Menu.hide();
+      publicMenu.hide();
       setFunctionMenus();
-      System.out.println("else");
+      f5Menu.show();
+      publicMenu.show();
+    }
+    if (f6Menu.isVisible()) {
+      f6Menu.hide();
+      publicMenu.hide();
+      setFunctionMenus();
+      f6Menu.show();
+      publicMenu.show();
+    } else {
+      setFunctionMenus();
     }
     //---------------------------------------------------v
     //if (f#Menu.isVisible()) {
@@ -231,9 +245,10 @@ void draw() {
   translate(centerX, centerY);
   /* basic text */
   //---------------------------------------------------v
-  if (!f1Menu.isVisible()&&!f2Menu.isVisible()&&!f3Menu.isVisible()&&!f4Menu.isVisible()) {
+  if ((!f1Menu.isVisible())&&(!f2Menu.isVisible())&&(!f3Menu.isVisible())&&(!f4Menu.isVisible())
+    &&(!f5Menu.isVisible())&&(!f6Menu.isVisible())) {
     pushMatrix();
-    fill(0, 0, 0);
+    fill(textHue, textSat, textBri);
     myFONT.draw(textTyped);
     popMatrix();
   }
@@ -249,13 +264,21 @@ void draw() {
       //segment = 8;
       f2();
     }
-  }else /* f3 */ if (f3Menu.isVisible()) {
+  } else /* f3 */ if (f3Menu.isVisible()) {
     if (textTyped.length() > 0) {
       f3();
     }
-  }else /* f4 */ if (f4Menu.isVisible()) {
+  } else /* f4 */ if (f4Menu.isVisible()) {
     if (textTyped.length() > 0) {
       f4();
+    }
+  } else /* f5 */ if (f5Menu.isVisible()) {
+    if (textTyped.length() > 0) {
+      //f5();
+    }
+  } else /* f6 */ if (f6Menu.isVisible()) {
+    if (textTyped.length() > 0) {
+      //f6();
     }
   }
   //---------------------------------------------------v

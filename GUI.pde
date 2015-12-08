@@ -5,11 +5,13 @@ void setGUI() {
   gMenu = myGUI.addGroup("gMenu")
     .setPosition(0, 10)
     .setWidth(width)
-    .setBackgroundHeight(30)
+    .setBackgroundHeight(30 + int(20*cos((width/1000)*(HALF_PI))) + int(20*cos((width/1000)*(HALF_PI))*cos((convert(width/100)/10)*(HALF_PI))))
     .setBackgroundColor(color(0, 0, 80, 90))
     .setLabel("Menu")  
     .setOpen(gMenuOpenness)
     ;
+    //System.out.println(width/100 + " " + convert(width/100)/10 + " " + cos((convert(width/100)/10)*(HALF_PI)));
+    
   /* Array to List for CP5 Scrollable List, Scrollable List */
   String[] TTFFontArray = new String[TTFFontList.size()];
   for (int i = 0; i < TTFFontList.size(); i++ ) {
@@ -61,16 +63,20 @@ void setGUI() {
     .setColorForeground(color(120))
     .setColorActive(color(200))
     .setColorLabel(color(255))
-    .setItemsPerRow(5)
+    .setItemsPerRow(width/100 - 5)
     .setSpacingColumn(3)
     .addItem("function 1", 1)
     .addItem("function 2", 2)
     .addItem("function 3", 3)
     .addItem("function 4", 4)
+    .addItem("function 5", 5)
+    .addItem("function 6", 6)
     //---------------------------------------------------v
     //.addItem("function #", ##)
     //---------------------------------------------------^
-    .setGroup(gMenu);
+    .setGroup(gMenu)
+    ;
+    System.out.println(width/100);
   /* function (radio) buttons'padding */
   for (Toggle t : rb1.getItems()) {
     t.getCaptionLabel().getStyle().movePadding(0, 0, 0, -75);
@@ -85,6 +91,8 @@ void controlEvent(ControlEvent theEvent) {
       f2Menu.hide();
       f3Menu.hide();
       f4Menu.hide();
+      f5Menu.hide();
+      f6Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -94,6 +102,8 @@ void controlEvent(ControlEvent theEvent) {
       f1Menu.hide();
       f3Menu.hide();
       f4Menu.hide();
+      f5Menu.hide();
+      f6Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -103,6 +113,8 @@ void controlEvent(ControlEvent theEvent) {
       f1Menu.hide();
       f2Menu.hide();
       f4Menu.hide();
+      f5Menu.hide();
+      f6Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -112,10 +124,34 @@ void controlEvent(ControlEvent theEvent) {
       f1Menu.hide();
       f2Menu.hide();
       f3Menu.hide();
+      f5Menu.hide();
+      f6Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
       f4Menu.show();
+      publicMenu.show();
+    } else if (theEvent.getGroup().getValue()==5) {
+      f1Menu.hide();
+      f2Menu.hide();
+      f3Menu.hide();
+      f4Menu.hide();
+      f6Menu.hide();
+      //---------------------------------------------------v
+      //f#Menu.hide();
+      //---------------------------------------------------^
+      f5Menu.show();
+      publicMenu.show();
+    } else if (theEvent.getGroup().getValue()==6) {
+      f1Menu.hide();
+      f2Menu.hide();
+      f3Menu.hide();
+      f4Menu.hide();
+      f5Menu.hide();
+      //---------------------------------------------------v
+      //f#Menu.hide();
+      //---------------------------------------------------^
+      f6Menu.show();
       publicMenu.show();
     }
     //---------------------------------------------------v
@@ -133,6 +169,8 @@ void controlEvent(ControlEvent theEvent) {
       f2Menu.hide();
       f3Menu.hide();
       f4Menu.hide();
+      f5Menu.hide();
+      f6Menu.hide();
       publicMenu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
@@ -180,6 +218,24 @@ void setFunctionMenus() {
     .hideBar()
     .hide()
     ;
+  f5Menu = myGUI.addGroup("f5Menu") //f5 menu group
+    .setPosition(0, height-100)
+    .setWidth(width-400)
+    .setBackgroundHeight(100)
+    .setBackgroundColor(color(0, 0, 80, 90))
+    .setLabel("f5")  
+    .hideBar()
+    .hide()
+    ;
+  f6Menu = myGUI.addGroup("f6Menu") //f6 menu group
+    .setPosition(0, height-100)
+    .setWidth(width-400)
+    .setBackgroundHeight(100)
+    .setBackgroundColor(color(0, 0, 80, 90))
+    .setLabel("f6")  
+    .hideBar()
+    .hide()
+    ;
   //---------------------------------------------------v
   //f#Menu = myGUI.addGroup("f#Menu") //f# menu group
   //.setPosition(0, height-100)
@@ -199,12 +255,14 @@ void setFunctionMenus() {
     .hideBar()
     .hide()
     ;  
-    
+
   /* function menu buttons init */
   setf1MenuButtons();
   setf2MenuButtons();
   setf3MenuButtons();
   setf4MenuButtons();
+  setf5MenuButtons();
+  setf6MenuButtons();
   //---------------------------------------------------v
   //setf#MenuButtons();
   //---------------------------------------------------^
@@ -321,11 +379,17 @@ void setf4MenuButtons() {
     .setColorLabel(0)
     ;
 }
+void setf5MenuButtons() {
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void setf6MenuButtons() {
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //---------------------------------------------------v
 //void setf#MenuButtons() {
-//{
+//}
 //---------------------------------------------------^
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
