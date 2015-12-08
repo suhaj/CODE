@@ -41,6 +41,7 @@ boolean gMenuOpenness = true;
 String activeFont = "FreeSans.ttf"; //default font
 String selectedFont = activeFont;
 String textTyped = "Type!!";
+int frmRt = 16;
 //String textDeposit = textTyped;
 int textHue = 0;
 int textSat = 0;
@@ -96,7 +97,15 @@ float mousex = 0;
 float factorx = 0;
 float factory = 0;
 /* fction5variables */
+float stepSizeF5 = 3;
+float danceFactorF5 = 1;
+float connectionF5 = 1.4;
+int thicknessF5 = 1;
 /* fction6variables */
+float stepSizeF6 = 3;
+float danceFactorF6 = 1;
+float connectionF6 = 1.4;
+int thicknessF6 = 1;
 //---------------------------------------------------v
 /* fction#variables */
 //---------------------------------------------------^
@@ -144,6 +153,7 @@ void setup() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void draw() {
+  frameRate(frmRt);
   /* sets GUI in the very beginning */
   if (firstDrawRun) {
     setGUI();
@@ -274,11 +284,11 @@ void draw() {
     }
   } else /* f5 */ if (f5Menu.isVisible()) {
     if (textTyped.length() > 0) {
-      //f5();
+      f5();
     }
   } else /* f6 */ if (f6Menu.isVisible()) {
     if (textTyped.length() > 0) {
-      //f6();
+      f6();
     }
   }
   //---------------------------------------------------v

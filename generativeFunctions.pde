@@ -55,7 +55,7 @@ void f1() {
 void f2() {
   strokeWeight(0.3);
   stroke(textHue, textSat, textBri, 50);
-  
+
   RCommand.setSegmentLength(segment);
   //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
   myGroup = myFONT.toGroup(textTyped);
@@ -115,18 +115,77 @@ void f4() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void f5() {
-RCommand.setSegmentLength(segment);
-//RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
-myGroup = myFONT.toGroup(textTyped);
-myPoints = myGroup.getPoints();
+  noFill();
+  strokeWeight(0.1);
+  stroke(textHue, textSat, textBri);
+
+  RCommand.setSegmentLength(segment);
+  //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
+  myGroup = myFONT.toGroup(textTyped);
+  myPoints = myGroup.getPoints();
+
+  //dancing movement
+  for (int i = 0; i < myPoints.length; i++ ) {
+    myPoints[i].x = myPoints[i].x + random(-stepSizeF5, stepSizeF5) * danceFactorF5;
+    myPoints[i].y = myPoints[i].y + random(-stepSizeF5, stepSizeF5) * danceFactorF5;
+  }
+
+  for (int i=0; i<myPoints.length; i++) {
+    vertex(myPoints[i].x, myPoints[i].y);
+    ellipse(myPoints[i].x, myPoints[i].y, 7, 7);
+  }
+  vertex(myPoints[0].x, myPoints[0].y);
+
+  for (int j = 0; j < thicknessF5; j++) {
+    beginShape();
+    for (int i=0; i<myPoints.length-1; i++) {
+      float d = dist(myPoints[i].x, myPoints[i].y, myPoints[i+1].x, myPoints[i+1].y);
+      // create a gap between each letter
+      vertex(myPoints[i].x + 2*random(-j/2, j/2), myPoints[i].y + 2*random(-j/2, j/2));
+      ellipse(myPoints[i].x + 2*random(-j/2, j/2), myPoints[i].y + 2*random(-j/2, j/2), 7, 7);
+      if (d < segment*connectionF5) continue;
+      endShape();
+      beginShape();
+      System.out.println("shape ended, begun");
+    }
+    endShape();
+  }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void f6() {
-RCommand.setSegmentLength(segment);
-//RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
-myGroup = myFONT.toGroup(textTyped);
-myPoints = myGroup.getPoints();
+  noFill();
+  strokeWeight(0.08);
+  stroke(textHue, textSat, textBri);
+
+  RCommand.setSegmentLength(segment);
+  //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
+  myGroup = myFONT.toGroup(textTyped);
+  myPoints = myGroup.getPoints();
+
+  //dancing movement
+  for (int i = 0; i < myPoints.length; i++ ) {
+      myPoints[i].x = myPoints[i].x + random(-stepSizeF6, stepSizeF6) * danceFactorF6;
+      myPoints[i].y = myPoints[i].y + random(-stepSizeF6, stepSizeF6) * danceFactorF6;
+    }
+
+  for (int j = 0; j < thicknessF6; j++) {
+      beginShape();
+      for (int i=0; i<myPoints.length-1; i++) {
+        float d = dist(myPoints[i].x, myPoints[i].y, myPoints[i+1].x, myPoints[i+1].y);
+        // create a gap between each letter
+        //System.out.println("i " + i);
+        //System.out.println("d " + d);
+        //System.out.println("segment " + segment);
+        curveVertex(myPoints[i].x + 2*random(-j/2, j/2), myPoints[i].y + 2*random(-j/2, j/2));
+        if (d < segment*connectionF6) continue;
+        endShape();
+        beginShape();
+        System.out.println("shape ended, begun");
+      }
+      //curveVertex(myPoints[0].x, myPoints[0].y);
+      endShape();
+    }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

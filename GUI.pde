@@ -10,8 +10,8 @@ void setGUI() {
     .setLabel("Menu")  
     .setOpen(gMenuOpenness)
     ;
-    //System.out.println(width/100 + " " + convert(width/100)/10 + " " + cos((convert(width/100)/10)*(HALF_PI)));
-    
+  //System.out.println(width/100 + " " + convert(width/100)/10 + " " + cos((convert(width/100)/10)*(HALF_PI)));
+
   /* Array to List for CP5 Scrollable List, Scrollable List */
   String[] TTFFontArray = new String[TTFFontList.size()];
   for (int i = 0; i < TTFFontList.size(); i++ ) {
@@ -76,7 +76,7 @@ void setGUI() {
     //---------------------------------------------------^
     .setGroup(gMenu)
     ;
-    System.out.println(width/100);
+  //System.out.println(width/100);
   /* function (radio) buttons'padding */
   for (Toggle t : rb1.getItems()) {
     t.getCaptionLabel().getStyle().movePadding(0, 0, 0, -75);
@@ -380,10 +380,74 @@ void setf4MenuButtons() {
     ;
 }
 void setf5MenuButtons() {
+  myGUI.addSlider("danceFactorF5")
+    .setPosition(10, 10)
+    .setWidth(300)
+    .setRange(0, 3)
+    .setGroup(f5Menu)
+    .setLabel("dance factor")
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("stepSizeF5")
+    .setPosition(10, 30)
+    .setWidth(300)
+    .setRange(0, 100)
+    .setGroup(f5Menu)
+    .setLabel("step size")
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("connectionF5")
+    .setPosition(10, 50)
+    .setWidth(300)
+    .setRange(0, 10)
+    .setGroup(f5Menu)
+    .setLabel("connection")
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("thicknessF5")
+    .setPosition(10, 70)
+    .setWidth(300)
+    .setRange(1, 10)
+    .setGroup(f5Menu)
+    .setLabel("thickness")
+    .setColorLabel(0)
+    ;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void setf6MenuButtons() {
+  myGUI.addSlider("danceFactorF6")
+    .setPosition(10, 10)
+    .setWidth(300)
+    .setRange(0, 3)
+    .setGroup(f6Menu)
+    .setLabel("dance factor")
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("stepSizeF6")
+    .setPosition(10, 30)
+    .setWidth(300)
+    .setRange(0, 100)
+    .setGroup(f6Menu)
+    .setLabel("step size")
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("connectionF6")
+    .setPosition(10, 50)
+    .setWidth(300)
+    .setRange(0, 10)
+    .setGroup(f6Menu)
+    .setLabel("connection")
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("thicknessF6")
+    .setPosition(10, 70)
+    .setWidth(300)
+    .setRange(1, 10)
+    .setGroup(f6Menu)
+    .setLabel("thickness")
+    .setColorLabel(0)
+    ;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -449,6 +513,14 @@ void setPublicMenuButtons() {
     .setWidth(100)
     .setRange(1, 100)
     .setLabel("segmentation")
+    .setGroup(publicMenu)
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("frmRt")
+    .setPosition(230, 23)
+    .setWidth(100)
+    .setRange(1, 60)
+    .setLabel("frame rate")
     .setGroup(publicMenu)
     .setColorLabel(0)
     ;
