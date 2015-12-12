@@ -74,6 +74,7 @@ void setGUI() {
     .addItem("function 7", 7)
     .addItem("function 8", 8)
     .addItem("function 9", 9)
+    .addItem("function 10", 10)
     //---------------------------------------------------v
     //.addItem("function #", #)
     //---------------------------------------------------^
@@ -99,6 +100,7 @@ void controlEvent(ControlEvent theEvent) {
       f7Menu.hide();
       f8Menu.hide();
       f9Menu.hide();
+      f10Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -113,6 +115,7 @@ void controlEvent(ControlEvent theEvent) {
       f7Menu.hide();
       f8Menu.hide();
       f9Menu.hide();
+      f10Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -127,6 +130,7 @@ void controlEvent(ControlEvent theEvent) {
       f7Menu.hide();
       f8Menu.hide();
       f9Menu.hide();
+      f10Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -141,6 +145,7 @@ void controlEvent(ControlEvent theEvent) {
       f7Menu.hide();
       f8Menu.hide();
       f9Menu.hide();
+      f10Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -155,6 +160,7 @@ void controlEvent(ControlEvent theEvent) {
       f7Menu.hide();
       f8Menu.hide();
       f9Menu.hide();
+      f10Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -169,6 +175,7 @@ void controlEvent(ControlEvent theEvent) {
       f7Menu.hide();
       f8Menu.hide();
       f9Menu.hide();
+      f10Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -183,6 +190,7 @@ void controlEvent(ControlEvent theEvent) {
       f6Menu.hide();
       f8Menu.hide();
       f9Menu.hide();
+      f10Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -197,6 +205,7 @@ void controlEvent(ControlEvent theEvent) {
       f6Menu.hide();
       f7Menu.hide();
       f9Menu.hide();
+      f10Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -212,10 +221,27 @@ void controlEvent(ControlEvent theEvent) {
       f6Menu.hide();
       f7Menu.hide();
       f8Menu.hide();
+      f10Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
       f9Menu.show();
+      publicMenu.show();
+      background(bcgHue, bcgSat, bcgBri);
+    } else if (theEvent.getGroup().getValue()==10) {
+      f1Menu.hide();
+      f2Menu.hide();
+      f3Menu.hide();
+      f4Menu.hide();
+      f5Menu.hide();
+      f6Menu.hide();
+      f7Menu.hide();
+      f8Menu.hide();
+      f9Menu.hide();
+      //---------------------------------------------------v
+      //f#Menu.hide();
+      //---------------------------------------------------^
+      f10Menu.show();
       publicMenu.show();
       background(bcgHue, bcgSat, bcgBri);
     } 
@@ -230,6 +256,7 @@ void controlEvent(ControlEvent theEvent) {
     //  f7Menu.hide();
     //  f8Menu.hide();
     //  f9Menu.hide();
+    //  f10Menu.hide();
     //  //---------------------------------------------------v
     //  //f#Menu.hide();
     //  //---------------------------------------------------^
@@ -246,6 +273,7 @@ void controlEvent(ControlEvent theEvent) {
       f7Menu.hide();
       f8Menu.hide();
       f9Menu.hide();
+      f10Menu.hide();
       publicMenu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
@@ -338,12 +366,21 @@ void setFunctionMenus() {
     .hideBar()
     .hide()
     ;
+  f10Menu = myGUI.addGroup("f10Menu") //f10 menu group
+    .setPosition(0, height-100)
+    .setWidth(width)
+    .setBackgroundHeight(100)
+    .setBackgroundColor(color(0, 0, 80, 90))
+    .setLabel("f10")  
+    .hideBar()
+    .hide()
+    ;
   //---------------------------------------------------v
   //f#Menu = myGUI.addGroup("f#Menu") //f# menu group
   //.setPosition(0, height-100)
   //.setWidth(width)
   //.setBackgroundHeight(100)
-  //.setBackgroundColor(color(230, 230, 230, 160))
+  //.setBackgroundColor(color(0, 0, 80, 90))
   //.setLabel("f#")  
   //.hideBar()
   //.hide()
@@ -368,6 +405,7 @@ void setFunctionMenus() {
   setf7MenuButtons();
   setf8MenuButtons();
   setf9MenuButtons();
+  setf10MenuButtons();
   //---------------------------------------------------v
   //setf#MenuButtons();
   //---------------------------------------------------^
@@ -671,6 +709,41 @@ void setf9MenuButtons() {
     .setValue(0)
     .setLabel("generate")
     .setGroup(f9Menu)
+    ;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void setf10MenuButtons() {
+  myGUI.addSlider("maxParticlesF10")
+    .setPosition(103, 3)
+    .setSize(99, 20)
+    .setRange(1, 2000)
+    .setLabel("number of particles")  
+    .setGroup(f10Menu)
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("maxLifeF10")
+    .setPosition(103, 43)
+    .setSize(99, 20)
+    .setRange(0.1, 6)
+    .setLabel("maximum life")  
+    .setGroup(f10Menu)
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("minLifeF10")
+    .setPosition(103, 63)
+    .setSize(99, 20)
+    .setRange(0.1, 6)
+    .setLabel("minimum life")  
+    .setGroup(f10Menu)
+    .setColorLabel(0)
+    ;
+  myGUI.addButton("resetF10")
+    .setPosition(10, 83)
+    .setSize(60, 40)
+    .setValue(0)
+    .setLabel("generate")
+    .setGroup(f10Menu)
     ;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

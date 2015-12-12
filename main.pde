@@ -36,6 +36,7 @@ controlP5.Group f6Menu;
 controlP5.Group f7Menu;
 controlP5.Group f8Menu;
 controlP5.Group f9Menu;
+controlP5.Group f10Menu;
 //---------------------------------------------------v
 //controlP5.Group f#Menu;
 //---------------------------------------------------^
@@ -139,14 +140,16 @@ float lifeRateToggle = 0.01;
 /* fction9variables */
 int maxParticlesF9 = 1000; // the maximum number of active particles
 ArrayList <ParticleF9> particlesF9 = new ArrayList <ParticleF9> (); // the list of particles
-int drawMode = 0; // cycle through the drawing modes by clicking the mouse
-color BACKGROUND_COLOR = color(255);
-color PGRAPHICS_COLOR = color(0);
 float fc001;
-
 int angleNoise = 0;
 int vectorNoise = 0;
 float maxLifeToggle = 1;
+/* fction10variables */
+float maxLifeF10 = 1.25;
+float minLifeF10 = 0.75;
+int maxParticlesF10 = 1000; // the maximum number of active particles
+ArrayList <ParticleF10> particlesF10 = new ArrayList <ParticleF10> (); // the list of particles
+float globalRotation;
 //---------------------------------------------------v
 /* fction#variables */
 //---------------------------------------------------^
@@ -193,8 +196,7 @@ void setup() {
   for (int i=0; i<myPoints.length; i++) {
     myAgents4[i] = new FontAgent4(new PVector(myPoints[i].x, myPoints[i].y));
   }
-  /* f7 init */
-  /* and experimental f8, f9 init >> can they all use one shape */
+  /* f7,8,9,10 init */
   resetF7();
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -220,6 +222,8 @@ void draw() {
       resetF8();
     } else if (f9Menu.isVisible()) {
       resetF9();
+    } else if (f10Menu.isVisible()) {
+      resetF10();
     }
   }
   /* changes size of MyFont */
@@ -234,6 +238,8 @@ void draw() {
       resetF8();
     } else if (f9Menu.isVisible()) {
       resetF9();
+    } else if (f10Menu.isVisible()) {
+      resetF10();
     }
   }
   //---------------------------------------------------v
@@ -241,7 +247,7 @@ void draw() {
   if ((mousePressed == true)
     &&(!f1Menu.isVisible())&&(!f2Menu.isVisible())&&(!f3Menu.isVisible())&&(!f4Menu.isVisible())
     &&(!f5Menu.isVisible())&&(!f6Menu.isVisible())&&(!f7Menu.isVisible())&&(!f8Menu.isVisible())
-    &&(!f9Menu.isVisible())) {
+    &&(!f9Menu.isVisible())&&(!f10Menu.isVisible())) {
     centerX = mouseX-offsetX;
     centerY = mouseY-offsetY;
 
@@ -321,6 +327,13 @@ void draw() {
       setFunctionMenus();
       f9Menu.show();
       publicMenu.show();
+    }
+    if (f10Menu.isVisible()) {
+      f10Menu.hide();
+      publicMenu.hide();
+      setFunctionMenus();
+      f10Menu.show();
+      publicMenu.show();
     } else {
       setFunctionMenus();
     }
@@ -345,7 +358,8 @@ void draw() {
   //---------------------------------------------------v
   if ((!f1Menu.isVisible())&&(!f2Menu.isVisible())&&(!f3Menu.isVisible())
     &&(!f4Menu.isVisible())&&(!f5Menu.isVisible())&&(!f6Menu.isVisible())
-    &&(!f7Menu.isVisible())&&(!f8Menu.isVisible())&&(!f9Menu.isVisible())) {
+    &&(!f7Menu.isVisible())&&(!f8Menu.isVisible())&&(!f9Menu.isVisible())
+    &&(!f10Menu.isVisible())) {
 
     background(bcgHue, bcgSat, bcgBri);
 
@@ -411,6 +425,10 @@ void draw() {
   } else if (f9Menu.isVisible()) {    
     if (textTyped.length() > 0) {
       f9();
+    }
+  } else if (f10Menu.isVisible()) {    
+    if (textTyped.length() > 0) {
+      f10();
     }
   }
 

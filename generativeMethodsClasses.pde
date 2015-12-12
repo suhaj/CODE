@@ -239,7 +239,7 @@ public void resetF9() {
   rshape = myFONT.toShape(textTyped);
   rshape.translate(width/2, height*0.7);
   particlesF9.clear();
-  background(0);
+  background(bcgHue, bcgSat, bcgBri);
 }
 //*********************
 /* f9 class */
@@ -280,6 +280,66 @@ class ParticleF9 {
   // return if point is inside the text
   boolean isInText(PVector v) {
     return rshape.contains(v.x, v.y);
+  }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* f10 methods */
+void addRemoveParticlesF10() {
+  // remove particles with no life left
+  for (int i=particlesF10.size()-1; i>=0; i--) {
+    ParticleF10 p = particlesF10.get(i);
+    if (p.life <= 0) {
+      particlesF10.remove(i);
+    }
+  }
+  // add particles until the maximum
+  while (particlesF10.size () < maxParticlesF10) {
+    particlesF10.add(new ParticleF10());
+  }
+}
+//*********************
+public void resetF10() {
+  rshape = myFONT.toShape(textTyped);
+  rshape.translate(width/2, height*0.7);
+  particlesF10.clear();
+  globalRotation = random(TWO_PI); // randomly set the global rotation/direction of the Particles
+  background(bcgHue, bcgSat, bcgBri);
+}
+//*********************
+/* f10 class */
+class ParticleF10 {
+  PVector loc;
+  float life, lifeRate;
+
+  ParticleF10() {
+    getPosition();
+    life = random(minLifeF10, maxLifeF10);
+    lifeRate = random(0.01, 0.02);
+  }
+
+  void update() {
+    float angle = noise(loc.x * 0.01, loc.y * 0.01) * TWO_PI;
+    PVector vel = PVector.fromAngle(angle + globalRotation);
+    loc.add(vel);
+    life -= lifeRate;
+  }
+
+  void display() {
+    boolean special = random(1) < 0.001;
+    strokeWeight(special ? random(0.75, 3) : 0.75);
+    stroke(255, special ? random(175, 255) : 65);
+    point(loc.x, loc.y);
+  }
+
+  // get a random position inside the text
+  void getPosition() {
+    while (loc == null || !isInText (loc)) loc = new PVector(random(width), random(height));
+  }
+
+  // return if point is inside the text
+  boolean isInText(PVector v) {
+    return rshape.contains(v.x,v.y);
   }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

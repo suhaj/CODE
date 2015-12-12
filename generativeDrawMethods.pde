@@ -203,7 +203,7 @@ void f7() {
     lastTextSat = textSat;
     lastColorRange = colorRange;
   }
-  
+
   // set stroke weight and color for all upcoming rshapes
   strokeWeight(0.65);
   stroke(0, 125);
@@ -248,9 +248,9 @@ void f8() {
   //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
   myGroup = myFONT.toGroup(textTyped);
   myPoints = myGroup.getPoints();
-  
+
   addRemoveParticlesF8();
- 
+
   for (ParticleF8 p : particlesF8) {
     p.update();
     p.display();
@@ -263,11 +263,26 @@ void f9() {
   //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
   myGroup = myFONT.toGroup(textTyped);
   myPoints = myGroup.getPoints();
-  
+
   fc001 = frameCount * 0.01;
   addRemoveParticlesF9();
-  
+
   for (ParticleF9 p : particlesF9) {
+    p.update();
+    p.display();
+  }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void f10() {
+  RCommand.setSegmentLength(segment);
+  //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
+  myGroup = myFONT.toGroup(textTyped);
+  myPoints = myGroup.getPoints();
+
+  addRemoveParticlesF10();
+  // update and display each particle in the list
+  for (ParticleF10 p : particlesF10) {
     p.update();
     p.display();
   }

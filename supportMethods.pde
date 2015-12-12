@@ -10,6 +10,8 @@ void keyPressed() {
         resetF8();
       } else if (f9Menu.isVisible()) {
         resetF9();
+      } else if (f10Menu.isVisible()) {
+        resetF10();
       } 
       break;
     case ENTER:
@@ -23,6 +25,8 @@ void keyPressed() {
         resetF8();
       } else if (f9Menu.isVisible()) {
         resetF9();
+      } else if (f10Menu.isVisible()) {
+        resetF10();
       }
     }
   }
