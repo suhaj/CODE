@@ -202,6 +202,7 @@ void controlEvent(ControlEvent theEvent) {
       //---------------------------------------------------^
       f8Menu.show();
       publicMenu.show();
+      background(bcgHue, bcgSat, bcgBri);
     } else if (theEvent.getGroup().getValue()==9) {
       f1Menu.hide();
       f2Menu.hide();
@@ -216,6 +217,7 @@ void controlEvent(ControlEvent theEvent) {
       //---------------------------------------------------^
       f9Menu.show();
       publicMenu.show();
+      background(bcgHue, bcgSat, bcgBri);
     } 
     //---------------------------------------------------v
     //else if (theEvent.getGroup().getValue()==#) {
@@ -596,6 +598,37 @@ void setf7MenuButtons() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void setf8MenuButtons() {
+  myGUI.addSlider("maxParticles")
+    .setPosition(103, 3)
+    .setSize(99, 20)
+    .setRange(1, 300)
+    .setLabel("number of particles")  
+    .setGroup(f8Menu)
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("toggleRadius")
+    .setPosition(103, 43)
+    .setSize(99, 20)
+    .setRange(1, 90)
+    .setLabel("radius")  
+    .setGroup(f8Menu)
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("lifeRateToggle")
+    .setPosition(103, 63)
+    .setSize(99, 20)
+    .setRange(0.005, 0.05)
+    .setLabel("life")  
+    .setGroup(f8Menu)
+    .setColorLabel(0)
+    ;
+  myGUI.addButton("resetF8")
+    .setPosition(10, 63)
+    .setSize(60, 40)
+    .setValue(0)
+    .setLabel("generate")
+    .setGroup(f8Menu)
+    ;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

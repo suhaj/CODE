@@ -48,11 +48,10 @@ String selectedFont = activeFont;
 String textTyped = "Type!!";
 int frmRt = 16;
 boolean saveOneFrame = false;
-int counter = 001;
-//String textDeposit = textTyped;
+int counter = 1;
 int textHue = 0;
 int textSat = 0;
-int textBri = 0;
+int textBri = 30;
 int bcgHue = 0;
 int bcgSat = 0;
 int bcgBri = 100;
@@ -116,14 +115,13 @@ float danceFactorF6 = 1;
 float connectionF6 = 1.4;
 int thicknessF6 = 1;
 /* fction7variables */
-int numPointsGenerated = 225;
-int lastnumPointsGenerated = numPointsGenerated;
 RShape shape7;        
 RPoint[] allPoints;
 MPolygon[] myRegions;        
 color[] colors;
 float[][] regionCoordinates;           
 float[][] points;
+int numPointsGenerated = 225;
 int numPointsText;
 float lastTextHue = textHue;
 float lastTextBri = textBri;
@@ -132,6 +130,12 @@ float colorRange = 15;
 float lastColorRange = colorRange;
 float filling = 0.75;
 /* fction8variables */
+//RShape shape8;
+int maxParticles = 100;
+ArrayList <ParticleF8> particlesF8 = new ArrayList <ParticleF8> ();
+boolean resetNeeded = false;
+float toggleRadius = 10;
+float lifeRateToggle = 0.01;
 /* fction9variables */
 //---------------------------------------------------v
 /* fction#variables */
@@ -148,6 +152,7 @@ void setup() {
     background(bcgHue, bcgSat, bcgBri);
   }
   initializeFontList();
+  background(bcgHue, bcgSat, bcgBri);
 
   /* Geomerative text object setup */
   RG.init(this);
@@ -179,6 +184,7 @@ void setup() {
     myAgents4[i] = new FontAgent4(new PVector(myPoints[i].x, myPoints[i].y));
   }
   /* f7 init */
+  /* and experimental f8, f9 init >> can they all use one shape */
   resetF7();
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -191,7 +197,7 @@ void draw() {
     setFunctionMenus();
     firstDrawRun = false;
   }
-  background(bcgHue, bcgSat, bcgBri);
+  //background(bcgHue, bcgSat, bcgBri);
 
   /* dropdown list changes font */
   if (activeFont != selectedFont) {
@@ -199,7 +205,8 @@ void draw() {
     myFONT =  new RFont(activeFont, activeFontSize, RFont.CENTER);
     myGroup = myFONT.toGroup(textTyped);
     if (f7Menu.isVisible()) {
-      f7();
+      resetF7();
+      resetF8();
     }
   }
   /* changes size of MyFont */
@@ -209,7 +216,8 @@ void draw() {
     xxx += 0.01;
     yyy += 0.01;
     if (f7Menu.isVisible()) {
-      f7();
+      resetF7();
+      resetF8();
     }
   }
   //---------------------------------------------------v
@@ -322,6 +330,9 @@ void draw() {
   if ((!f1Menu.isVisible())&&(!f2Menu.isVisible())&&(!f3Menu.isVisible())
     &&(!f4Menu.isVisible())&&(!f5Menu.isVisible())&&(!f6Menu.isVisible())
     &&(!f7Menu.isVisible())&&(!f8Menu.isVisible())&&(!f9Menu.isVisible())) {
+
+    background(bcgHue, bcgSat, bcgBri);
+
     pushMatrix();
     fill(textHue, textSat, textBri);
     myFONT.draw(textTyped);
@@ -330,42 +341,41 @@ void draw() {
   //---------------------------------------------------^
   /* f1 */
   if (f1Menu.isVisible()) {
+    background(bcgHue, bcgSat, bcgBri);
     if (textTyped.length() > 0) {
       //segment = 3;
       f1();
     }
   } else /* f2 */ if (f2Menu.isVisible()) {
+    background(bcgHue, bcgSat, bcgBri);
     if (textTyped.length() > 0) {
       //segment = 8;
       f2();
     }
   } else /* f3 */ if (f3Menu.isVisible()) {
+    background(bcgHue, bcgSat, bcgBri);
     if (textTyped.length() > 0) {
       f3();
     }
   } else /* f4 */ if (f4Menu.isVisible()) {
+    background(bcgHue, bcgSat, bcgBri);
     if (textTyped.length() > 0) {
       f4();
     }
   } else /* f5 */ if (f5Menu.isVisible()) {
+    background(bcgHue, bcgSat, bcgBri);
     if (textTyped.length() > 0) {
       f5();
     }
   } else /* f6 */ if (f6Menu.isVisible()) {
+    background(bcgHue, bcgSat, bcgBri);
     if (textTyped.length() > 0) {
       f6();
-    }
-  } else /* f8 */ if (f8Menu.isVisible()) {
-    if (textTyped.length() > 0) {
-      //f8();
-    }
-  } else /* f9 */ if (f9Menu.isVisible()) {
-    if (textTyped.length() > 0) {
-      //f9();
     }
   }
   //---------------------------------------------------v
   //else /* f# */ if (f#Menu.isVisible()) {
+  //background(bcgHue, bcgSat, bcgBri);
   //if (textTyped.length() > 0) {
   //  f#();
   //}
@@ -373,12 +383,14 @@ void draw() {
   //---------------------------------------------------^
   popMatrix();
 
-  if (f7Menu.isVisible()) {    
+  if (f7Menu.isVisible()) {   
+    background(bcgHue, bcgSat, bcgBri);
     if (textTyped.length() > 0) {
-      //pushMatrix();      
-      //translate(centerX-width/2,centerY-height/2);
       f7();
-      //popMatrix();
+    }
+  } else if (f8Menu.isVisible()) {    
+    if (textTyped.length() > 0) {
+      f8();
     }
   }
 

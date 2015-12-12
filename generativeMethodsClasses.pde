@@ -156,3 +156,66 @@ void numberOfPoints() {
     points[i][1] = allPoints[i].y;
   }
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* f8 methods */
+void addRemoveParticles() {
+  // remove particlesF8 with no life left
+  for (int i=particlesF8.size()-1; i>=0; i--) {
+    ParticleF8 p = particlesF8.get(i);
+    if (p.life <= 0) {
+      particlesF8.remove(i);
+    }
+  }
+  while (particlesF8.size () < maxParticles) {
+    particlesF8.add(new ParticleF8());
+  }
+}
+//*********************
+public void resetF8() {
+  shape7 = myFONT.toShape(textTyped);
+  shape7.translate(width/2, height*0.7);
+  particlesF8.clear();
+  background(bcgHue, bcgSat, bcgBri);
+}
+//*********************
+/* f8 class */
+class ParticleF8 {
+  PVector loc, vel; // location and velocity
+  float radius = toggleRadius; // base radius of the ellipse
+  float life = 1; // start with a full life
+  float lifeRate = lifeRateToggle; // decrease rate of life
+  //0.005 - 0.05
+
+  ParticleF8() {
+    getPosition();
+    vel = PVector.random2D(); // random direction
+  }
+
+  // get a random position inside the text
+  void getPosition() {
+    while (loc == null || !isInText(loc)) loc = new PVector(random(width), random(height));
+  }
+
+  void update() {
+    vel.rotate(random(-QUARTER_PI, QUARTER_PI)); // rotate velocity (direction of movement)
+    loc.add(vel); // add velocity to position (aka move!)
+    life -= lifeRate; // decrease life by the lifeRate (the particle is removed by the addRemoveParticles() method when no life is left)
+  }
+
+  void display() {
+    fill(textHue, textSat, textBri); 
+    stroke(0, 125); // transparant black stroke
+    strokeWeight(1.85);
+    float r = radius; // radius of the ellipse
+    r *= life; // base the radius of the ellipse on the life (which decreases from 1 to 0)
+    ellipse(loc.x, loc.y, r, r); // draw ellipse
+  }
+
+  // return if point is inside the text
+  boolean isInText(PVector v) {
+    return shape7.contains(v.x, v.y);
+  }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

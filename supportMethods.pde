@@ -4,17 +4,21 @@ void keyPressed() {
     switch(key) {
     case BACKSPACE:
       textTyped = textTyped.substring(0, max(0, textTyped.length()-1));
-      if(f7Menu.isVisible()){
-       resetF7();
-      }
+      if (f7Menu.isVisible()) {
+        resetF7();
+      } else if (f8Menu.isVisible()) {
+        resetF8();
+      } 
       break;
     case ENTER:
     case RETURN:
       break;
     default:
       textTyped += key;
-      if(f7Menu.isVisible()){
-       resetF7();
+      if (f7Menu.isVisible()) {
+        resetF7();
+      } else if (f8Menu.isVisible()) {
+        resetF8();
       }
     }
   }
