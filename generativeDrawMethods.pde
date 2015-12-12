@@ -193,8 +193,8 @@ void f7() {
   RCommand.setSegmentLength(segment);
   RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
   myGroup = myFONT.toGroup(textTyped);
-  shape7 = myFONT.toShape(textTyped);
-  shape7.translate(centerX*1.3 - shape7.getWidth()/2, centerY*0.8 + shape7.getHeight()/2);
+  rshape = myFONT.toShape(textTyped);
+  rshape.translate(centerX*1.3 - rshape.getWidth()/2, centerY*0.8 + rshape.getHeight()/2);
 
   if (lastTextHue != textHue || lastTextSat != textSat || lastTextBri != textBri || lastColorRange != colorRange) {
     generateColors();
@@ -204,7 +204,7 @@ void f7() {
     lastColorRange = colorRange;
   }
   
-  // set stroke weight and color for all upcoming shape7s
+  // set stroke weight and color for all upcoming rshapes
   strokeWeight(0.65);
   stroke(0, 125);
 
@@ -249,7 +249,7 @@ void f8() {
   myGroup = myFONT.toGroup(textTyped);
   myPoints = myGroup.getPoints();
   
-  addRemoveParticles();
+  addRemoveParticlesF8();
  
   for (ParticleF8 p : particlesF8) {
     p.update();
@@ -263,6 +263,14 @@ void f9() {
   //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
   myGroup = myFONT.toGroup(textTyped);
   myPoints = myGroup.getPoints();
+  
+  fc001 = frameCount * 0.01;
+  addRemoveParticlesF9();
+  
+  for (ParticleF9 p : particlesF9) {
+    p.update();
+    p.display();
+  }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

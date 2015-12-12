@@ -115,7 +115,7 @@ float danceFactorF6 = 1;
 float connectionF6 = 1.4;
 int thicknessF6 = 1;
 /* fction7variables */
-RShape shape7;        
+RShape rshape;        
 RPoint[] allPoints;
 MPolygon[] myRegions;        
 color[] colors;
@@ -131,12 +131,22 @@ float lastColorRange = colorRange;
 float filling = 0.75;
 /* fction8variables */
 //RShape shape8;
-int maxParticles = 100;
+int maxParticlesF8 = 100;
 ArrayList <ParticleF8> particlesF8 = new ArrayList <ParticleF8> ();
 boolean resetNeeded = false;
 float toggleRadius = 10;
 float lifeRateToggle = 0.01;
 /* fction9variables */
+int maxParticlesF9 = 1000; // the maximum number of active particles
+ArrayList <ParticleF9> particlesF9 = new ArrayList <ParticleF9> (); // the list of particles
+int drawMode = 0; // cycle through the drawing modes by clicking the mouse
+color BACKGROUND_COLOR = color(255);
+color PGRAPHICS_COLOR = color(0);
+float fc001;
+
+int angleNoise = 0;
+int vectorNoise = 0;
+float maxLifeToggle = 1;
 //---------------------------------------------------v
 /* fction#variables */
 //---------------------------------------------------^
@@ -206,7 +216,10 @@ void draw() {
     myGroup = myFONT.toGroup(textTyped);
     if (f7Menu.isVisible()) {
       resetF7();
+    } else if (f8Menu.isVisible()) {
       resetF8();
+    } else if (f9Menu.isVisible()) {
+      resetF9();
     }
   }
   /* changes size of MyFont */
@@ -217,7 +230,10 @@ void draw() {
     yyy += 0.01;
     if (f7Menu.isVisible()) {
       resetF7();
+    } else if (f8Menu.isVisible()) {
       resetF8();
+    } else if (f9Menu.isVisible()) {
+      resetF9();
     }
   }
   //---------------------------------------------------v
@@ -391,6 +407,10 @@ void draw() {
   } else if (f8Menu.isVisible()) {    
     if (textTyped.length() > 0) {
       f8();
+    }
+  } else if (f9Menu.isVisible()) {    
+    if (textTyped.length() > 0) {
+      f9();
     }
   }
 

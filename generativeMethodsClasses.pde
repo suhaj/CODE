@@ -37,27 +37,27 @@ class Particle {
 /* fction 3 class */
 class FontAgent3 {
 
- PVector loc;
+  PVector loc;
 
- FontAgent3(PVector l) {
-   loc = l.copy();
- }
+  FontAgent3(PVector l) {
+    loc = l.copy();
+  }
 
- void motion() {
-   noiseScale = map(noiseVariation, 0, width, 0.001, 0.01); //Smaller numbers give less variation in the noise val.
-   noiseZ = map(nervousMotion, 0, height, frameCount*0.0003, frameCount*0.03);//Greater numbers will make the motion more nervous.
-   motion = noise(loc.x * noiseScale * noiseZ, loc.y * noiseScale * noiseZ) * 53;
-   //System.out.println("mouseX " + mouseX);
-   //System.out.println("mouseY " + mouseY);
- }  
+  void motion() {
+    noiseScale = map(noiseVariation, 0, width, 0.001, 0.01); //Smaller numbers give less variation in the noise val.
+    noiseZ = map(nervousMotion, 0, height, frameCount*0.0003, frameCount*0.03);//Greater numbers will make the motion more nervous.
+    motion = noise(loc.x * noiseScale * noiseZ, loc.y * noiseScale * noiseZ) * 53;
+    //System.out.println("mouseX " + mouseX);
+    //System.out.println("mouseY " + mouseY);
+  }  
 
 
- void display() {
-   noStroke();
-   fill(textHue, textSat, textBri, 53);
-   ellipse(loc.x, loc.y, motion+step, motion+step);
-   //System.out.println("display " + mouseX);
- }
+  void display() {
+    noStroke();
+    fill(textHue, textSat, textBri, 53);
+    ellipse(loc.x, loc.y, motion+step, motion+step);
+    //System.out.println("display " + mouseX);
+  }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,12 +77,13 @@ class FontAgent4 {
 
     xoff += xincrement;
     yoff += yincrement;
-    MouvPoint = dist(deplacementX-(width/2), deplacementY-(height/2), loc.x, loc.y);;
+    MouvPoint = dist(deplacementX-(width/2), deplacementY-(height/2), loc.x, loc.y);
+    ;
   }  
 
   void display() {
     noStroke();
-    fill(textHue, textSat, textBri,73);
+    fill(textHue, textSat, textBri, 73);
     dia = (150/MouvPoint) *5; // the boldness of everzthing diplayed
     //ellipse(loc.x + random(-randX, randX), loc.y + random(-randY, randY), dia, dia);
     ellipse(loc.x + random(-randX/20, randX), loc.y + random(-randY/20, randY*2), dia, dia);
@@ -115,7 +116,7 @@ float[] getRandomPoint() {
   point[0] = random(width);
   point[1] = random(height);
   // make sure it's outside the text
-  while (shape7.contains (point[0], point[1])) {
+  while (rshape.contains (point[0], point[1])) {
     point[0] = random(width);
     point[1] = random(height);
   }
@@ -136,16 +137,16 @@ void checkIdentical(float[][] points) {
 }
 //*********************
 public void resetF7() {
-  shape7 = myFONT.toShape(textTyped);
-  //shape7.translate(width*0.635 - shape7.getWidth()/2, height*0.55 + shape7.getHeight()/2);
-  shape7.translate(centerX*1.3 - shape7.getWidth()/2, centerY*0.8 + shape7.getHeight()/2);
+  rshape = myFONT.toShape(textTyped);
+  //rshape.translate(width*0.635 - rshape.getWidth()/2, height*0.55 + rshape.getHeight()/2);
+  rshape.translate(centerX*1.3 - rshape.getWidth()/2, centerY*0.8 + rshape.getHeight()/2);
   numberOfPoints();
   generateRegionsAndColors();
 }
 //*********************
 void numberOfPoints() {
-  
-  allPoints = shape7.getPoints(); // holds the extracted points
+
+  allPoints = rshape.getPoints(); // holds the extracted points
 
   numPointsText = allPoints.length;
   colors = new color[numPointsText];
@@ -159,7 +160,7 @@ void numberOfPoints() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /* f8 methods */
-void addRemoveParticles() {
+void addRemoveParticlesF8() {
   // remove particlesF8 with no life left
   for (int i=particlesF8.size()-1; i>=0; i--) {
     ParticleF8 p = particlesF8.get(i);
@@ -167,14 +168,14 @@ void addRemoveParticles() {
       particlesF8.remove(i);
     }
   }
-  while (particlesF8.size () < maxParticles) {
+  while (particlesF8.size () < maxParticlesF8) {
     particlesF8.add(new ParticleF8());
   }
 }
 //*********************
 public void resetF8() {
-  shape7 = myFONT.toShape(textTyped);
-  shape7.translate(width/2, height*0.7);
+  rshape = myFONT.toShape(textTyped);
+  rshape.translate(width/2, height*0.7);
   particlesF8.clear();
   background(bcgHue, bcgSat, bcgBri);
 }
@@ -214,7 +215,71 @@ class ParticleF8 {
 
   // return if point is inside the text
   boolean isInText(PVector v) {
-    return shape7.contains(v.x, v.y);
+    return rshape.contains(v.x, v.y);
+  }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* f9 methods */
+void addRemoveParticlesF9() {
+  // remove particles with no life left
+  for (int i=particlesF9.size()-1; i>=0; i--) {
+    ParticleF9 p = particlesF9.get(i);
+    if (p.life <= 0) {
+      particlesF9.remove(i);
+    }
+  }
+  // add particles until the maximum
+  while (particlesF9.size () < maxParticlesF9) {
+    particlesF9.add(new ParticleF9());
+  }
+}
+//*********************
+public void resetF9() {
+  rshape = myFONT.toShape(textTyped);
+  rshape.translate(width/2, height*0.7);
+  particlesF9.clear();
+  background(0);
+}
+//*********************
+/* f9 class */
+
+class ParticleF9 {
+  PVector loc;
+  float maxLife = maxLifeToggle;
+  float life, lifeRate;
+
+  ParticleF9() {
+    getPosition();
+    // set the maximum life of the Particles depending on the drawMode
+    // randomly set a life and lifeRate for each Particle
+    life = random(0.5 * maxLife, maxLife);
+    lifeRate = random(0.01, 0.02);
+  }
+
+  void update() {
+    float angle = noise(loc.x * 0.01, loc.y * 0.01, fc001*angleNoise) * TWO_PI;
+    PVector vel = PVector.fromAngle(angle + fc001*vectorNoise);
+    loc.add(vel);
+    life -= lifeRate; // decrease life by the lifeRate (the particle is removed by the addRemoveParticles() method when no life is left)
+  }
+
+  void display() {
+    fill(textHue, textSat, textBri); 
+    stroke(0, 125); // transparant black stroke
+    strokeWeight(1.9);
+    float r = 8 * life/maxLife; // radius of the ellipse
+    ellipse(loc.x, loc.y, r, r); // draw ellipse
+  }
+
+  // get a random position inside the text
+  void getPosition() {
+    while (loc == null || !isInText (loc)) loc = new PVector(random(width), random(height));
+  }
+
+  // return if point is inside the text
+  boolean isInText(PVector v) {
+    return rshape.contains(v.x, v.y);
   }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
