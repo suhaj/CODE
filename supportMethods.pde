@@ -3,18 +3,24 @@ void keyPressed() {
   if (key != CODED) {
     switch(key) {
     case BACKSPACE:
-      //f3particles(); 
       textTyped = textTyped.substring(0, max(0, textTyped.length()-1));
+      if(f7Menu.isVisible()){
+       resetF7();
+      }
       break;
     case ENTER:
     case RETURN:
-      //soooooo what if we actuallz use the points and move those!
       break;
     default:
-      //f3particles(); 
       textTyped += key;
+      if(f7Menu.isVisible()){
+       resetF7();
+      }
     }
   }
+}
+void keyReleased() {
+  if (keyCode == CONTROL) saveOneFrame = true;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -111,14 +117,14 @@ Boolean getFontSuffix(String fontNameMETHOD) {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-public static int convert(int OctalNumber){
-   int counter=0;
-   int result = 0;
-   while(OctalNumber !=0) {
-        int temp = (int) ((OctalNumber%8) * Math.pow(10, counter));
-        counter++;
-        result += temp;
-        OctalNumber /= 8;
-    }
-    return result;
+public static int convert(int OctalNumber) {
+  int counter=0;
+  int result = 0;
+  while (OctalNumber !=0) {
+    int temp = (int) ((OctalNumber%8) * Math.pow(10, counter));
+    counter++;
+    result += temp;
+    OctalNumber /= 8;
+  }
+  return result;
 }

@@ -1,4 +1,5 @@
-//import processing.svg.*;
+import megamu.mesh.*; 
+import processing.pdf.*;
 import geomerative.*;
 import controlP5.*;
 /* Font path search libraries */
@@ -32,16 +33,22 @@ controlP5.Group f3Menu;
 controlP5.Group f4Menu;
 controlP5.Group f5Menu;
 controlP5.Group f6Menu;
+controlP5.Group f7Menu;
+controlP5.Group f8Menu;
+controlP5.Group f9Menu;
 //---------------------------------------------------v
 //controlP5.Group f#Menu;
 //---------------------------------------------------^
 RadioButton rb1;
+Slider2D s;
 /* GUI variables */
 boolean gMenuOpenness = true;
 String activeFont = "FreeSans.ttf"; //default font
 String selectedFont = activeFont;
 String textTyped = "Type!!";
 int frmRt = 16;
+boolean saveOneFrame = false;
+int counter = 001;
 //String textDeposit = textTyped;
 int textHue = 0;
 int textSat = 0;
@@ -57,6 +64,8 @@ int offsetX = 0;
 int offsetY = 0;
 int centerX = 0;
 int centerY = 0;
+int lastCenterX = centerX;
+int lastCenterY = centerY;
 /* lists for font-work */
 String[] PFontList = PFont.list();
 List<String> TTFFontList = new ArrayList<String>();
@@ -106,6 +115,24 @@ float stepSizeF6 = 3;
 float danceFactorF6 = 1;
 float connectionF6 = 1.4;
 int thicknessF6 = 1;
+/* fction7variables */
+int numPointsGenerated = 225;
+int lastnumPointsGenerated = numPointsGenerated;
+RShape shape7;        
+RPoint[] allPoints;
+MPolygon[] myRegions;        
+color[] colors;
+float[][] regionCoordinates;           
+float[][] points;
+int numPointsText;
+float lastTextHue = textHue;
+float lastTextBri = textBri;
+float lastTextSat = textSat;
+float colorRange = 15;
+float lastColorRange = colorRange;
+float filling = 0.75;
+/* fction8variables */
+/* fction9variables */
 //---------------------------------------------------v
 /* fction#variables */
 //---------------------------------------------------^
@@ -115,6 +142,7 @@ void setup() {
   size(900, 500);
   smooth(16);
   colorMode(HSB, 360, 100, 100);
+  //colorMode(HSB, 1);
   if (frame != null) {
     surface.setResizable(true); //processing 3.0
     background(bcgHue, bcgSat, bcgBri);
@@ -138,17 +166,20 @@ void setup() {
   //myGroup = myGroup.toPolygonGroup();
 
   /* text location */
-  centerX = width/2;
-  centerY = (height/3)*2;
-  /* f3, f4 init */
+  centerX = lastCenterX = width/2;
+  centerY = lastCenterY = (height/3)*2;
+  /* f3 init */
   myAgents3 = new FontAgent3[myPoints.length];
   for (int i=0; i<myPoints.length; i++) {
     myAgents3[i] = new FontAgent3(new PVector(myPoints[i].x, myPoints[i].y));
   }
+  /* f4 init */
   myAgents4 = new FontAgent4[myPoints.length];
   for (int i=0; i<myPoints.length; i++) {
     myAgents4[i] = new FontAgent4(new PVector(myPoints[i].x, myPoints[i].y));
   }
+  /* f7 init */
+  resetF7();
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -167,6 +198,9 @@ void draw() {
     activeFont = selectedFont;
     myFONT =  new RFont(activeFont, activeFontSize, RFont.CENTER);
     myGroup = myFONT.toGroup(textTyped);
+    if (f7Menu.isVisible()) {
+      f7();
+    }
   }
   /* changes size of MyFont */
   if (activeFontSize != fontSize) { 
@@ -174,14 +208,20 @@ void draw() {
     myFONT.setSize(activeFontSize);
     xxx += 0.01;
     yyy += 0.01;
+    if (f7Menu.isVisible()) {
+      f7();
+    }
   }
   //---------------------------------------------------v
   /* moving text while menus closed */
   if ((mousePressed == true)
     &&(!f1Menu.isVisible())&&(!f2Menu.isVisible())&&(!f3Menu.isVisible())&&(!f4Menu.isVisible())
-    &&(!f5Menu.isVisible())&&(!f6Menu.isVisible())) {
+    &&(!f5Menu.isVisible())&&(!f6Menu.isVisible())&&(!f7Menu.isVisible())&&(!f8Menu.isVisible())
+    &&(!f9Menu.isVisible())) {
     centerX = mouseX-offsetX;
     centerY = mouseY-offsetY;
+
+    resetF7();
   }
   //---------------------------------------------------^
   /* change Menu dimensions with screen resize */
@@ -236,6 +276,27 @@ void draw() {
       setFunctionMenus();
       f6Menu.show();
       publicMenu.show();
+    } 
+    if (f7Menu.isVisible()) {
+      f7Menu.hide();
+      publicMenu.hide();
+      setFunctionMenus();
+      f7Menu.show();
+      publicMenu.show();
+    }
+    if (f8Menu.isVisible()) {
+      f8Menu.hide();
+      publicMenu.hide();
+      setFunctionMenus();
+      f8Menu.show();
+      publicMenu.show();
+    }
+    if (f9Menu.isVisible()) {
+      f9Menu.hide();
+      publicMenu.hide();
+      setFunctionMenus();
+      f9Menu.show();
+      publicMenu.show();
     } else {
       setFunctionMenus();
     }
@@ -251,12 +312,16 @@ void draw() {
   }
   // .............................................................................................................................................................................. //
   /* TEXT OBJECT DISPLAY */
+  if (saveOneFrame) {
+    beginRecord(PDF, "img" + counter + ".pdf");
+  }
   pushMatrix();
   translate(centerX, centerY);
   /* basic text */
   //---------------------------------------------------v
-  if ((!f1Menu.isVisible())&&(!f2Menu.isVisible())&&(!f3Menu.isVisible())&&(!f4Menu.isVisible())
-    &&(!f5Menu.isVisible())&&(!f6Menu.isVisible())) {
+  if ((!f1Menu.isVisible())&&(!f2Menu.isVisible())&&(!f3Menu.isVisible())
+    &&(!f4Menu.isVisible())&&(!f5Menu.isVisible())&&(!f6Menu.isVisible())
+    &&(!f7Menu.isVisible())&&(!f8Menu.isVisible())&&(!f9Menu.isVisible())) {
     pushMatrix();
     fill(textHue, textSat, textBri);
     myFONT.draw(textTyped);
@@ -290,15 +355,38 @@ void draw() {
     if (textTyped.length() > 0) {
       f6();
     }
+  } else /* f8 */ if (f8Menu.isVisible()) {
+    if (textTyped.length() > 0) {
+      //f8();
+    }
+  } else /* f9 */ if (f9Menu.isVisible()) {
+    if (textTyped.length() > 0) {
+      //f9();
+    }
   }
   //---------------------------------------------------v
   //else /* f# */ if (f#Menu.isVisible()) {
-  //  if (textTyped.length() > 0) {
-  //    f#();
-  //  }
+  //if (textTyped.length() > 0) {
+  //  f#();
+  //}
   //}
   //---------------------------------------------------^
   popMatrix();
+
+  if (f7Menu.isVisible()) {    
+    if (textTyped.length() > 0) {
+      //pushMatrix();      
+      //translate(centerX-width/2,centerY-height/2);
+      f7();
+      //popMatrix();
+    }
+  }
+
+  if (saveOneFrame) {
+    endRecord();
+    saveOneFrame = false;
+    counter++;
+  }
 }
 
 

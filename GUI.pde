@@ -71,8 +71,11 @@ void setGUI() {
     .addItem("function 4", 4)
     .addItem("function 5", 5)
     .addItem("function 6", 6)
+    .addItem("function 7", 7)
+    .addItem("function 8", 8)
+    .addItem("function 9", 9)
     //---------------------------------------------------v
-    //.addItem("function #", ##)
+    //.addItem("function #", #)
     //---------------------------------------------------^
     .setGroup(gMenu)
     ;
@@ -93,6 +96,9 @@ void controlEvent(ControlEvent theEvent) {
       f4Menu.hide();
       f5Menu.hide();
       f6Menu.hide();
+      f7Menu.hide();
+      f8Menu.hide();
+      f9Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -104,6 +110,9 @@ void controlEvent(ControlEvent theEvent) {
       f4Menu.hide();
       f5Menu.hide();
       f6Menu.hide();
+      f7Menu.hide();
+      f8Menu.hide();
+      f9Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -115,6 +124,9 @@ void controlEvent(ControlEvent theEvent) {
       f4Menu.hide();
       f5Menu.hide();
       f6Menu.hide();
+      f7Menu.hide();
+      f8Menu.hide();
+      f9Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -126,6 +138,9 @@ void controlEvent(ControlEvent theEvent) {
       f3Menu.hide();
       f5Menu.hide();
       f6Menu.hide();
+      f7Menu.hide();
+      f8Menu.hide();
+      f9Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -137,6 +152,9 @@ void controlEvent(ControlEvent theEvent) {
       f3Menu.hide();
       f4Menu.hide();
       f6Menu.hide();
+      f7Menu.hide();
+      f8Menu.hide();
+      f9Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
@@ -148,16 +166,68 @@ void controlEvent(ControlEvent theEvent) {
       f3Menu.hide();
       f4Menu.hide();
       f5Menu.hide();
+      f7Menu.hide();
+      f8Menu.hide();
+      f9Menu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
       //---------------------------------------------------^
       f6Menu.show();
       publicMenu.show();
-    }
+    } else if (theEvent.getGroup().getValue()==7) {
+      f1Menu.hide();
+      f2Menu.hide();
+      f3Menu.hide();
+      f4Menu.hide();
+      f5Menu.hide();
+      f6Menu.hide();
+      f8Menu.hide();
+      f9Menu.hide();
+      //---------------------------------------------------v
+      //f#Menu.hide();
+      //---------------------------------------------------^
+      f7Menu.show();
+      publicMenu.show();
+    } else if (theEvent.getGroup().getValue()==8) {
+      f1Menu.hide();
+      f2Menu.hide();
+      f3Menu.hide();
+      f4Menu.hide();
+      f5Menu.hide();
+      f6Menu.hide();
+      f7Menu.hide();
+      f9Menu.hide();
+      //---------------------------------------------------v
+      //f#Menu.hide();
+      //---------------------------------------------------^
+      f8Menu.show();
+      publicMenu.show();
+    } else if (theEvent.getGroup().getValue()==9) {
+      f1Menu.hide();
+      f2Menu.hide();
+      f3Menu.hide();
+      f4Menu.hide();
+      f5Menu.hide();
+      f6Menu.hide();
+      f7Menu.hide();
+      f8Menu.hide();
+      //---------------------------------------------------v
+      //f#Menu.hide();
+      //---------------------------------------------------^
+      f9Menu.show();
+      publicMenu.show();
+    } 
     //---------------------------------------------------v
     //else if (theEvent.getGroup().getValue()==#) {
-    //  f##Menu.hide();
-    //  f##Menu.hide();
+    //  f1Menu.hide();
+    //  f2Menu.hide();
+    //  f3Menu.hide();
+    //  f4Menu.hide();
+    //  f5Menu.hide();
+    //  f6Menu.hide();
+    //  f7Menu.hide();
+    //  f8Menu.hide();
+    //  f9Menu.hide();
     //  //---------------------------------------------------v
     //  //f#Menu.hide();
     //  //---------------------------------------------------^
@@ -171,6 +241,9 @@ void controlEvent(ControlEvent theEvent) {
       f4Menu.hide();
       f5Menu.hide();
       f6Menu.hide();
+      f7Menu.hide();
+      f8Menu.hide();
+      f9Menu.hide();
       publicMenu.hide();
       //---------------------------------------------------v
       //f#Menu.hide();
@@ -236,6 +309,33 @@ void setFunctionMenus() {
     .hideBar()
     .hide()
     ;
+  f7Menu = myGUI.addGroup("f7Menu") //f7 menu group
+    .setPosition(0, height-100)
+    .setWidth(width-400)
+    .setBackgroundHeight(100)
+    .setBackgroundColor(color(0, 0, 80, 90))
+    .setLabel("f7")  
+    .hideBar()
+    .hide()
+    ;
+  f8Menu = myGUI.addGroup("f8Menu") //f8 menu group
+    .setPosition(0, height-100)
+    .setWidth(width-400)
+    .setBackgroundHeight(100)
+    .setBackgroundColor(color(0, 0, 80, 90))
+    .setLabel("f8")  
+    .hideBar()
+    .hide()
+    ;
+  f9Menu = myGUI.addGroup("f9Menu") //f9 menu group
+    .setPosition(0, height-100)
+    .setWidth(width-400)
+    .setBackgroundHeight(100)
+    .setBackgroundColor(color(0, 0, 80, 90))
+    .setLabel("f9")  
+    .hideBar()
+    .hide()
+    ;
   //---------------------------------------------------v
   //f#Menu = myGUI.addGroup("f#Menu") //f# menu group
   //.setPosition(0, height-100)
@@ -263,6 +363,9 @@ void setFunctionMenus() {
   setf4MenuButtons();
   setf5MenuButtons();
   setf6MenuButtons();
+  setf7MenuButtons();
+  setf8MenuButtons();
+  setf9MenuButtons();
   //---------------------------------------------------v
   //setf#MenuButtons();
   //---------------------------------------------------^
@@ -272,25 +375,33 @@ void setFunctionMenus() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /* function menu buttons init */
 void setf1MenuButtons() {
-  myGUI.addSlider("horizontalStretch")
+  //myGUI.addSlider("horizontalStretch")
+  //  .setPosition(10, 10)
+  //  .setWidth(300)
+  //  .setRange(-1000, 1000)
+  //  .setLabel("Horizontal stretch")  
+  //  .setGroup(f1Menu)
+  //  .setColorLabel(0)
+  //  ;
+  //myGUI.addSlider("verticalStretch")
+  //  .setPosition(10, 30)
+  //  .setWidth(300)
+  //  .setRange(-1000, 1000)
+  //  .setLabel("Vertical stretch")  
+  //  .setGroup(f1Menu)
+  //  .setColorLabel(0)
+  //  ;
+  s = myGUI.addSlider2D("wave")
     .setPosition(10, 10)
-    .setWidth(300)
-    .setRange(-1000, 1000)
-    .setLabel("Horizontal stretch")  
+    .setSize(80, 80)
+    .setMinMax(-400, -400, 400, 400)
+    .setValue(0, 50)
     .setGroup(f1Menu)
-    .setColorLabel(0)
-    ;
-  myGUI.addSlider("verticalStretch")
-    .setPosition(10, 30)
-    .setWidth(300)
-    .setRange(-1000, 1000)
-    .setLabel("Vertical stretch")  
-    .setGroup(f1Menu)
-    .setColorLabel(0)
+    .disableCrosshair()
     ;
   myGUI.addSlider("factor")
-    .setPosition(10, 50)
-    .setWidth(300)
+    .setPosition(100, 10)
+    .setWidth(200)
     .setRange(-1.5, 1.5)
     .setGroup(f1Menu)
     .setColorLabel(0)
@@ -448,6 +559,47 @@ void setf6MenuButtons() {
     .setLabel("thickness")
     .setColorLabel(0)
     ;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void setf7MenuButtons() {
+  myGUI.addSlider("filling")
+    .setPosition(10, 10)
+    .setWidth(300)
+    .setRange(0, 2)
+    .setGroup(f7Menu)
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("numPointsGenerated")
+    .setPosition(10, 30)
+    .setWidth(300)
+    .setRange(10, 1300)
+    .setGroup(f7Menu)
+    .setColorLabel(0)
+    ;
+  myGUI.addSlider("colorRange")
+    .setPosition(10, 50)
+    .setWidth(100)
+    .setRange(0, 100)
+    .setLabel("color range")
+    .setGroup(f7Menu)
+    .setColorLabel(0)
+    ;
+  myGUI.addButton("resetF7")
+    .setPosition(10, 70)
+    .setSize(60, 40)
+    .setValue(0)
+    .setLabel("generate")
+    .setGroup(f7Menu)
+    ;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void setf8MenuButtons() {
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void setf9MenuButtons() {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

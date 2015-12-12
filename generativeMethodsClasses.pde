@@ -88,3 +88,71 @@ class FontAgent4 {
     ellipse(loc.x + random(-randX/20, randX), loc.y + random(-randY/20, randY*2), dia, dia);
   }
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* f7 methods */
+void generateRegionsAndColors() {
+  for (int i=numPointsText; i<points.length; i++) {
+    points[i] = getRandomPoint();
+  }
+  checkIdentical(points);
+  Voronoi myVoronoi = new Voronoi(points);
+  myRegions = myVoronoi.getRegions();
+  // generate a color for each voronoi region in the text
+  generateColors();
+}
+//*********************
+void generateColors() {
+  //colorMode(HSB, 1);
+  for (int i=0; i<numPointsText; i++) {
+    colors[i] = color(random(textHue - colorRange, textHue), random(textSat - colorRange*2, textSat), random(textBri - colorRange*2.5, textBri));
+  }
+  //colorMode(RGB, 255);
+}
+//*********************
+float[] getRandomPoint() {
+  float[] point = new float[2];
+  point[0] = random(width);
+  point[1] = random(height);
+  // make sure it's outside the text
+  while (shape7.contains (point[0], point[1])) {
+    point[0] = random(width);
+    point[1] = random(height);
+  }
+  return point;
+}
+//*********************
+void checkIdentical(float[][] points) {
+  for (int i=0; i<points.length; i++) {
+    for (int j=0; j<i; j++) {
+      if (points[i][0]==points[j][0]&&points[i][1]==points[j][1]) {
+        points[i][0]+=random(1);
+        points[i][1]+=random(1);
+        points[j][0]+=random(-1);
+        points[j][1]+=random(-1);
+      }
+    }
+  }
+}
+//*********************
+public void resetF7() {
+  shape7 = myFONT.toShape(textTyped);
+  //shape7.translate(width*0.635 - shape7.getWidth()/2, height*0.55 + shape7.getHeight()/2);
+  shape7.translate(centerX*1.3 - shape7.getWidth()/2, centerY*0.8 + shape7.getHeight()/2);
+  numberOfPoints();
+  generateRegionsAndColors();
+}
+//*********************
+void numberOfPoints() {
+  
+  allPoints = shape7.getPoints(); // holds the extracted points
+
+  numPointsText = allPoints.length;
+  colors = new color[numPointsText];
+
+  points = new float[numPointsText + numPointsGenerated][2];
+  for (int i=0; i<numPointsText; i++) {
+    points[i][0] = allPoints[i].x;
+    points[i][1] = allPoints[i].y;
+  }
+}
