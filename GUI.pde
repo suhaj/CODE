@@ -808,7 +808,7 @@ void setPublicMenuButtons() {
   myGUI.addSlider("segment")
     .setPosition(230, 10)
     .setWidth(100)
-    .setRange(1, 100)
+    .setRange(3, 100)
     .setLabel("segmentation")
     .setGroup(publicMenu)
     .setColorLabel(0)

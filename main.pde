@@ -280,6 +280,7 @@ void draw() {
       publicMenu.hide();
       setFunctionMenus();
       f2Menu.show();
+      publicMenu.show();
     } else if (f3Menu.isVisible()) {
       f3Menu.hide();
       publicMenu.hide();
@@ -292,43 +293,37 @@ void draw() {
       setFunctionMenus();
       f4Menu.show();
       publicMenu.show();
-    } 
-    if (f5Menu.isVisible()) {
+    } else if (f5Menu.isVisible()) {
       f5Menu.hide();
       publicMenu.hide();
       setFunctionMenus();
       f5Menu.show();
       publicMenu.show();
-    }
-    if (f6Menu.isVisible()) {
+    }else if (f6Menu.isVisible()) {
       f6Menu.hide();
       publicMenu.hide();
       setFunctionMenus();
       f6Menu.show();
       publicMenu.show();
-    } 
-    if (f7Menu.isVisible()) {
+    }else if (f7Menu.isVisible()) {
       f7Menu.hide();
       publicMenu.hide();
       setFunctionMenus();
       f7Menu.show();
       publicMenu.show();
-    }
-    if (f8Menu.isVisible()) {
+    }else if (f8Menu.isVisible()) {
       f8Menu.hide();
       publicMenu.hide();
       setFunctionMenus();
       f8Menu.show();
       publicMenu.show();
-    }
-    if (f9Menu.isVisible()) {
+    }else if (f9Menu.isVisible()) {
       f9Menu.hide();
       publicMenu.hide();
       setFunctionMenus();
       f9Menu.show();
       publicMenu.show();
-    }
-    if (f10Menu.isVisible()) {
+    }else if (f10Menu.isVisible()) {
       f10Menu.hide();
       publicMenu.hide();
       setFunctionMenus();
@@ -446,63 +441,6 @@ void draw() {
 
 
 //--------------------------END--------------------------OF--------------------------MAIN----------------------------------------------------------------------------------------------
-//from draw:
-//IDEA:make this a menu w/ transparent background and display it over each of the fctoin menus. THEN do with it what youve done w/ the other menus <3
-/* Public controllers display */
-//if (f1Menu.isVisible() || f2Menu.isVisible() || f3Menu.isVisible()) {
-// myGUI.getController("segment").show();
-// myGUI.getController("segment").bringToFront();
-// myGUI.getController("stopMotion").show();
-// myGUI.getController("stopMotion").bringToFront();
-//} 
-// -----------------------------------------------
-
-/*
-  !!!TRYING TO RESOLVE FCTION COEXISTENCE!!!
- if (f1 togle is on)
- display f1 style
- 
- two modes? see/type font 
- and then edit fctions */
-
 /*
 .setGUI by slo rozdelit na dve casti: jedna na zacatku pro init, druha pro srovnavani velikosti >> when you know how many buttons and stuff
- 
- .Generative design is a design method in which the output – image, sound, architectural models, animation – is generated 
- by a set of rules or an Algorithm, normally by using a computer program. Most generative design is based on parametric modeling.
- */
-//System.out.println("Tralala");
-
-/*
-TAKEN FROM DRAW, THE MOVING GESTALTUNG FUNCTION
- pushMatrix();
- translate(centerX, centerY);
- 
- if (textTyped.length() > 0) {
- // get the points on font outline
- RGroup myGroup;
- myGroup = myFONT.toGroup(textTyped);
- myGroup = myGroup.toPolygonGroup();
- RPoint[] pnts = myGroup.getPoints();
- 
- // map mouse axis
- float addToAngle = map(mouseX, 0,width, -PI,+PI);
- float curveHeight = map(mouseY, 0,height, 0.1,2);
- 
- for (int i = 0; i < pnts.length-1; i++ ) {
- float d = dist(pnts[i].x, pnts[i].y, pnts[i+1].x, pnts[i+1].y);
- // create a gap between each letter
- if (d > 20) continue;
- // alternate in every step from -1 to 1
- //float stepper = map(i%2,0,1,-1,1);
- //float angle = atan2(pnts[i+1].y-pnts[i].y, pnts[i+1].x-pnts[i].x);
- //angle = angle + addToAngle;
- 
- float cx = pnts[i].x ;// + cos(angle*stepper) * d*4 * curveHeight;
- float cy = pnts[i].y ;//+ sin(angle*stepper) * d*3 * curveHeight;
- 
- bezier(pnts[i].x,pnts[i].y,  cx,cy, cx,cy,  pnts[i+1].x,pnts[i+1].y);
- }
- }
- popMatrix();
- */
+*/
