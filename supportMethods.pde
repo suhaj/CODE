@@ -99,7 +99,7 @@ Boolean getFontSuffix(String fontNameMETHOD) {
   }
 
   Font2D f2d = fontManager.findFont2D(foundFont.getFontName(), foundFont.getStyle(), 
-    FontManager.LOGICAL_FALLBACK).handle.font2D;
+  FontManager.LOGICAL_FALLBACK).handle.font2D;
 
   Field platName = null;
   try {
@@ -140,3 +140,50 @@ public static int convert(int OctalNumber) {
   }
   return result;
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+public void savePDF(){
+ saveOneFrame = true; 
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+public void vectorPDF() {
+  if (!vectorPDFOn) {
+    beginRecord(P8gGraphicsSVG.SVG, "img" + counter + ".svg");
+    colorMode(HSB, 360, 100, 100);
+    
+    myGUI.getController("vectorPDF").setColorBackground(color(0, 85, 65));
+    myGUI.getController("vectorPDF").setColorForeground(color(0, 47, 80));
+    myGUI.getController("vectorPDF").setColorActive(color(199, 99, 62));
+    vectorPDFOn = true;
+  } else {
+    endRecord();
+    
+    myGUI.getController("vectorPDF").setColorBackground(color(200, 97, 30));
+    myGUI.getController("vectorPDF").setColorForeground(color(199, 99, 62));
+    myGUI.getController("vectorPDF").setColorActive(color(0, 47, 80));
+    vectorPDFOn = false;
+    counter++;
+  }
+}
+
+
+//public void vectorPDF() {
+//  if (vectorPDFOn) {
+//    pdf.endDraw();
+//    //    endRecord();
+//    myGUI.getController("vectorPDF").setColorBackground(color(200, 97, 30));
+//    myGUI.getController("vectorPDF").setColorForeground(color(199, 99, 62));
+//    myGUI.getController("vectorPDF").setColorActive(color(0, 47, 80));
+//    vectorPDFOn = false;
+//    counter++;
+//  } else {
+//    pdf = createGraphics(width, height, PDF, "img" + counter + ".pdf");
+//    pdf.beginDraw();
+//    //    beginRecord(PDF, "img" + counter + ".pdf");
+//    myGUI.getController("vectorPDF").setColorBackground(color(0, 85, 65));
+//    myGUI.getController("vectorPDF").setColorForeground(color(0, 47, 80));
+//    myGUI.getController("vectorPDF").setColorActive(color(199, 99, 62));
+//    vectorPDFOn = true;
+//  }
+//}

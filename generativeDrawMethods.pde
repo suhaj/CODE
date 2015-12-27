@@ -38,6 +38,7 @@ void f2() {
   //RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
   myGroup = myFONT.toGroup(textTyped);
   myPoints = myGroup.getPoints();
+  
   f2particles();
 
   for (int i=0; i<particles.size(); i++) {

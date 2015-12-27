@@ -40,11 +40,11 @@ class FontAgent3 {
   PVector loc;
 
   FontAgent3(PVector l) {
-    loc = l.copy();
+    loc = l.get(); //copy vs. get > processing 2 vs. 3
   }
 
   void motion() {
-    noiseScale = map(noiseVariation, 0, width, 0.001, 0.01); //Smaller numbers give less variation in the noise val.
+    noiseScale = map(noiseVariation, 0, 800, 0.00001, 0.5); //Smaller numbers give less variation in the noise val.
     noiseZ = map(nervousMotion, 0, height, frameCount*0.0003, frameCount*0.03);//Greater numbers will make the motion more nervous.
     motion = noise(loc.x * noiseScale * noiseZ, loc.y * noiseScale * noiseZ) * 53;
     //System.out.println("mouseX " + mouseX);
@@ -68,7 +68,7 @@ class FontAgent4 {
   float dia;
 
   FontAgent4(PVector l) {
-    loc = l.copy();
+    loc = l.get(); //copy vs. get > processing 2 vs. 3
   }
 
   void motion() {
@@ -206,7 +206,7 @@ class ParticleF8 {
 
   void display() {
     fill(textHue, textSat, textBri); 
-    stroke(0, 125); // transparant black stroke
+    stroke(hue8, sat8, bri8, 125); // transparant black stroke
     strokeWeight(1.85);
     float r = radius; // radius of the ellipse
     r *= life; // base the radius of the ellipse on the life (which decreases from 1 to 0)

@@ -1,6 +1,9 @@
 import megamu.mesh.*; 
 import processing.pdf.*;
 import geomerative.*;
+
+import org.philhosoft.p8g.svg.*;
+
 import controlP5.*;
 /* Font path search libraries */
 import java.util.List;
@@ -49,13 +52,16 @@ String selectedFont = activeFont;
 String textTyped = "Type!!";
 int frmRt = 16;
 boolean saveOneFrame = false;
+boolean vectorPDFOn = false;
 int counter = 1;
+PGraphics pdf;
 int textHue = 0;
 int textSat = 0;
 int textBri = 30;
 int bcgHue = 0;
 int bcgSat = 0;
 int bcgBri = 100;
+int hue8, sat8, bri8 = 0;
 boolean firstDrawRun = true;
 int lastWidth = 901;
 int lastHeight = 501;
@@ -161,7 +167,7 @@ void setup() {
   colorMode(HSB, 360, 100, 100);
   //colorMode(HSB, 1);
   if (frame != null) {
-    surface.setResizable(true); //processing 3.0
+    frame.setResizable(true); //surface vs. frame > processing 2 vs. 3
     background(bcgHue, bcgSat, bcgBri);
   }
   initializeFontList();
@@ -346,6 +352,7 @@ void draw() {
   /* TEXT OBJECT DISPLAY */
   if (saveOneFrame) {
     beginRecord(PDF, "img" + counter + ".pdf");
+    colorMode(HSB, 360, 100, 100);
   }
   pushMatrix();
   translate(centerX, centerY);
