@@ -148,7 +148,7 @@ void numberOfPoints() {
 
   allPoints = rshape.getPoints(); // holds the extracted points
 
-  numPointsText = allPoints.length;
+    numPointsText = allPoints.length;
   colors = new color[numPointsText];
 
   points = new float[numPointsText + numPointsGenerated][2];
@@ -162,7 +162,7 @@ void numberOfPoints() {
 /* f8 methods */
 void addRemoveParticlesF8() {
   // remove particlesF8 with no life left
-  for (int i=particlesF8.size()-1; i>=0; i--) {
+  for (int i=particlesF8.size ()-1; i>=0; i--) {
     ParticleF8 p = particlesF8.get(i);
     if (p.life <= 0) {
       particlesF8.remove(i);
@@ -177,7 +177,8 @@ public void resetF8() {
   rshape = myFONT.toShape(textTyped);
   rshape.translate(width/2, height*0.7);
   particlesF8.clear();
-  background(bcgHue, bcgSat, bcgBri);
+  pg.colorMode(HSB, 360, 100, 100);
+  pg.background(bcgHue, bcgSat, bcgBri);
 }
 //*********************
 /* f8 class */
@@ -195,7 +196,7 @@ class ParticleF8 {
 
   // get a random position inside the text
   void getPosition() {
-    while (loc == null || !isInText(loc)) loc = new PVector(random(width), random(height));
+    while (loc == null || !isInText (loc)) loc = new PVector(random(width), random(height));
   }
 
   void update() {
@@ -205,12 +206,12 @@ class ParticleF8 {
   }
 
   void display() {
-    fill(textHue, textSat, textBri); 
-    stroke(hue8, sat8, bri8, 125); // transparant black stroke
-    strokeWeight(1.85);
+    pg.fill(textHue, textSat, textBri); 
+    pg.stroke(hue8, sat8, bri8, 125); // transparant black stroke
+    pg.strokeWeight(1.85);
     float r = radius; // radius of the ellipse
     r *= life; // base the radius of the ellipse on the life (which decreases from 1 to 0)
-    ellipse(loc.x, loc.y, r, r); // draw ellipse
+    pg.ellipse(loc.x, loc.y, r, r); // draw ellipse
   }
 
   // return if point is inside the text
@@ -223,7 +224,7 @@ class ParticleF8 {
 /* f9 methods */
 void addRemoveParticlesF9() {
   // remove particles with no life left
-  for (int i=particlesF9.size()-1; i>=0; i--) {
+  for (int i=particlesF9.size ()-1; i>=0; i--) {
     ParticleF9 p = particlesF9.get(i);
     if (p.life <= 0) {
       particlesF9.remove(i);
@@ -239,6 +240,8 @@ public void resetF9() {
   rshape = myFONT.toShape(textTyped);
   rshape.translate(width/2, height*0.7);
   particlesF9.clear();
+  //  pg.colorMode(HSB, 360, 100, 100);
+  //  pg.background(bcgHue, bcgSat, bcgBri);
   background(bcgHue, bcgSat, bcgBri);
 }
 //*********************
@@ -265,6 +268,11 @@ class ParticleF9 {
   }
 
   void display() {
+    //    pg.fill(textHue, textSat, textBri); 
+    //    pg.stroke(0, 125); // transparant black stroke
+    //    pg.strokeWeight(1.9);
+    //    float r = 8 * life/maxLife; // radius of the ellipse
+    //    pg.ellipse(loc.x, loc.y, r, r); // draw ellipse
     fill(textHue, textSat, textBri); 
     stroke(0, 125); // transparant black stroke
     strokeWeight(1.9);
@@ -287,7 +295,7 @@ class ParticleF9 {
 /* f10 methods */
 void addRemoveParticlesF10() {
   // remove particles with no life left
-  for (int i=particlesF10.size()-1; i>=0; i--) {
+  for (int i=particlesF10.size ()-1; i>=0; i--) {
     ParticleF10 p = particlesF10.get(i);
     if (p.life <= 0) {
       particlesF10.remove(i);
@@ -304,6 +312,8 @@ public void resetF10() {
   rshape.translate(width/2, height*0.7);
   particlesF10.clear();
   globalRotation = random(TWO_PI); // randomly set the global rotation/direction of the Particles
+  //  pg.colorMode(HSB, 360, 100, 100);
+  //  pg.background(bcgHue, bcgSat, bcgBri);
   background(bcgHue, bcgSat, bcgBri);
 }
 //*********************
@@ -327,8 +337,11 @@ class ParticleF10 {
 
   void display() {
     boolean special = random(1) < 0.001;
+    //    pg.strokeWeight(special ? random(0.75, 3) : 0.75);
+    //    pg.stroke(textHue, textSat, textBri, special ? random(175, 255) : 65);
+    //    pg.point(loc.x, loc.y);
     strokeWeight(special ? random(0.75, 3) : 0.75);
-    stroke(255, special ? random(175, 255) : 65);
+    stroke(textHue, textSat, textBri, special ? random(175, 255) : 65);
     point(loc.x, loc.y);
   }
 
@@ -339,8 +352,9 @@ class ParticleF10 {
 
   // return if point is inside the text
   boolean isInText(PVector v) {
-    return rshape.contains(v.x,v.y);
+    return rshape.contains(v.x, v.y);
   }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+

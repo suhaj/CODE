@@ -215,6 +215,8 @@ void controlEvent(ControlEvent theEvent) {
       f8Menu.show();
       publicMenu.show();
       background(bcgHue, bcgSat, bcgBri);
+      pg.colorMode(HSB, 360, 100, 100);
+      pg.background(bcgHue, bcgSat, bcgBri);
     } else if (theEvent.getGroup().getValue()==9) {
       f1Menu.hide();
       f2Menu.hide();
@@ -231,6 +233,8 @@ void controlEvent(ControlEvent theEvent) {
       f9Menu.show();
       publicMenu.show();
       background(bcgHue, bcgSat, bcgBri);
+      pg.colorMode(HSB, 360, 100, 100);
+      pg.background(bcgHue, bcgSat, bcgBri);
     } else if (theEvent.getGroup().getValue()==10) {
       f1Menu.hide();
       f2Menu.hide();
@@ -247,6 +251,8 @@ void controlEvent(ControlEvent theEvent) {
       f10Menu.show();
       publicMenu.show();
       background(bcgHue, bcgSat, bcgBri);
+      pg.colorMode(HSB, 360, 100, 100);
+      pg.background(bcgHue, bcgSat, bcgBri);
     } 
     //---------------------------------------------------v
     //else if (theEvent.getGroup().getValue()==#) {

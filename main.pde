@@ -2,7 +2,7 @@ import megamu.mesh.*;
 import processing.pdf.*;
 import geomerative.*;
 
-import org.philhosoft.p8g.svg.*;
+//import org.philhosoft.p8g.svg.*;
 
 import controlP5.*;
 /* Font path search libraries */
@@ -23,6 +23,7 @@ import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
 
+PGraphics pg;
 RFont myFONT;
 RGroup myGroup;
 RPoint[] myPoints;
@@ -164,6 +165,8 @@ float globalRotation;
 void setup() {
   size(900, 500);
   smooth(16);
+  pg = createGraphics(width, height, JAVA2D);
+//  pg.colorMode(HSB, 360, 100, 100);
   colorMode(HSB, 360, 100, 100);
   //colorMode(HSB, 1);
   if (frame != null) {
@@ -264,6 +267,7 @@ void draw() {
   if (lastHeight != height || lastWidth != width) {
     lastWidth = width;
     lastHeight = height;
+    pg = createGraphics(width, height, JAVA2D);
     gMenu.hide();
     if (gMenu.isOpen()) {
       gMenuOpenness = true;

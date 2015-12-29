@@ -149,7 +149,7 @@ public void savePDF(){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public void vectorPDF() {
   if (!vectorPDFOn) {
-    beginRecord(P8gGraphicsSVG.SVG, "img" + counter + ".svg");
+    beginRecord(PDF, "imgRecord" + counter + ".pdf");
     colorMode(HSB, 360, 100, 100);
     
     myGUI.getController("vectorPDF").setColorBackground(color(0, 85, 65));
