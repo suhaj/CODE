@@ -177,8 +177,9 @@ public void resetF8() {
   rshape = myFONT.toShape(textTyped);
   rshape.translate(width/2, height*0.7);
   particlesF8.clear();
-  pg.colorMode(HSB, 360, 100, 100);
-  pg.background(bcgHue, bcgSat, bcgBri);
+  //  pg.colorMode(HSB, 360, 100, 100);
+  //  pg.background(bcgHue, bcgSat, bcgBri);
+  background(bcgHue, bcgSat, bcgBri);
 }
 //*********************
 /* f8 class */
@@ -206,12 +207,18 @@ class ParticleF8 {
   }
 
   void display() {
-    pg.fill(textHue, textSat, textBri); 
-    pg.stroke(hue8, sat8, bri8, 125); // transparant black stroke
-    pg.strokeWeight(1.85);
+    //    pg.fill(textHue, textSat, textBri); 
+    //    pg.stroke(hue8, sat8, bri8, 125); // transparant black stroke
+    //    pg.strokeWeight(1.85);
+    //    float r = radius; // radius of the ellipse
+    //    r *= life; // base the radius of the ellipse on the life (which decreases from 1 to 0)
+    //    pg.ellipse(loc.x, loc.y, r, r); // draw ellipse
+    fill(textHue, textSat, textBri); 
+    stroke(hue8, sat8, bri8, 125); // transparant black stroke
+    strokeWeight(1.85);
     float r = radius; // radius of the ellipse
     r *= life; // base the radius of the ellipse on the life (which decreases from 1 to 0)
-    pg.ellipse(loc.x, loc.y, r, r); // draw ellipse
+    ellipse(loc.x, loc.y, r, r); // draw ellipse
   }
 
   // return if point is inside the text
@@ -274,7 +281,7 @@ class ParticleF9 {
     //    float r = 8 * life/maxLife; // radius of the ellipse
     //    pg.ellipse(loc.x, loc.y, r, r); // draw ellipse
     fill(textHue, textSat, textBri); 
-    stroke(0, 125); // transparant black stroke
+    stroke(hue9, sat9, bri9, 125);
     strokeWeight(1.9);
     float r = 8 * life/maxLife; // radius of the ellipse
     ellipse(loc.x, loc.y, r, r); // draw ellipse

@@ -4,29 +4,33 @@ void keyPressed() {
     switch(key) {
     case BACKSPACE:
       textTyped = textTyped.substring(0, max(0, textTyped.length()-1));
-      if (f7Menu.isVisible()) {
-        resetF7();
-      } else if (f8Menu.isVisible()) {
-        resetF8();
-      } else if (f9Menu.isVisible()) {
-        resetF9();
-      } else if (f10Menu.isVisible()) {
-        resetF10();
-      } 
+      if (textTyped.length() > 0) {
+        if (f7Menu.isVisible()) {
+          resetF7();
+        } else if (f8Menu.isVisible()) {
+          resetF8();
+        } else if (f9Menu.isVisible()) {
+          resetF9();
+        } else if (f10Menu.isVisible()) {
+          resetF10();
+        }
+      }
       break;
     case ENTER:
     case RETURN:
       break;
     default:
       textTyped += key;
-      if (f7Menu.isVisible()) {
-        resetF7();
-      } else if (f8Menu.isVisible()) {
-        resetF8();
-      } else if (f9Menu.isVisible()) {
-        resetF9();
-      } else if (f10Menu.isVisible()) {
-        resetF10();
+      if (textTyped.length() > 0) {
+        if (f7Menu.isVisible()) {
+          resetF7();
+        } else if (f8Menu.isVisible()) {
+          resetF8();
+        } else if (f9Menu.isVisible()) {
+          resetF9();
+        } else if (f10Menu.isVisible()) {
+          resetF10();
+        }
       }
     }
   }
@@ -142,8 +146,8 @@ public static int convert(int OctalNumber) {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-public void savePDF(){
- saveOneFrame = true; 
+public void savePDF() {
+  saveOneFrame = true;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -151,14 +155,14 @@ public void vectorPDF() {
   if (!vectorPDFOn) {
     beginRecord(PDF, "imgRecord" + counter + ".pdf");
     colorMode(HSB, 360, 100, 100);
-    
+
     myGUI.getController("vectorPDF").setColorBackground(color(0, 85, 65));
     myGUI.getController("vectorPDF").setColorForeground(color(0, 47, 80));
     myGUI.getController("vectorPDF").setColorActive(color(199, 99, 62));
     vectorPDFOn = true;
   } else {
     endRecord();
-    
+
     myGUI.getController("vectorPDF").setColorBackground(color(200, 97, 30));
     myGUI.getController("vectorPDF").setColorForeground(color(199, 99, 62));
     myGUI.getController("vectorPDF").setColorActive(color(0, 47, 80));
@@ -187,3 +191,4 @@ public void vectorPDF() {
 //    vectorPDFOn = true;
 //  }
 //}
+

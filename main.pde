@@ -63,6 +63,7 @@ int bcgHue = 0;
 int bcgSat = 0;
 int bcgBri = 100;
 int hue8, sat8, bri8 = 0;
+int hue9, sat9, bri9 = 0;
 boolean firstDrawRun = true;
 int lastWidth = 901;
 int lastHeight = 501;

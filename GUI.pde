@@ -727,6 +727,30 @@ void setf9MenuButtons() {
           .setLabel("generate")
             .setGroup(f9Menu)
               ;
+  myGUI.addSlider("hue9")
+    .setPosition(403, 3)
+      .setSize(99, 20)
+        .setRange(0, 360)
+          //          .setLabel("life")  
+          .setGroup(f9Menu)
+            .setColorLabel(0)
+              ;
+  myGUI.addSlider("sat9")
+    .setPosition(403, 43)
+      .setSize(99, 20)
+        .setRange(0, 100)
+          //          .setLabel("life")  
+          .setGroup(f9Menu)
+            .setColorLabel(0)
+              ;
+  myGUI.addSlider("bri9")
+    .setPosition(403, 63)
+      .setSize(99, 20)
+        .setRange(0, 100)
+          //          .setLabel("life")  
+          .setGroup(f9Menu)
+            .setColorLabel(0)
+              ;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
