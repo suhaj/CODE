@@ -35,9 +35,9 @@ void keyPressed() {
     }
   }
 }
-void keyReleased() {
-  if (keyCode == CONTROL) saveOneFrame = true;
-}
+//void keyReleased() {
+//  if (keyCode == CONTROL) savePDF();
+//}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /* mouse controls */
@@ -49,18 +49,12 @@ void mousePressed() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /* selectedFont getting a path, not a name - fix for Geomerative */
 void fonts(int n) { //list of installed fonts
+
   selectedFont = TTFPathList.get(n);
   System.out.println(selectedFont);
+
+  //   System.out.println("got it!");
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//void stopMotion(boolean theFlag) {
-//  if (theFlag==true) {
-//    loop();
-//  } else {
-//    noLoop();
-//  }
-//}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /* Creates Lists, calls for font sorting function, getFontSuffix() */
@@ -128,12 +122,11 @@ Boolean getFontSuffix(String fontNameMETHOD) {
     TTF = true;
     TTFPathList.add(fontPath);
   }
-
   return TTF;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-public static int convert(int OctalNumber) {
+public static int convert8(int OctalNumber) {
   int counter=0;
   int result = 0;
   while (OctalNumber !=0) {
@@ -144,18 +137,44 @@ public static int convert(int OctalNumber) {
   }
   return result;
 }
+
+public static int convert9(int OctalNumber) {
+  int counter=0;
+  int result = 0;
+  while (OctalNumber !=0) {
+    int temp = (int) ((OctalNumber%9) * Math.pow(10, counter));
+    counter++;
+    result += temp;
+    OctalNumber /= 9;
+  }
+  return result;
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+String savePath;
+
 public void savePDF() {
+  selectOutput("Select a file to write to:", "fileSelected");
+  noLoop();
   saveOneFrame = true;
+}
+
+void fileSelected(File selection) {
+  if (selection == null) {
+    println("Window was closed or the user hit cancel.");
+    loop();
+  } else {
+    savePath = selection.getAbsolutePath();
+    loop();
+  }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public void vectorPDF() {
   if (!vectorPDFOn) {
-    beginRecord(PDF, "imgRecord" + counter + ".pdf");
-    colorMode(HSB, 360, 100, 100);
-
+    selectOutput("Select a file to write to:", "fileSelected");
+    noLoop();
+    
     myGUI.getController("vectorPDF").setColorBackground(color(0, 85, 65));
     myGUI.getController("vectorPDF").setColorForeground(color(0, 47, 80));
     myGUI.getController("vectorPDF").setColorActive(color(199, 99, 62));
@@ -167,28 +186,28 @@ public void vectorPDF() {
     myGUI.getController("vectorPDF").setColorForeground(color(199, 99, 62));
     myGUI.getController("vectorPDF").setColorActive(color(0, 47, 80));
     vectorPDFOn = false;
-    counter++;
   }
 }
 
-
 //public void vectorPDF() {
-//  if (vectorPDFOn) {
-//    pdf.endDraw();
-//    //    endRecord();
-//    myGUI.getController("vectorPDF").setColorBackground(color(200, 97, 30));
-//    myGUI.getController("vectorPDF").setColorForeground(color(199, 99, 62));
-//    myGUI.getController("vectorPDF").setColorActive(color(0, 47, 80));
-//    vectorPDFOn = false;
-//    counter++;
-//  } else {
-//    pdf = createGraphics(width, height, PDF, "img" + counter + ".pdf");
-//    pdf.beginDraw();
-//    //    beginRecord(PDF, "img" + counter + ".pdf");
+//  if (!vectorPDFOn) {
+//    //beginRecord(PDF, "recordedImg" + counter + ".pdf");
+//    selectOutput("Select a file to write to:", "fileSelected");
+//    noLoop();
+//    beginRecord(PDF, savePath + ".pdf");
+//    colorMode(HSB, 360, 100, 100);
+//
 //    myGUI.getController("vectorPDF").setColorBackground(color(0, 85, 65));
 //    myGUI.getController("vectorPDF").setColorForeground(color(0, 47, 80));
 //    myGUI.getController("vectorPDF").setColorActive(color(199, 99, 62));
 //    vectorPDFOn = true;
+//  } else {
+//    endRecord();
+//
+//    myGUI.getController("vectorPDF").setColorBackground(color(200, 97, 30));
+//    myGUI.getController("vectorPDF").setColorForeground(color(199, 99, 62));
+//    myGUI.getController("vectorPDF").setColorActive(color(0, 47, 80));
+//    vectorPDFOn = false;
+////    counter++;
 //  }
 //}
-

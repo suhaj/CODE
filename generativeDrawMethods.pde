@@ -195,7 +195,8 @@ void f7() {
   RCommand.setSegmentator(RCommand.UNIFORMLENGTH);
   myGroup = myFONT.toGroup(textTyped);
   rshape = myFONT.toShape(textTyped);
-  rshape.translate(centerX*1.3 - rshape.getWidth()/2, centerY*0.8 + rshape.getHeight()/2);
+//  rshape.translate(centerX*1.3 - rshape.getWidth()/2, centerY*0.8 + rshape.getHeight()/2);
+  rshape.translate(centerX - rshape.getWidth()/2, centerY + rshape.getHeight()/2);
 
   if (lastTextHue != textHue || lastTextSat != textSat || lastTextBri != textBri || lastColorRange != colorRange) {
     generateColors();

@@ -106,7 +106,7 @@ void generateRegionsAndColors() {
 void generateColors() {
   //colorMode(HSB, 1);
   for (int i=0; i<numPointsText; i++) {
-    colors[i] = color(random(textHue - colorRange, textHue), random(textSat - colorRange*2, textSat), random(textBri - colorRange*2.5, textBri));
+    colors[i] = color(random(textHue - colorRange*2.5, textHue), random(textSat - colorRange, textSat), random(textBri - colorRange/2, textBri));
   }
   //colorMode(RGB, 255);
 }
@@ -175,7 +175,8 @@ void addRemoveParticlesF8() {
 //*********************
 public void resetF8() {
   rshape = myFONT.toShape(textTyped);
-  rshape.translate(width/2, height*0.7);
+  //  rshape.translate(width/2, height*0.7);
+  rshape.translate(centerX - rshape.getWidth()/2, centerY + rshape.getHeight()/2);
   particlesF8.clear();
   //  pg.colorMode(HSB, 360, 100, 100);
   //  pg.background(bcgHue, bcgSat, bcgBri);
@@ -245,7 +246,8 @@ void addRemoveParticlesF9() {
 //*********************
 public void resetF9() {
   rshape = myFONT.toShape(textTyped);
-  rshape.translate(width/2, height*0.7);
+//  rshape.translate(width/2, height*0.7);
+rshape.translate(centerX - rshape.getWidth()/2, centerY + rshape.getHeight()/2);
   particlesF9.clear();
   //  pg.colorMode(HSB, 360, 100, 100);
   //  pg.background(bcgHue, bcgSat, bcgBri);
@@ -316,7 +318,8 @@ void addRemoveParticlesF10() {
 //*********************
 public void resetF10() {
   rshape = myFONT.toShape(textTyped);
-  rshape.translate(width/2, height*0.7);
+//  rshape.translate(width/2, height*0.7);
+rshape.translate(centerX - rshape.getWidth()/2, centerY + rshape.getHeight()/2);
   particlesF10.clear();
   globalRotation = random(TWO_PI); // randomly set the global rotation/direction of the Particles
   //  pg.colorMode(HSB, 360, 100, 100);

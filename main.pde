@@ -1,9 +1,6 @@
 import megamu.mesh.*; 
 import processing.pdf.*;
 import geomerative.*;
-
-//import org.philhosoft.p8g.svg.*;
-
 import controlP5.*;
 /* Font path search libraries */
 import java.util.List;
@@ -54,7 +51,7 @@ String textTyped = "Type!!";
 int frmRt = 16;
 boolean saveOneFrame = false;
 boolean vectorPDFOn = false;
-int counter = 1;
+
 PGraphics pdf;
 int textHue = 0;
 int textSat = 0;
@@ -62,6 +59,7 @@ int textBri = 30;
 int bcgHue = 0;
 int bcgSat = 0;
 int bcgBri = 100;
+int hue7, sat7, bri7 = 0;
 int hue8, sat8, bri8 = 0;
 int hue9, sat9, bri9 = 0;
 boolean firstDrawRun = true;
@@ -167,7 +165,7 @@ void setup() {
   size(900, 500);
   smooth(16);
   pg = createGraphics(width, height, JAVA2D);
-//  pg.colorMode(HSB, 360, 100, 100);
+  //  pg.colorMode(HSB, 360, 100, 100);
   colorMode(HSB, 360, 100, 100);
   //colorMode(HSB, 1);
   if (frame != null) {
@@ -310,31 +308,31 @@ void draw() {
       setFunctionMenus();
       f5Menu.show();
       publicMenu.show();
-    }else if (f6Menu.isVisible()) {
+    } else if (f6Menu.isVisible()) {
       f6Menu.hide();
       publicMenu.hide();
       setFunctionMenus();
       f6Menu.show();
       publicMenu.show();
-    }else if (f7Menu.isVisible()) {
+    } else if (f7Menu.isVisible()) {
       f7Menu.hide();
       publicMenu.hide();
       setFunctionMenus();
       f7Menu.show();
       publicMenu.show();
-    }else if (f8Menu.isVisible()) {
+    } else if (f8Menu.isVisible()) {
       f8Menu.hide();
       publicMenu.hide();
       setFunctionMenus();
       f8Menu.show();
       publicMenu.show();
-    }else if (f9Menu.isVisible()) {
+    } else if (f9Menu.isVisible()) {
       f9Menu.hide();
       publicMenu.hide();
       setFunctionMenus();
       f9Menu.show();
       publicMenu.show();
-    }else if (f10Menu.isVisible()) {
+    } else if (f10Menu.isVisible()) {
       f10Menu.hide();
       publicMenu.hide();
       setFunctionMenus();
@@ -353,10 +351,21 @@ void draw() {
     //}
     //---------------------------------------------------^
   }
+  
+  if(f8Menu.isVisible()||f9Menu.isVisible()||f10Menu.isVisible()){
+    myGUI.getController("vectorPDF").show();
+  } else {
+   myGUI.getController("vectorPDF").hide(); 
+  }
+    
   // .............................................................................................................................................................................. //
   /* TEXT OBJECT DISPLAY */
   if (saveOneFrame) {
-    beginRecord(PDF, "img" + counter + ".pdf");
+    beginRecord(PDF, savePath + ".pdf");
+    colorMode(HSB, 360, 100, 100);
+  }
+  if (vectorPDFOn) {    
+    beginRecord(PDF, savePath + ".pdf");
     colorMode(HSB, 360, 100, 100);
   }
   pushMatrix();
@@ -442,7 +451,7 @@ void draw() {
   if (saveOneFrame) {
     endRecord();
     saveOneFrame = false;
-    counter++;
+    //counter++;
   }
 }
 
@@ -455,4 +464,4 @@ void draw() {
 //--------------------------END--------------------------OF--------------------------MAIN----------------------------------------------------------------------------------------------
 /*
 .setGUI by slo rozdelit na dve casti: jedna na zacatku pro init, druha pro srovnavani velikosti >> when you know how many buttons and stuff
-*/
+ */

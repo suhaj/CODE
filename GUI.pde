@@ -5,13 +5,14 @@ void setGUI() {
   gMenu = myGUI.addGroup("gMenu")
     .setPosition(0, 10)
       .setWidth(width)
-        //.setBackgroundHeight(30 + int(20*cos((width/1000)*(HALF_PI))) + int(20*cos((width/1000)*(HALF_PI))*cos((convert(width/100)/10)*(HALF_PI))))
-        .setBackgroundHeight(50)
+        //.setBackgroundHeight(30 + int(20*cos((width/1000)*(HALF_PI))) + int(20*cos((width/1000)*(HALF_PI))*cos((convert8(width/100)/10)*(HALF_PI))))
+        .setBackgroundHeight(30 + int(20*cos((width/1500)*(HALF_PI))) + int(20*cos((width/1000)*(HALF_PI))) + int(20*cos((width/1000)*(HALF_PI))*cos((convert9(width/100)/10)*(HALF_PI))) + int(20*cos((width/1000)*(HALF_PI))*cos((convert8(width/100)/10)*(HALF_PI))))
           .setBackgroundColor(color(0, 0, 80, 90))
             .setLabel("Menu")  
               .setOpen(gMenuOpenness)
                 ;
-  //System.out.println(width/100 + " " + convert(width/100)/10 + " " + cos((convert(width/100)/10)*(HALF_PI)));
+  //System.out.println(width/100 + " " + convert8(width/100)/10 + " " + cos((convert8(width/100)/10)*(HALF_PI)));
+  //  System.out.println(width + " " + width/1000 + " " + width/1500 + " ");
 
   /* Array to List for CP5 Scrollable List, Scrollable List */
   String[] TTFFontArray = new String[TTFFontList.size()];
@@ -38,26 +39,13 @@ void setGUI() {
                 ;
   myGUI.getController("fontSize").getValueLabel().align(ControlP5.RIGHT, ControlP5.CENTER).setPaddingX(0);
   myGUI.getController("fontSize").getCaptionLabel().align(ControlP5.LEFT, ControlP5.CENTER).setPaddingX(0);
-  /* Public noLoop switch */
-  //myGUI.addToggle("stopMotion")
-  //  .setPosition(500, height - 70)
-  //  .setSize(50, 20)
-  //  .setValue(true)
-  //  .setMode(ControlP5.SWITCH)
-  //  .hide()
-  //  ;
+
   myGUI.addButton("savePDF")
     .setPosition(width - 99, 3)
       .setSize(99, 20)
         .setLabel("Save as PDF")
           .setGroup(gMenu)
             ;
-  //void keyPressed() {
-  //  if (key == ' ') {
-  //    saveFrame("captures/capture_"+(new Date().getTime())+".tiff");
-  //    println("save TIFF");
-  //  }
-  //}
 
   /* function (radio) buttons */
   rb1 = myGUI.addRadioButton("function1")
@@ -68,16 +56,16 @@ void setGUI() {
             .setColorLabel(color(255))
               .setItemsPerRow(width/100 - 5)
                 .setSpacingColumn(3)
-                  .addItem("function 1", 1)
-                    .addItem("function 2", 2)
-                      .addItem("function 3", 3)
-                        .addItem("function 4", 4)
-                          .addItem("function 5", 5)
-                            .addItem("function 6", 6)
-                              .addItem("function 7", 7)
-                                .addItem("function 8", 8)
-                                  .addItem("function 9", 9)
-                                    .addItem("function 10", 10)
+                  .addItem("  ellipses", 1)
+                    .addItem("      grids", 2)
+                      .addItem("   bubbles", 3)
+                        .addItem("   photons", 4)
+                          .addItem("      lines", 5)
+                            .addItem("    curves", 6)
+                              .addItem("  voronois", 7)
+                                .addItem("      roots", 8)
+                                  .addItem("    weeds", 9)
+                                    .addItem("   strands", 10)
                                       //---------------------------------------------------v
                                       //.addItem("function #", #)
                                       //---------------------------------------------------^
@@ -295,90 +283,90 @@ void controlEvent(ControlEvent theEvent) {
 /* fuction menus group init */
 void setFunctionMenus() {
   f1Menu = myGUI.addGroup("f1Menu") //f1 menu group
-      .setPosition(0, height-100)
+      .setPosition(0, height-110)
       .setWidth(width-400)
-        .setBackgroundHeight(100)
+        .setBackgroundHeight(110)
           .setBackgroundColor(color(0, 0, 80, 90))
             .setLabel("f1")  
               .hideBar()
                 .hide()
                   ;
   f2Menu = myGUI.addGroup("f2Menu") //f2 menu group
-      .setPosition(0, height-100)
+      .setPosition(0, height-110)
       .setWidth(width-400)
-        .setBackgroundHeight(100)
+        .setBackgroundHeight(110)
           .setBackgroundColor(color(0, 0, 80, 90))
             .setLabel("f2")  
               .hideBar()
                 .hide()
                   ;
   f3Menu = myGUI.addGroup("f3Menu") //f3 menu group
-      .setPosition(0, height-100)
+      .setPosition(0, height-110)
       .setWidth(width-400)
-        .setBackgroundHeight(100)
+        .setBackgroundHeight(110)
           .setBackgroundColor(color(0, 0, 80, 90))
             .setLabel("f3")  
               .hideBar()
                 .hide()
                   ;
   f4Menu = myGUI.addGroup("f4Menu") //f4 menu group
-      .setPosition(0, height-100)
+      .setPosition(0, height-110)
       .setWidth(width-400)
-        .setBackgroundHeight(100)
+        .setBackgroundHeight(110)
           .setBackgroundColor(color(0, 0, 80, 90))
             .setLabel("f4")  
               .hideBar()
                 .hide()
                   ;
   f5Menu = myGUI.addGroup("f5Menu") //f5 menu group
-      .setPosition(0, height-100)
+      .setPosition(0, height-110)
       .setWidth(width-400)
-        .setBackgroundHeight(100)
+        .setBackgroundHeight(110)
           .setBackgroundColor(color(0, 0, 80, 90))
             .setLabel("f5")  
               .hideBar()
                 .hide()
                   ;
   f6Menu = myGUI.addGroup("f6Menu") //f6 menu group
-      .setPosition(0, height-100)
+      .setPosition(0, height-110)
       .setWidth(width-400)
-        .setBackgroundHeight(100)
+        .setBackgroundHeight(110)
           .setBackgroundColor(color(0, 0, 80, 90))
             .setLabel("f6")  
               .hideBar()
                 .hide()
                   ;
   f7Menu = myGUI.addGroup("f7Menu") //f7 menu group
-      .setPosition(0, height-100)
+      .setPosition(0, height-110)
       .setWidth(width-400)
-        .setBackgroundHeight(100)
+        .setBackgroundHeight(110)
           .setBackgroundColor(color(0, 0, 80, 90))
             .setLabel("f7")  
               .hideBar()
                 .hide()
                   ;
   f8Menu = myGUI.addGroup("f8Menu") //f8 menu group
-      .setPosition(0, height-100)
+      .setPosition(0, height-110)
       .setWidth(width-400)
-        .setBackgroundHeight(100)
+        .setBackgroundHeight(110)
           .setBackgroundColor(color(0, 0, 80, 90))
             .setLabel("f8")  
               .hideBar()
                 .hide()
                   ;
   f9Menu = myGUI.addGroup("f9Menu") //f9 menu group
-      .setPosition(0, height-100)
+      .setPosition(0, height-110)
       .setWidth(width-400)
-        .setBackgroundHeight(100)
+        .setBackgroundHeight(110)
           .setBackgroundColor(color(0, 0, 80, 90))
             .setLabel("f9")  
               .hideBar()
                 .hide()
                   ;
   f10Menu = myGUI.addGroup("f10Menu") //f10 menu group
-      .setPosition(0, height-100)
+      .setPosition(0, height-110)
       .setWidth(width)
-        .setBackgroundHeight(100)
+        .setBackgroundHeight(110)
           .setBackgroundColor(color(0, 0, 80, 90))
             .setLabel("f10")  
               .hideBar()
@@ -396,9 +384,9 @@ void setFunctionMenus() {
   //;
   //---------------------------------------------------^
   publicMenu = myGUI.addGroup("publicMenu") //public menu group
-      .setPosition(width - 400, height-100)
+      .setPosition(width - 400, height-110)
       .setWidth(400)
-        .setBackgroundHeight(100)
+        .setBackgroundHeight(110)
           .setBackgroundColor(color(0, 0, 80, 90))
             .hideBar()
               .hide()
@@ -425,20 +413,24 @@ void setFunctionMenus() {
 /* function menu buttons init */
 void setf1MenuButtons() {
   s = myGUI.addSlider2D("wave")
-    .setPosition(10, 10)
-      .setSize(80, 80)
-        .setMinMax(-400, -400, 400, 400)
-          .setValue(0, 50)
-            .setGroup(f1Menu)
-              .disableCrosshair()
-                ;
+    .setLabel("scaling")
+      .setPosition(10, 10)
+        .setSize(80, 80)
+          .setMinMax(-400, -400, 400, 400)
+            .setValue(0, 50)
+              .setGroup(f1Menu)
+                .disableCrosshair()
+                  .setColorLabel(0)
+                    .setColorValue(0)
+                      ;
   myGUI.addSlider("factor")
-    .setPosition(100, 10)
-      .setWidth(200)
-        .setRange(-1.5, 1.5)
-          .setGroup(f1Menu)
-            .setColorLabel(0)
-              ;
+    .setLabel("scale factor")
+      .setPosition(100, 10)
+        .setWidth(200)
+          .setRange(-1.5, 1.5)
+            .setGroup(f1Menu)
+              .setColorLabel(0)
+                ;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -449,17 +441,19 @@ void setf2MenuButtons() {
         .setRange(0, 50)
           .setGroup(f2Menu)
             .setColorLabel(0)
-              ;
+              .setLabel("horizontal distribution");
+  ;
   myGUI.addSlider("yyy")
     .setPosition(10, 30)
       .setWidth(300)
         .setRange(0, 50)
           .setGroup(f2Menu)
             .setColorLabel(0)
-              ;
+              .setLabel("vertical distribution");
+  ;
   myGUI.addSlider("distMin")
-    .setLabel("minimal connect distance")
-      .setPosition(10, 70)
+    .setLabel("min connection distance")
+      .setPosition(10, 50)
         .setWidth(300)
           .setRange(0, 60)
             .setGroup(f2Menu)
@@ -475,21 +469,24 @@ void setf3MenuButtons() {
         .setRange(0, 800)
           .setGroup(f3Menu)
             .setColorLabel(0)
-              ;
+              .setLabel("size variation")
+                ;
   myGUI.addSlider("nervousMotion")
     .setPosition(10, 30)
       .setWidth(300)
         .setRange(0, 350)
           .setGroup(f3Menu)
             .setColorLabel(0)
-              ;
+              .setLabel("motion");
+  ;
   myGUI.addSlider("step")
     .setPosition(10, 50)
       .setWidth(300)
         .setRange(-30, 50)
           .setGroup(f3Menu)
             .setColorLabel(0)
-              ;
+              .setLabel("scaling");
+  ;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -500,44 +497,48 @@ void setf4MenuButtons() {
         .setRange(0, 800)
           .setGroup(f4Menu)
             .setColorLabel(0)
-              ;
+              .setLabel("horizontal distribution");
+  ;
   myGUI.addSlider("mousey")
     .setPosition(10, 30)
       .setWidth(300)
         .setRange(0, 450)
           .setGroup(f4Menu)
             .setColorLabel(0)
-              ;
+              .setLabel("vertical distribution");
+  ;
   myGUI.addSlider("factorx")
     .setPosition(10, 50)
       .setWidth(300)
         .setRange(0, 175)
           .setGroup(f4Menu)
             .setColorLabel(0)
-              ;
+              .setLabel("flare horizontal distribution");
+  ;
   myGUI.addSlider("factory")
     .setPosition(10, 70)
       .setWidth(300)
         .setRange(0, 175)
           .setGroup(f4Menu)
             .setColorLabel(0)
-              ;
+              .setLabel("flare vertical distribution");
+  ;
 }
 void setf5MenuButtons() {
   myGUI.addSlider("danceFactorF5")
-    .setPosition(10, 10)
+    .setPosition(10, 30)
       .setWidth(300)
         .setRange(0, 3)
           .setGroup(f5Menu)
-            .setLabel("dance factor")
+            .setLabel("expansion")
               .setColorLabel(0)
                 ;
   myGUI.addSlider("stepSizeF5")
-    .setPosition(10, 30)
+    .setPosition(10, 10)
       .setWidth(300)
         .setRange(0, 100)
           .setGroup(f5Menu)
-            .setLabel("step size")
+            .setLabel("dancing")
               .setColorLabel(0)
                 ;
   myGUI.addSlider("connectionF5")
@@ -545,7 +546,7 @@ void setf5MenuButtons() {
       .setWidth(300)
         .setRange(0, 10)
           .setGroup(f5Menu)
-            .setLabel("connection")
+            .setLabel("min connection distance")
               .setColorLabel(0)
                 ;
   myGUI.addSlider("thicknessF5")
@@ -561,19 +562,19 @@ void setf5MenuButtons() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void setf6MenuButtons() {
   myGUI.addSlider("danceFactorF6")
-    .setPosition(10, 10)
+    .setPosition(10, 30)
       .setWidth(300)
         .setRange(0, 3)
           .setGroup(f6Menu)
-            .setLabel("dance factor")
+            .setLabel("expansion")
               .setColorLabel(0)
                 ;
   myGUI.addSlider("stepSizeF6")
-    .setPosition(10, 30)
+    .setPosition(10, 10)
       .setWidth(300)
         .setRange(0, 100)
           .setGroup(f6Menu)
-            .setLabel("step size")
+            .setLabel("dancing")
               .setColorLabel(0)
                 ;
   myGUI.addSlider("connectionF6")
@@ -581,7 +582,7 @@ void setf6MenuButtons() {
       .setWidth(300)
         .setRange(0, 10)
           .setGroup(f6Menu)
-            .setLabel("connection")
+            .setLabel("min connection distance")
               .setColorLabel(0)
                 ;
   myGUI.addSlider("thicknessF6")
@@ -598,21 +599,22 @@ void setf6MenuButtons() {
 void setf7MenuButtons() {
   myGUI.addSlider("filling")
     .setPosition(10, 10)
-      .setWidth(300)
+      .setWidth(170)
         .setRange(0, 2)
           .setGroup(f7Menu)
             .setColorLabel(0)
               ;
   myGUI.addSlider("numPointsGenerated")
     .setPosition(10, 30)
-      .setWidth(300)
+      .setWidth(170)
         .setRange(10, 1300)
           .setGroup(f7Menu)
             .setColorLabel(0)
-              ;
+              .setLabel("number of points");
+  ;
   myGUI.addSlider("colorRange")
     .setPosition(10, 50)
-      .setWidth(100)
+      .setWidth(170)
         .setRange(0, 100)
           .setLabel("color range")
             .setGroup(f7Menu)
@@ -620,168 +622,192 @@ void setf7MenuButtons() {
                 ;
   myGUI.addButton("resetF7")
     .setPosition(10, 70)
-      .setSize(60, 40)
+      .setSize(60, 30)
         .setValue(0)
           .setLabel("generate")
             .setGroup(f7Menu)
               ;
+  myGUI.addSlider("hue7")
+    .setPosition(300, 10)
+      .setWidth(100)
+        .setRange(0, 360)
+          .setLabel("stroke hue")  
+            .setGroup(f7Menu)
+              .setColorLabel(0)
+                ;
+  myGUI.addSlider("sat7")
+    .setPosition(300, 23)
+      .setWidth(100)
+        .setRange(0, 100)
+          .setLabel("stroke saturation")  
+            .setGroup(f7Menu)
+              .setColorLabel(0)
+                ;
+  myGUI.addSlider("bri7")
+    .setPosition(300, 36)
+      .setWidth(100)
+        .setRange(0, 100)
+          .setLabel("stroke brightness")  
+            .setGroup(f7Menu)
+              .setColorLabel(0)
+                ;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void setf8MenuButtons() {
   myGUI.addSlider("maxParticlesF8")
-    .setPosition(103, 3)
-      .setSize(99, 20)
+    .setPosition(10, 10)
+      .setWidth(190)
         .setRange(1, 300)
           .setLabel("number of particles")  
             .setGroup(f8Menu)
               .setColorLabel(0)
                 ;
   myGUI.addSlider("toggleRadius")
-    .setPosition(103, 43)
-      .setSize(99, 20)
+    .setPosition(10, 30)
+      .setWidth(190)
         .setRange(1, 90)
           .setLabel("radius")  
             .setGroup(f8Menu)
               .setColorLabel(0)
                 ;
   myGUI.addSlider("lifeRateToggle")
-    .setPosition(103, 63)
-      .setSize(99, 20)
+    .setPosition(10, 50)
+      .setWidth(190)
         .setRange(0.005, 0.05)
           .setLabel("life")  
             .setGroup(f8Menu)
               .setColorLabel(0)
                 ;
   myGUI.addButton("resetF8")
-    .setPosition(10, 63)
-      .setSize(60, 40)
+    .setPosition(10, 70)
+      .setSize(60, 30)
         .setValue(0)
           .setLabel("generate")
             .setGroup(f8Menu)
               ;
   myGUI.addSlider("hue8")
-    .setPosition(403, 3)
-      .setSize(99, 20)
+    .setPosition(300, 10)
+      .setWidth(100)
         .setRange(0, 360)
-          //          .setLabel("life")  
-          .setGroup(f8Menu)
-            .setColorLabel(0)
-              ;
+          .setLabel("stroke hue")  
+            .setGroup(f8Menu)
+              .setColorLabel(0)
+                ;
   myGUI.addSlider("sat8")
-    .setPosition(403, 43)
-      .setSize(99, 20)
+    .setPosition(300, 23)
+      .setWidth(100)
         .setRange(0, 100)
-          //          .setLabel("life")  
-          .setGroup(f8Menu)
-            .setColorLabel(0)
-              ;
+          .setLabel("stroke saturation")  
+            .setGroup(f8Menu)
+              .setColorLabel(0)
+                ;
   myGUI.addSlider("bri8")
-    .setPosition(403, 63)
-      .setSize(99, 20)
+    .setPosition(300, 36)
+      .setWidth(100)
         .setRange(0, 100)
-          //          .setLabel("life")  
-          .setGroup(f8Menu)
-            .setColorLabel(0)
-              ;
+          .setLabel("stroke brightness")  
+            .setGroup(f8Menu)
+              .setColorLabel(0)
+                ;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void setf9MenuButtons() {
   myGUI.addSlider("vectorNoise")
-    .setPosition(103, 3)
-      .setSize(99, 20)
+    .setPosition(10, 30)
+      .setWidth(170)
         .setRange(0, 10)
           .setLabel("Direction randomization")  
             .setGroup(f9Menu)
               .setColorLabel(0)
                 ;
   myGUI.addSlider("angleNoise")
-    .setPosition(103, 43)
-      .setSize(99, 20)
+    .setPosition(10, 50)
+      .setWidth(170)
         .setRange(0, 10)
           .setLabel("angle randomization")  
             .setGroup(f9Menu)
               .setColorLabel(0)
                 ;
   myGUI.addSlider("maxLifeToggle")
-    .setPosition(103, 63)
-      .setSize(99, 20)
+    .setPosition(10, 70)
+      .setWidth(170)
         .setRange(0.1, 6)
           .setLabel("life")  
             .setGroup(f9Menu)
               .setColorLabel(0)
                 ;
   myGUI.addSlider("maxParticlesF9")
-    .setPosition(103, 83)
-      .setSize(99, 20)
+    .setPosition(10, 10)
+      .setWidth(170)
         .setRange(1, 300)
           .setLabel("number of particles")  
             .setGroup(f9Menu)
               .setColorLabel(0)
                 ;
   myGUI.addButton("resetF9")
-    .setPosition(10, 63)
-      .setSize(60, 40)
+    .setPosition(300, 50)
+      .setSize(60, 30)
         .setValue(0)
           .setLabel("generate")
             .setGroup(f9Menu)
               ;
   myGUI.addSlider("hue9")
-    .setPosition(403, 3)
-      .setSize(99, 20)
+    .setPosition(300, 10)
+      .setWidth(100)
         .setRange(0, 360)
-          //          .setLabel("life")  
-          .setGroup(f9Menu)
-            .setColorLabel(0)
-              ;
+          .setLabel("stroke hue")  
+            .setGroup(f9Menu)
+              .setColorLabel(0)
+                ;
   myGUI.addSlider("sat9")
-    .setPosition(403, 43)
-      .setSize(99, 20)
+    .setPosition(300, 23)
+      .setWidth(100)
         .setRange(0, 100)
-          //          .setLabel("life")  
-          .setGroup(f9Menu)
-            .setColorLabel(0)
-              ;
+          .setLabel("stroke saturation")  
+            .setGroup(f9Menu)
+              .setColorLabel(0)
+                ;
   myGUI.addSlider("bri9")
-    .setPosition(403, 63)
-      .setSize(99, 20)
+    .setPosition(300, 36)
+      .setWidth(100)
         .setRange(0, 100)
-          //          .setLabel("life")  
-          .setGroup(f9Menu)
-            .setColorLabel(0)
-              ;
+          .setLabel("stroke brightness")  
+            .setGroup(f9Menu)
+              .setColorLabel(0)
+                ;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void setf10MenuButtons() {
   myGUI.addSlider("maxParticlesF10")
-    .setPosition(103, 3)
-      .setSize(99, 20)
+    .setPosition(10, 10)
+      .setWidth(300)
         .setRange(1, 2000)
           .setLabel("number of particles")  
             .setGroup(f10Menu)
               .setColorLabel(0)
                 ;
   myGUI.addSlider("maxLifeF10")
-    .setPosition(103, 43)
-      .setSize(99, 20)
+    .setPosition(10, 30)
+      .setWidth(300)
         .setRange(0.1, 6)
           .setLabel("maximum life")  
             .setGroup(f10Menu)
               .setColorLabel(0)
                 ;
   myGUI.addSlider("minLifeF10")
-    .setPosition(103, 63)
-      .setSize(99, 20)
+    .setPosition(10, 50)
+      .setWidth(300)
         .setRange(0.1, 6)
           .setLabel("minimum life")  
             .setGroup(f10Menu)
               .setColorLabel(0)
                 ;
   myGUI.addButton("resetF10")
-    .setPosition(10, 83)
-      .setSize(60, 40)
+    .setPosition(10, 70)
+      .setSize(60, 30)
         .setValue(0)
           .setLabel("generate")
             .setGroup(f10Menu)
@@ -864,8 +890,8 @@ void setPublicMenuButtons() {
                 ;
 
   myGUI.addButton("vectorPDF")
-    .setPosition(230, 36)
-      .setSize(99, 20)
+    .setPosition(232, 60)
+      .setSize(99, 30)
         .setLabel("Record a vector PDF")
           .setGroup(publicMenu)
             ;
